@@ -60,6 +60,8 @@ export default function AdminDashboard() {
     // Data States
     const [users, setUsers] = useState<User[]>([]);
     const [products, setProducts] = useState<Product[]>([]);
+    const [analyticsData, setAnalyticsData] = useState<any>(null);
+    const [realTimeStats, setRealTimeStats] = useState<any>(null);
 
     // Mock Chart Data (Visuals)
     const revenueData = [
@@ -83,37 +85,54 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         fetchDashboardData();
+        // Fetch real-time stats for overview tab
+        if (activeTab === 'overview') {
+            fetchRealTimeStats();
+        }
     }, [activeTab]);
 
     const fetchDashboardData = async () => {
         setLoading(true);
         try {
             if (activeTab === 'overview') {
-                // In a real app, you'd fetch /api/admin/dashboard
-                // const { data } = await api.get('/admin/dashboard');
-                // setStats(data);
-
-                // Simulating API delay and response
-                setTimeout(() => {
-                    setStats({
-                        totalUsers: 142,
-                        totalProducts: products.length || 150, // Fallback to seeded count
-                        totalOrders: 45,
-                        totalRevenue: 125000,
-                        recentOrders: []
-                    });
-                }, 800);
+                // Fetch analytics dashboard overview
+                const { data } = await api.get('/analytics/dashboard');
+                setAnalyticsData(data.data);
+                setStats(data.data.today);
+                setRevenueData(data.data.last30Days.userGrowth || []);
+                setUserGrowthData(data.data.userGrowth || []);
             } else if (activeTab === 'users') {
-                const { data } = await api.get('/admin/users');
+                // Fetch users with analytics
+                const { data } = await api.get('/analytics/users');
                 setUsers(data.data || []);
             } else if (activeTab === 'products') {
-                const { data } = await api.get('/products'); // Public endpoint is fine for list
+                // Fetch products with analytics
+                const { data } = await api.get('/analytics/products');
                 setProducts(data.data || []);
             }
         } catch (error) {
             console.error('Failed to fetch dashboard data:', error);
+            // Fallback to mock data if API fails
+            if (activeTab === 'overview') {
+                setStats({
+                    totalUsers: 142,
+                    totalProducts: 150,
+                    totalOrders: 45,
+                    totalRevenue: 125000,
+                    recentOrders: []
+                });
+            }
         } finally {
             setLoading(false);
+        }
+    };
+
+    const fetchRealTimeStats = async () => {
+        try {
+            const { data } = await api.get('/analytics/realtime');
+            setRealTimeStats(data.data);
+        } catch (error) {
+            console.error('Failed to fetch real-time stats:', error);
         }
     };
 
@@ -193,8 +212,67 @@ export default function AdminDashboard() {
                                     ))}
                                 </div>
 
+                                {/* Real-time Analytics */}
+                                {realTimeStats && (
+                                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-6">
+                                        <h3 className="text-lg font-bold text-gray-900 mb-6">Real-time Analytics</h3>
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                            <div className="text-center">
+                                                <div className="text-3xl font-bold text-coral-500">{realTimeStats.activeUsers}</div>
+                                                <div className="text-sm text-gray-500">Active Users</div>
+                                            </div>
+                                            <div className="text-center">
+                                                <div className="text-3xl font-bold text-blue-500">{realTimeStats.recentActivities.length}</div>
+                                                <div className="text-sm text-gray-500">Recent Activities</div>
+                                            </div>
+                                            <div className="text-center">
+                                                <div className="text-3xl font-bold text-green-500">{realTimeStats.recentOrders}</div>
+                                                <div className="text-sm text-gray-500">Recent Orders</div>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Anonymous User Tracking */}
+                                        {analyticsData?.last30Days && (
+                                            <div className="mt-6 pt-6 border-t border-gray-100">
+                                                <h4 className="font-medium text-gray-900 mb-3">Anonymous User Tracking (30 Days)</h4>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div className="bg-gray-50 p-4 rounded-lg">
+                                                        <div className="text-2xl font-bold text-gray-900">{analyticsData.last30Days.uniqueVisitors}</div>
+                                                        <div className="text-sm text-gray-500">Unique Visitors</div>
+                                                    </div>
+                                                    <div className="bg-gray-50 p-4 rounded-lg">
+                                                        <div className="text-2xl font-bold text-gray-900">{analyticsData.last30Days.totalVisits}</div>
+                                                        <div className="text-sm text-gray-500">Total Page Visits</div>
+                                                    </div>
+                                                </div>
+                                                
+                                                {/* Device Breakdown */}
+                                                {analyticsData.deviceBreakdown && (
+                                                    <div className="mt-4">
+                                                        <h5 className="text-sm font-medium text-gray-700 mb-2">Device Usage</h5>
+                                                        <div className="flex gap-4">
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                                                                <span className="text-sm text-gray-600">Desktop: {analyticsData.deviceBreakdown.desktop}</span>
+                                                            </div>
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                                                <span className="text-sm text-gray-600">Mobile: {analyticsData.deviceBreakdown.mobile}</span>
+                                                            </div>
+                                                            <div className="flex items-center gap-2">
+                                                                <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                                                <span className="text-sm text-gray-600">Tablet: {analyticsData.deviceBreakdown.tablet}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+
                                 {/* Charts */}
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                                     <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                                         <h3 className="text-lg font-bold text-gray-900 mb-6">Revenue Overview</h3>
                                         <div className="h-[300px]">

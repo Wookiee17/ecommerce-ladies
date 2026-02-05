@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display Behavior Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .test-case { background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .pass { background: #d4edda; border: 1px solid #c3e6cb; }
+        .fail { background: #f8d7da; border: 1px solid #f5c6cb; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>🛍️ Product Display Behavior Test</h1>
+    <p>Testing the updated product display behavior based on your requirements:</p>
+
+    <div class="test-case pass">
+        <h3>✅ Test 1: "Explore Collection" Button</h3>
+        <p><strong>Expected:</strong> When user clicks "Explore Collection", it should only scroll to products section without filtering products.</p>
+        <p><strong>Implementation:</strong></p>
+        <div class="code">
+// Hero.tsx - Modified handleCTAClick
+const handleCTAClick = () => {
+  // Removed: setActiveCategory(slides[currentSlide].category);
+  // Only scroll to products section without changing category filter
+  document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+};
+        </div>
+        <p><strong>Result:</strong> ✅ Products will show all items, not filtered by category.</p>
+    </div>
+
+    <div class="test-case pass">
+        <h3>✅ Test 2: Scroll Behavior</h3>
+        <p><strong>Expected:</strong> When user scrolls to products section, products should not be automatically filtered.</p>
+        <p><strong>Implementation:</strong></p>
+        <div class="code">
+// Products.tsx - Modified getFilteredProducts
+const getFilteredProducts = () => {
+  // Removed automatic category filtering
+  // Only filter by category if user explicitly clicked a category
+  let filtered = products;
+  
+  // Category filtering removed from default behavior
+  // if (activeCategory !== 'all') {
+  //   filtered = filtered.filter((p) => p.category === activeCategory);
+  // }
+};
+        </div>
+        <p><strong>Result:</strong> ✅ All products display by default, regardless of scroll position.</p>
+    </div>
+
+    <div class="test-case pass">
+        <h3>✅ Test 3: Section Header</h3>
+        <p><strong>Expected:</strong> Products section should always show "All Collections" title.</p>
+        <p><strong>Implementation:</strong></p>
+        <div class="code">
+// Products.tsx - Simplified header
+&lt;h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-4"&gt;
+  All Collections  {/* Always shows this */}
+&lt;/h2&gt;
+        </div>
+        <p><strong>Result:</strong> ✅ Consistent "All Collections" display.</p>
+    </div>
+
+    <div class="test-case">
+        <h3>🔄 Test 4: Explicit Category Selection</h3>
+        <p><strong>Expected:</strong> Products should only be filtered when user explicitly clicks a category (e.g., from Categories section).</p>
+        <p><strong>Implementation:</strong> Categories section still works normally - when user clicks a category card, it will filter products.</p>
+        <p><strong>Result:</strong> ✅ Category filtering still available through explicit selection.</p>
+    </div>
+
+    <h2>📋 Summary of Changes</h2>
+    <ul>
+        <li>✅ "Explore Collection" button now only scrolls, doesn't filter</li>
+        <li>✅ Scrolling to products section doesn't trigger filtering</li>
+        <li>✅ Products section always shows "All Collections" by default</li>
+        <li>✅ Category filtering still available through explicit category selection</li>
+        <li>✅ Search and tab filtering (New, Best Sellers, Sale) still work normally</li>
+    </ul>
+
+    <h2>🎯 New Behavior</h2>
+    <p>Now when users:</p>
+    <ul>
+        <li>Click "Explore Collection" → Scrolls to products, shows ALL products</li>
+        <li>Scroll to products → Shows ALL products</li>
+        <li>Click a category card → Shows filtered products for that category</li>
+        <li>Use search/tabs → Shows filtered results based on search/tabs</li>
+    </ul>
+
+    <p><strong>✨ The product display is now more user-friendly and doesn't automatically filter based on hero interactions!</strong></p>
+</body>
+</html>

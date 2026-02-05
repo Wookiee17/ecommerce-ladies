@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
+import { AlertCircle } from 'lucide-react';
 import {
     ShoppingBag,
     DollarSign,
@@ -46,6 +47,10 @@ export default function SellerDashboard() {
         image: ''
     });
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    
+    // Seller Stats
+    const [sellerStats, setSellerStats] = useState<any>(null);
+    const [sellerInfo, setSellerInfo] = useState<any>(null);
 
     const salesData = [
         { name: 'Mon', sales: 12 },
@@ -60,16 +65,40 @@ export default function SellerDashboard() {
         if (activeTab === 'my-products') {
             fetchMyProducts();
         }
+        // Fetch seller dashboard data
+        fetchSellerDashboard();
     }, [activeTab]);
 
     const fetchMyProducts = async () => {
         try {
-            // In real app: const { data } = await api.get('/seller/products');
-            // Mocking for now as we might not have seller-token set up completely in this session
-            const { data } = await api.get('/products');
-            setMyProducts(data.data.slice(0, 5) || []);
+            // Fetch seller's products from backend
+            const { data } = await api.get('/seller/products');
+            setMyProducts(data.data || []);
         } catch (error) {
             console.error('Failed to fetch products', error);
+            // Fallback to mock data if API fails
+            setMyProducts([]);
+        }
+    };
+
+    const fetchSellerDashboard = async () => {
+        try {
+            // Fetch seller dashboard data
+            const { data } = await api.get('/seller/dashboard');
+            setSellerStats(data.data.stats);
+            setSellerInfo(data.data.sellerInfo);
+        } catch (error) {
+            console.error('Failed to fetch seller dashboard', error);
+            // Fallback to mock data
+            setSellerStats({
+                totalProducts: 0,
+                activeProducts: 0,
+                outOfStockProducts: 0,
+                totalViews: 0,
+                totalSales: 0,
+                totalEarnings: 0,
+                commissionRate: 10
+            });
         }
     };
 
@@ -77,18 +106,39 @@ export default function SellerDashboard() {
         e.preventDefault();
         setSubmitStatus('idle');
         try {
-            // Mock API call
-            // await api.post('/seller/products', newProduct);
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // Create product via API
+            await api.post('/seller/products', {
+                name: newProduct.name,
+                description: newProduct.description,
+                price: parseFloat(newProduct.price),
+                category: newProduct.category,
+                stock: parseInt(newProduct.stock),
+                image: newProduct.image
+            });
             setSubmitStatus('success');
             setNewProduct({ name: '', description: '', price: '', category: 'dress', stock: '', image: '' });
+            // Refresh products list
+            fetchMyProducts();
         } catch (error) {
             setSubmitStatus('error');
+            console.error('Failed to create product:', error);
         }
     };
 
     if (!user) {
         return <div className="min-h-screen pt-20 text-center">Please log in to view this page.</div>;
+    }
+
+    if (user.role !== 'seller') {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50 pt-20">
+                <div className="text-center p-8">
+                    <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h2>
+                    <p className="text-gray-500">This dashboard is only available for sellers.</p>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -139,27 +189,38 @@ export default function SellerDashboard() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {/* Stats */}
                             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-3 bg-green-100 rounded-xl text-green-600">
-                                        <DollarSign className="w-6 h-6" />
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="p-3 bg-green-100 rounded-xl text-green-600">
+                                                <DollarSign className="w-6 h-6" />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-gray-500">Total Earnings</p>
+                                                <p className="text-2xl font-bold text-gray-900">${sellerStats?.totalEarnings?.toLocaleString() || '0'}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500">Total Earnings</p>
-                                        <p className="text-2xl font-bold text-gray-900">$12,450</p>
+                                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="p-3 bg-purple-100 rounded-xl text-purple-600">
+                                                <ShoppingBag className="w-6 h-6" />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-gray-500">Total Sales</p>
+                                                <p className="text-2xl font-bold text-gray-900">{sellerStats?.totalSales || '0'}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                <div className="flex items-center gap-3 mb-4">
-                                    <div className="p-3 bg-purple-100 rounded-xl text-purple-600">
-                                        <ShoppingBag className="w-6 h-6" />
+                                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <div className="p-3 bg-blue-100 rounded-xl text-blue-600">
+                                                <Package className="w-6 h-6" />
+                                            </div>
+                                            <div>
+                                                <p className="text-sm text-gray-500">Active Products</p>
+                                                <p className="text-2xl font-bold text-gray-900">{sellerStats?.activeProducts || '0'}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="text-sm text-gray-500">Orders This Month</p>
-                                        <p className="text-2xl font-bold text-gray-900">45</p>
-                                    </div>
-                                </div>
-                            </div>
 
                             {/* Chart */}
                             <div className="md:col-span-2 lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">

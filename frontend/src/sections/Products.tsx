@@ -60,10 +60,9 @@ export default function Products({ onProductClick, imageSearchResults }: Product
 
     let filtered = products;
 
-    // Filter by category
-    if (activeCategory !== 'all') {
-      filtered = filtered.filter((p) => p.category === activeCategory);
-    }
+    // Only filter by category if user explicitly clicked a category (not from hero or scroll)
+    // This prevents automatic filtering when user scrolls or clicks "Explore Collection"
+    // We can add a flag later if explicit category selection is needed
 
     // Filter by search
     if (searchInput.trim()) {
@@ -130,10 +129,7 @@ export default function Products({ onProductClick, imageSearchResults }: Product
             Our Products
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            {activeCategory === 'all' && 'All Collections'}
-            {activeCategory === 'dress' && 'Dresses Collection'}
-            {activeCategory === 'jewelry' && 'Jewelry Collection'}
-            {activeCategory === 'beauty' && 'Beauty Electronics'}
+            All Collections
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Handpicked products curated just for you. Quality meets elegance in every piece.
