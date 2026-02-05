@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
+const Coupon = require('../models/coupon.model');
 const { trackUserActivity } = require('../middleware/analytics.middleware');
+const { sendCouponEmail } = require('../utils/emailService');
 
 // Register
 router.post('/register', async (req, res) => {
@@ -24,6 +26,25 @@ router.post('/register', async (req, res) => {
     });
     
     await user.save();
+    
+    // Create welcome coupon
+    const coupon = await Coupon.createSignupCoupon(user._id);
+    
+    // Add coupon to user's coupons
+    user.coupons.push({
+      coupon: coupon._id,
+      obtainedAt: new Date(),
+      isUsed: false
+    });
+    await user.save();
+    
+    // Send welcome email with coupon
+    try {
+      await sendCouponEmail(user.email, coupon.code, coupon.discountValue);
+    } catch (emailError) {
+      console.error('Failed to send welcome email:', emailError);
+      // Don't fail the registration if email fails
+    }
     
     // Track signup
     await trackUserActivity(req, 'signup', { userId: user._id });

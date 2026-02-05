@@ -17,6 +17,8 @@ const sellerRoutes = require('./routes/seller.routes');
 const searchRoutes = require('./routes/search.routes');
 const reviewRoutes = require('./routes/review.routes');
 const paymentRoutes = require('./routes/payment.routes');
+const couponRoutes = require('./routes/coupon.routes');
+const notificationRoutes = require('./routes/notification.routes');
 const { trackActivity } = require('./middleware/analytics.middleware');
 const { errorHandler } = require('./middleware/error.middleware');
 
@@ -107,6 +109,8 @@ app.use('/api/seller', sellerRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/coupons', couponRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -129,6 +133,9 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
+  
+  // Start background jobs
+  require('./server-startup');
 });
 
 module.exports = app;

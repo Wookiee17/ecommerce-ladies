@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera } from 'lucide-react';
+import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera, Bell } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
 import { useAuth } from '@/context/AuthContext';
 import { useSearch } from '@/context/SearchContext';
 import { categories } from '@/data/products';
+import Notifications from '@/components/Notifications';
 
 interface NavigationProps {
   onCartClick: () => void;
@@ -20,6 +21,8 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
@@ -28,6 +31,37 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const { activeCategory, setActiveCategory } = useCategory();
   const { isAuthenticated, user } = useAuth();
   const { recentSearches, trendingSearches, getSuggestions, addToHistory } = useSearch();
+
+  // Fetch unread count periodically
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    const fetchUnreadCount = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        const response = await fetch('/api/notifications/unread-count', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+        if (data.success) {
+          setUnreadCount(data.data.unreadCount);
+        }
+      } catch (error) {
+        console.error('Failed to fetch unread count:', error);
+      }
+    };
+
+    fetchUnreadCount();
+    const interval = setInterval(fetchUnreadCount, 30000); // Check every 30 seconds
+
+    return () => clearInterval(interval);
+  }, [isAuthenticated]);
 
   // Handle scroll
   useEffect(() => {
@@ -172,6 +206,21 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                   </span>
                 )}
               </button>
+
+              {/* Notifications */}
+              {isAuthenticated && (
+                <button
+                  onClick={() => setIsNotificationsOpen(true)}
+                  className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors relative"
+                >
+                  <Bell className="w-5 h-5 text-gray-700" />
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                      {unreadCount > 9 ? '9+' : unreadCount}
+                    </span>
+                  )}
+                </button>
+              )}
 
               {/* User */}
               <button 
@@ -351,6 +400,12 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
           </div>
         </div>
       </nav>
+
+      {/* Notifications Panel */}
+      <Notifications
+        isOpen={isNotificationsOpen}
+        onClose={() => setIsNotificationsOpen(false)}
+      />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from '@/context/CartContext';
 import { WishlistProvider } from '@/context/WishlistContext';
@@ -10,6 +10,7 @@ import CartDrawer from '@/components/CartDrawer';
 import WishlistDrawer from '@/components/WishlistDrawer';
 import ProductDetail from '@/components/ProductDetail';
 import AuthModal from '@/components/AuthModal';
+import PromotionalModal from '@/components/PromotionalModal';
 import ImageSearch from '@/components/ImageSearch';
 import Hero from '@/sections/Hero';
 import Categories from '@/sections/Categories';
@@ -30,6 +31,22 @@ function HomePage() {
   const [imageSearchResults, setImageSearchResults] = useState<Product[] | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+  const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
+
+  useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem('token');
+    const dismissed = localStorage.getItem('promoModalDismissed');
+    
+    // Show promo modal if user is not logged in and hasn't dismissed it recently
+    if (!token && !dismissed) {
+      const timer = setTimeout(() => {
+        setIsPromoModalOpen(true);
+      }, 3000); // Show after 3 seconds
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -78,6 +95,14 @@ function HomePage() {
         isOpen={isImageSearchOpen}
         onClose={() => setIsImageSearchOpen(false)}
         onResults={handleImageSearchResults}
+      />
+      <PromotionalModal
+        isOpen={isPromoModalOpen}
+        onClose={() => setIsPromoModalOpen(false)}
+        onSignupSuccess={() => {
+          setIsPromoModalOpen(false);
+          setIsAuthOpen(false);
+        }}
       />
     </div>
   );

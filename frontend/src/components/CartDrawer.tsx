@@ -1,7 +1,11 @@
-import { Plus, Minus, ShoppingBag, Trash2, ArrowRight } from 'lucide-react';
+import { Plus, Minus, ShoppingBag, Trash2, ArrowRight, Tag, X } from 'lucide-react';
+import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
+import { useCoupons } from '@/hooks/useCoupons';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import CouponCard from '@/components/CouponCard';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -10,8 +14,49 @@ interface CartDrawerProps {
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
+  const { coupons, validateCoupon, applyCoupon, getBestCoupon } = useCoupons();
+  const [couponCode, setCouponCode] = useState('');
+  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
+  const [couponError, setCouponError] = useState('');
+  const [showCoupons, setShowCoupons] = useState(false);
 
-  const formatPrice = (price: number) => {
+  const cartTotal = getCartTotal();
+  const shipping = cartTotal >= 999 ? 0 : 99;
+  const subtotal = cartTotal;
+  
+  // Calculate discount
+  const discount = appliedCoupon ? 
+    (appliedCoupon.discountType === 'percentage' ? 
+      (subtotal * appliedCoupon.discountValue) / 100 : 
+      appliedCoupon.discountValue) : 0;
+  
+  const finalTotal = subtotal + shipping - discount;
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) return;
+
+    setCouponError('');
+    const validation = await validateCoupon(couponCode, cartTotal);
+    
+    if (validation.valid) {
+      setAppliedCoupon(validation.data.coupon);
+      setCouponCode('');
+    } else {
+      setCouponError(validation.message);
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponError('');
+  };
+
+  const handleApplyCouponFromCard = (code: string) => {
+    setCouponCode(code);
+    handleApplyCoupon();
+    setShowCoupons(false);
+  };
+    const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
@@ -143,11 +188,84 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <div className="flex justify-between text-lg font-semibold border-t pt-4">
                 <span>Total</span>
                 <span>
-                  {formatPrice(
-                    getCartTotal() + (getCartTotal() >= 999 ? 0 : 99)
-                  )}
+                  {formatPrice(finalTotal)}
                 </span>
               </div>
+
+              {/* Coupon Section */}
+              {!appliedCoupon && (
+                <div className="space-y-3">
+                  <div className="flex gap-2">
+                    <Input
+                      placeholder="Enter coupon code"
+                      value={couponCode}
+                      onChange={(e) => setCouponCode(e.target.value)}
+                      className="flex-1"
+                    />
+                    <Button
+                      onClick={handleApplyCoupon}
+                      variant="outline"
+                      size="sm"
+                      className="px-4"
+                    >
+                      Apply
+                    </Button>
+                  </div>
+                  
+                  {couponError && (
+                    <p className="text-sm text-red-500">{couponError}</p>
+                  )}
+                  
+                  {coupons.length > 0 && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setShowCoupons(!showCoupons)}
+                      className="text-purple-600 hover:text-purple-700 p-0 h-auto"
+                    >
+                      <Tag className="w-4 h-4 mr-1" />
+                      View Available Coupons ({coupons.length})
+                    </Button>
+                  )}
+                </div>
+              )}
+
+              {/* Applied Coupon */}
+              {appliedCoupon && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-medium text-green-800">
+                        {appliedCoupon.code} applied
+                      </p>
+                      <p className="text-sm text-green-600">
+                        -{formatPrice(discount)} discount
+                      </p>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleRemoveCoupon}
+                      className="text-red-500 hover:text-red-700 p-1 h-auto"
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* Available Coupons */}
+              {showCoupons && coupons.length > 0 && (
+                <div className="space-y-2 max-h-48 overflow-y-auto">
+                  {coupons.map((coupon) => (
+                    <CouponCard
+                      key={coupon._id}
+                      {...coupon}
+                      onApply={handleApplyCouponFromCard}
+                    />
+                  ))}
+                </div>
+              )}
 
               {/* Checkout Button */}
               <Button

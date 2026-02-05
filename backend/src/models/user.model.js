@@ -118,6 +118,31 @@ const userSchema = new mongoose.Schema({
       selectedSize: String
     }],
     total: { type: Number, default: 0 }
+  },
+  // Coupons
+  coupons: [{
+    coupon: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Coupon'
+    },
+    obtainedAt: {
+      type: Date,
+      default: Date.now
+    },
+    isUsed: {
+      type: Boolean,
+      default: false
+    },
+    usedAt: Date
+  }],
+  // Modal tracking
+  hasSeenSignupModal: {
+    type: Boolean,
+    default: false
+  },
+  lastNotificationSent: {
+    type: Date,
+    default: null
   }
 }, {
   timestamps: true
