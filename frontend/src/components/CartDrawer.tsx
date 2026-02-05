@@ -14,7 +14,7 @@ interface CartDrawerProps {
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
-  const { coupons, validateCoupon, applyCoupon, getBestCoupon } = useCoupons();
+  const { coupons, validateCoupon } = useCoupons();
   const [couponCode, setCouponCode] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
   const [couponError, setCouponError] = useState('');
@@ -23,13 +23,13 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const cartTotal = getCartTotal();
   const shipping = cartTotal >= 999 ? 0 : 99;
   const subtotal = cartTotal;
-  
+
   // Calculate discount
-  const discount = appliedCoupon ? 
-    (appliedCoupon.discountType === 'percentage' ? 
-      (subtotal * appliedCoupon.discountValue) / 100 : 
+  const discount = appliedCoupon ?
+    (appliedCoupon.discountType === 'percentage' ?
+      (subtotal * appliedCoupon.discountValue) / 100 :
       appliedCoupon.discountValue) : 0;
-  
+
   const finalTotal = subtotal + shipping - discount;
 
   const handleApplyCoupon = async () => {
@@ -37,7 +37,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
 
     setCouponError('');
     const validation = await validateCoupon(couponCode, cartTotal);
-    
+
     if (validation.valid) {
       setAppliedCoupon(validation.data.coupon);
       setCouponCode('');
@@ -56,7 +56,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     handleApplyCoupon();
     setShowCoupons(false);
   };
-    const formatPrice = (price: number) => {
+  const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
@@ -211,11 +211,11 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       Apply
                     </Button>
                   </div>
-                  
+
                   {couponError && (
                     <p className="text-sm text-red-500">{couponError}</p>
                   )}
-                  
+
                   {coupons.length > 0 && (
                     <Button
                       variant="ghost"
