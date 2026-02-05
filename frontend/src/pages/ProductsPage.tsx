@@ -58,13 +58,23 @@ export default function ProductsPage() {
         const rawProducts = Array.isArray(response.data) ? response.data : (Array.isArray(response) ? response : []);
 
         // Map backend data to frontend Product interface
+        // Map backend data to frontend Product interface
         const mappedProducts = rawProducts.map((p: any) => ({
-          ...p,
           id: p._id, // Map _id to id
+          name: p.name,
+          description: p.description,
+          price: Number(p.price),
+          originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
           image: p.images?.[0]?.url || '', // Map first image to image property
+          category: p.category,
+          subcategory: p.subcategory,
+          rating: Number(p.rating) || 0,
+          reviews: Number(p.reviewCount) || 0,
+          inStock: (p.stock > 0) || (p.inStock === true), // Handle both stock count and boolean
+          isNew: p.isNew,
+          isBestseller: p.isBestseller,
           colors: p.variants?.colors?.map((c: any) => c.name) || [], // Flatten colors
           sizes: p.variants?.sizes?.map((s: any) => s.name) || [], // Flatten sizes
-          reviews: p.reviewCount || 0 // Map reviewCount to reviews
         }));
 
         setProducts(mappedProducts);
