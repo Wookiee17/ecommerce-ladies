@@ -113,13 +113,13 @@ export default function ProductsPage() {
     const subs = new Set<string>();
     products.forEach(p => subs.add(p.subcategory));
     return Array.from(subs).sort();
-  }, []);
+  }, [products]);
 
   const allColors = useMemo(() => {
     const colors = new Set<string>();
     products.forEach(p => p.colors?.forEach(c => colors.add(c)));
     return Array.from(colors).sort();
-  }, []);
+  }, [products]);
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
@@ -196,7 +196,7 @@ export default function ProductsPage() {
     }
 
     return result;
-  }, [filters, searchQuery, sortParam]);
+  }, [products, filters, searchQuery, sortParam]);
 
   // Handlers
   const handleSearch = (e: React.FormEvent) => {
