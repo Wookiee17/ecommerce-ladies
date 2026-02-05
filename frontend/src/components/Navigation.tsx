@@ -230,9 +230,6 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               {/* User */}
 
 
-              // ... existing imports ...
-
-              // Inside Navigation component return
               {/* User Dropdown */}
               {isAuthenticated && user ? (
                 <DropdownMenu>
