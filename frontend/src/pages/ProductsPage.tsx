@@ -63,7 +63,33 @@ export default function ProductsPage() {
         setIsLoadMore(true);
       }
 
-      const response = await api.get(`/products?page=${pageNum}&limit=20`);
+      // Build query parameters
+      const params = new URLSearchParams();
+      params.append('page', pageNum.toString());
+      params.append('limit', '20');
+
+      // Category Logic
+      const currentCategory = categoryParam !== 'all' ? categoryParam : '';
+      if (currentCategory) {
+        params.append('category', currentCategory);
+      } else if (filters.categories.length > 0) {
+        // Fallback to filter state if no URL match
+        filters.categories.forEach(cat => params.append('category', cat));
+      }
+
+      // Search Query
+      if (searchQuery) params.append('search', searchQuery);
+
+      // Price Range
+      if (filters.priceRange[0] > 0 || filters.priceRange[1] < 200000) {
+        params.append('minPrice', filters.priceRange[0].toString());
+        params.append('maxPrice', filters.priceRange[1].toString());
+      }
+
+      // Sort
+      if (sortParam) params.append('sortBy', sortParam);
+
+      const response = await api.get(`/products?${params.toString()}`);
       const rawProducts = Array.isArray(response.data.data) ? response.data.data : [];
       const pagination = response.data.pagination;
 
