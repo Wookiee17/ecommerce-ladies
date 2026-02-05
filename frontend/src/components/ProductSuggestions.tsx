@@ -27,7 +27,23 @@ export default function ProductSuggestions({ currentProduct, category }: Product
       const response = await api.get(`/products?category=${category}&limit=8`);
       // Handle both direct data and wrapped response formats
       const allProducts = response.data || response || [];
-      const filteredProducts = allProducts.filter((p: Product) => p.id !== currentProduct.id);
+
+      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const baseUrl = backendUrl.replace('/api', '');
+
+      const mappedProducts = allProducts.map((p: any) => {
+        const images = p.images?.map((img: any) => {
+          const url = typeof img === 'string' ? img : img.url;
+          return url.startsWith('http') ? url : `${baseUrl}${url}`;
+        }) || [];
+
+        return {
+          ...p,
+          images: images
+        };
+      });
+
+      const filteredProducts = mappedProducts.filter((p: Product) => p.id !== currentProduct.id);
       setSuggestions(filteredProducts.slice(0, 6));
     } catch (error) {
       console.error('Failed to fetch suggestions:', error);
@@ -82,11 +98,11 @@ export default function ProductSuggestions({ currentProduct, category }: Product
           >
             <div className="aspect-square bg-muted rounded-lg overflow-hidden mb-3 relative">
               <img
-                src={product.images[0]}
+                src={product.images?.[0] || ''}
                 alt={product.name}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
-              {product.onSale && (
+              {(product as any).onSale && (
                 <Badge variant="destructive" className="absolute top-2 left-2 text-xs">
                   {Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)}% OFF
                 </Badge>
@@ -99,9 +115,8 @@ export default function ProductSuggestions({ currentProduct, category }: Product
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`h-3 w-3 ${
-                    i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                  }`}
+                  className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                    }`}
                 />
               ))}
               <span className="text-xs text-muted-foreground">({product.reviews})</span>

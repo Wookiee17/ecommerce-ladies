@@ -49,7 +49,7 @@ export default function Hero() {
   }, []);
 
   const handleCTAClick = () => {
-    setActiveCategory(slides[currentSlide].category);
+    // Only scroll to products section without changing category filter
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
 
