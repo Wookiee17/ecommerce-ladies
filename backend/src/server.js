@@ -36,13 +36,13 @@ app.use(cors({
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1 && !process.env.FRONTEND_URL) {
       // If FRONTEND_URL is not set, allow all for dev/testing (careful in prod)
-      return callback(null, true); 
+      return callback(null, true);
     }
     if (allowedOrigins.indexOf(origin) !== -1 || origin === process.env.FRONTEND_URL) {
       return callback(null, true);
     } else {
-       // Optionally allow all for now to avoid CORS hell during setup
-       return callback(null, true);
+      // Optionally allow all for now to avoid CORS hell during setup
+      return callback(null, true);
     }
   },
   credentials: true
@@ -73,12 +73,28 @@ app.use('/uploads', express.static('uploads'));
 app.use(trackActivity);
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/evara', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('✅ MongoDB Connected'))
-.catch(err => console.error('❌ MongoDB Connection Error:', err));
+// Database connection
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/evara', {
+      // Mongoose 8 defaults are good, removed deprecated options
+    });
+    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`❌ MongoDB Connection Error: ${error.message}`);
+    // Don't exit process on Render, just log it. Retries happen automatically.
+  }
+};
+
+connectDB();
+
+mongoose.connection.on('error', err => {
+  console.error('MongoDB connection error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -94,8 +110,8 @@ app.use('/api/payments', paymentRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     timestamp: new Date().toISOString(),
     uptime: process.uptime()
   });
