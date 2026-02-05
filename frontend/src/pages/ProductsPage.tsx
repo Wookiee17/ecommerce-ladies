@@ -107,8 +107,10 @@ export default function ProductsPage() {
       if (sortParam) params.append('sortBy', sortParam);
 
       const response = await api.get(`/products?${params.toString()}`);
-      const rawProducts = Array.isArray(response.data) ? response.data : [];
-      const pagination = response.pagination;
+      // Handle both direct data and wrapped response formats
+      const responseData = response.data || response;
+      const rawProducts = Array.isArray(responseData) ? responseData : (responseData.data || []);
+      const pagination = response.pagination || responseData.pagination || { page: 1, pages: 1, total: rawProducts.length };
 
       const mappedProducts = rawProducts.map((p: any) => {
         const primaryImage = p.images?.find((img: any) => img.isPrimary)?.url || p.images?.[0]?.url || '';

@@ -25,7 +25,8 @@ export default function ProductSuggestions({ currentProduct, category }: Product
       setLoading(true);
       // Fetch products from the same category, excluding the current product
       const response = await api.get(`/products?category=${category}&limit=8`);
-      const allProducts = response.data || [];
+      // Handle both direct data and wrapped response formats
+      const allProducts = response.data || response || [];
       const filteredProducts = allProducts.filter((p: Product) => p.id !== currentProduct.id);
       setSuggestions(filteredProducts.slice(0, 6));
     } catch (error) {

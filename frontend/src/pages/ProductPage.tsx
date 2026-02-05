@@ -50,7 +50,9 @@ export default function ProductPage() {
       setLoading(true);
       setError(null);
       const response = await api.get(`/products/${productId}`);
-      setProduct(response.data);
+      // Handle both direct data and wrapped response formats
+      const productData = response.data || response;
+      setProduct(productData);
     } catch (err) {
       setError('Failed to load product details');
       console.error('Failed to fetch product:', err);
