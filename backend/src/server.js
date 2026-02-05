@@ -24,6 +24,9 @@ const { errorHandler } = require('./middleware/error.middleware');
 
 const app = express();
 
+// Trust proxy for Render/Netlify
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet({
   contentSecurityPolicy: false,
@@ -133,7 +136,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
-  
+
   // Start background jobs
   require('./server-startup');
 });

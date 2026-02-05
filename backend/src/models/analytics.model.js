@@ -41,7 +41,7 @@ const userActivitySchema = new mongoose.Schema({
   },
   // Device info
   device: {
-    type: String, // mobile, tablet, desktop
+    type: { type: String }, // mobile, tablet, desktop
     os: String,
     browser: String,
     screenResolution: String
@@ -93,7 +93,7 @@ const pageVisitSchema = new mongoose.Schema({
     region: String
   },
   device: {
-    type: String,
+    type: { type: String },
     os: String,
     browser: String
   },
@@ -163,7 +163,7 @@ const userSessionSchema = new mongoose.Schema({
     region: String
   },
   device: {
-    type: String,
+    type: { type: String }, // mobile, tablet, desktop
     os: String,
     browser: String,
     screenResolution: String
