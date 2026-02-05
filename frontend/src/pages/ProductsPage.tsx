@@ -92,7 +92,7 @@ export default function ProductsPage() {
 
   // Filters
   const [filters, setFilters] = useState<FilterState>({
-    categories: categoryParam !== 'all' ? [categoryParam] : [],
+    categories: categoryParam && categoryParam !== 'all' ? [categoryParam.toLowerCase()] : [],
     subcategories: [],
     priceRange: [0, 200000],
     ratings: [],
@@ -103,8 +103,9 @@ export default function ProductsPage() {
 
   // Set category based on URL param
   useEffect(() => {
-    if (categoryParam === 'dress' || categoryParam === 'jewelry' || categoryParam === 'beauty') {
-      setActiveCategory(categoryParam);
+    const param = categoryParam?.toLowerCase();
+    if (param === 'dress' || param === 'jewelry' || param === 'beauty') {
+      setActiveCategory(param);
     } else {
       setActiveCategory('all');
     }
@@ -137,7 +138,7 @@ export default function ProductsPage() {
 
     // Category filter
     if (filters.categories.length > 0) {
-      result = result.filter(p => filters.categories.includes(p.category));
+      result = result.filter(p => filters.categories.some(c => c.toLowerCase() === p.category.toLowerCase()));
     }
 
     // Subcategory filter
