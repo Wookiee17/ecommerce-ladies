@@ -85,7 +85,7 @@ export default function ProductsPage() {
       // Build query parameters
       const params = new URLSearchParams();
       params.append('page', pageNum.toString());
-      params.append('limit', '20');
+      params.append('limit', '6');
 
       // Category Logic
       const currentCategory = categoryParam !== 'all' ? categoryParam : '';
@@ -112,24 +112,39 @@ export default function ProductsPage() {
       const rawProducts = Array.isArray(response.data.data) ? response.data.data : [];
       const pagination = response.data.pagination;
 
-      const mappedProducts = rawProducts.map((p: any) => ({
-        id: p._id,
-        name: p.name,
-        description: p.description,
-        price: Number(p.price),
-        originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
-        image: p.images?.[0]?.url || '',
-        images: p.images?.map((img: any) => img.url) || [],
-        category: p.category,
-        subcategory: p.subcategory,
-        rating: Number(p.rating) || 0,
-        reviews: Number(p.reviewCount) || 0,
-        inStock: (p.stock > 0) || (p.inStock === true),
-        isNew: p.isNew,
-        isBestseller: p.isBestseller,
-        colors: p.variants?.colors?.map((c: any) => c.name) || [],
-        sizes: p.variants?.sizes?.map((s: any) => s.name) || [],
-      }));
+      const mappedProducts = rawProducts.map((p: any) => {
+        const primaryImage = p.images?.find((img: any) => img.isPrimary)?.url || p.images?.[0]?.url || '';
+        const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        // Remove /api from standard URL if present for image serving, or adjust based on backend logic
+        // Assuming backend serves images at root /images
+        const baseUrl = backendUrl.replace('/api', '');
+
+        const imageUrl = primaryImage.startsWith('http')
+          ? primaryImage
+          : `${baseUrl}${primaryImage}`;
+
+        return {
+          id: p._id,
+          name: p.name,
+          description: p.description,
+          price: Number(p.price),
+          originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
+          image: imageUrl,
+          images: p.images?.map((img: any) => {
+            const url = img.url;
+            return url.startsWith('http') ? url : `${baseUrl}${url}`;
+          }) || [],
+          category: p.category,
+          subcategory: p.subcategory,
+          rating: Number(p.rating) || 0,
+          reviews: Number(p.reviewCount) || 0,
+          inStock: (p.stock > 0) || (p.inStock === true) || p.variants?.sizes?.some((s: any) => s.inStock),
+          isNew: p.isNew,
+          isBestseller: p.isBestseller,
+          colors: p.variants?.colors?.map((c: any) => c.name) || [],
+          sizes: p.variants?.sizes?.map((s: any) => s.name) || [],
+        };
+      });
 
       if (reset) {
         setProducts(mappedProducts);
