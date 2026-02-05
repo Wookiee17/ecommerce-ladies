@@ -40,7 +40,7 @@ function HomePage() {
 
   useEffect(() => {
     // Check if user is logged in
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('evara_token');
     const dismissed = localStorage.getItem('promoModalDismissed');
 
     // Show promo modal if user is not logged in and hasn't dismissed it recently

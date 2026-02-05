@@ -28,7 +28,7 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
 
   const trackModalView = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('evara_token');
       if (token) {
         await fetch('/api/coupons/track-modal', {
           method: 'POST',
@@ -63,7 +63,7 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
       const data = await response.json();
 
       if (data.success) {
-        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('evara_token', data.data.token);
         localStorage.setItem('user', JSON.stringify(data.data.user));
         await login(data.data.token, data.data.user);
         onSignupSuccess();

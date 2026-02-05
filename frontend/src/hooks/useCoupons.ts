@@ -23,7 +23,7 @@ export function useCoupons() {
     setError(null);
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('evara_token');
       if (!token) {
         setCoupons([]);
         return;
@@ -53,7 +53,7 @@ export function useCoupons() {
 
   const validateCoupon = async (code: string, cartTotal: number) => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('evara_token');
       if (!token) {
         return { valid: false, message: 'Please login to use coupons' };
       }
@@ -78,7 +78,7 @@ export function useCoupons() {
 
   const applyCoupon = async (code: string, orderId?: string) => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('evara_token');
       if (!token) {
         return { success: false, message: 'Please login to use coupons' };
       }

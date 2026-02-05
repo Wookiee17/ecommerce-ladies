@@ -46,7 +46,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
 
     const fetchUnreadCount = async () => {
       try {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('evara_token');
         if (!token) return;
 
         const response = await fetch('/api/notifications/unread-count', {
@@ -267,7 +267,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                       className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50"
                       onClick={() => {
                         // Assuming logout function exists in context, otherwise handle manually
-                        localStorage.removeItem('token');
+                        localStorage.removeItem('evara_token');
                         localStorage.removeItem('evara_user');
                         window.location.reload();
                       }}
