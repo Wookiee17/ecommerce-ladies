@@ -118,6 +118,7 @@ export default function ProductsPage() {
         price: Number(p.price),
         originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
         image: p.images?.[0]?.url || '',
+        images: p.images?.map((img: any) => img.url) || [],
         category: p.category,
         subcategory: p.subcategory,
         rating: Number(p.rating) || 0,
@@ -165,26 +166,7 @@ export default function ProductsPage() {
     }
   }, [page]);
 
-  // Filters
-  const [filters, setFilters] = useState<FilterState>({
-    categories: categoryParam && categoryParam !== 'all' ? [categoryParam.toLowerCase()] : [],
-    subcategories: [],
-    priceRange: [0, 200000],
-    ratings: [],
-    colors: [],
-    inStock: false,
-    onSale: false,
-  });
 
-  // Set category based on URL param
-  useEffect(() => {
-    const param = categoryParam?.toLowerCase();
-    if (param === 'dress' || param === 'jewelry' || param === 'beauty') {
-      setActiveCategory(param);
-    } else {
-      setActiveCategory('all');
-    }
-  }, [categoryParam, setActiveCategory]);
   const allSubcategories = useMemo(() => {
     const subs = new Set<string>();
     products.forEach(p => subs.add(p.subcategory));

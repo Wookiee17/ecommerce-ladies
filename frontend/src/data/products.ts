@@ -6,6 +6,7 @@ export interface Product {
   originalPrice?: number;
   image: string;
   category: 'dress' | 'jewelry' | 'beauty';
+  images?: string[];
   subcategory: string;
   rating: number;
   reviews: number;
@@ -18,7 +19,7 @@ export interface Product {
 
 export const products: Product[] = [
   // DRESSES - 50 Products
-{
+  {
     id: "dress-1",
     name: "Champagne Satin Slip Dress",
     description: "Elegant champagne gold satin slip dress with cowl neckline. Perfect for evening events and special occasions. Made with premium silk-blend fabric.",
@@ -34,7 +35,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     isNew: true,
   },
-{
+  {
     id: "dress-2",
     name: "Powder Pink Blazer Dress",
     description: "Trendy oversized blazer dress in powder pink with self-tie belt. Modern power dressing for the confident woman.",
@@ -49,7 +50,7 @@ export const products: Product[] = [
     colors: ["Pink", "Navy", "Black"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-3",
     name: "Emerald Silk Wrap Dress",
     description: "Stunning emerald green silk wrap dress with flowing silhouette. Elegant cocktail attire that turns heads.",
@@ -64,7 +65,7 @@ export const products: Product[] = [
     colors: ["Emerald", "Ruby", "Sapphire"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
   },
-{
+  {
     id: "dress-4",
     name: "Dusty Rose Puff Sleeve Dress",
     description: "Romantic midi dress with puff sleeves in dusty rose. Feminine and flattering for any occasion.",
@@ -79,7 +80,7 @@ export const products: Product[] = [
     colors: ["Rose", "Lavender", "Mint"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-5",
     name: "Classic Black Bodycon Dress",
     description: "Sleek black bodycon dress that hugs your curves perfectly. A wardrobe essential for every woman.",
@@ -95,7 +96,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     isNew: true,
   },
-{
+  {
     id: "dress-6",
     name: "Navy Shirt Dress",
     description: "Sophisticated navy shirt dress with belt. Perfect for office to evening transitions.",
@@ -110,7 +111,7 @@ export const products: Product[] = [
     colors: ["Navy", "White", "Khaki"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-7",
     name: "Burgundy Cut-Out Maxi Dress",
     description: "Dramatic burgundy maxi dress with cut-out details and side slit. Perfect for red carpet moments.",
@@ -126,7 +127,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     isBestseller: true,
   },
-{
+  {
     id: "dress-8",
     name: "Lavender Pleated Midi Dress",
     description: "Elegant pleated midi dress in soft lavender. Flowy and comfortable for all-day wear.",
@@ -141,7 +142,7 @@ export const products: Product[] = [
     colors: ["Lavender", "Peach", "Mint"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-9",
     name: "Cream Ribbed Knit Dress",
     description: "Cozy ribbed knit dress in cream beige. Perfect for casual outings and coffee dates.",
@@ -157,7 +158,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     isNew: true,
   },
-{
+  {
     id: "dress-10",
     name: "Coral One-Shoulder Dress",
     description: "Stunning one-shoulder asymmetric dress in coral orange. Modern and chic for any celebration.",
@@ -172,7 +173,7 @@ export const products: Product[] = [
     colors: ["Coral", "Pink", "Red"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-11",
     name: "Peach Tiered Ruffle Maxi",
     description: "Bohemian-inspired tiered ruffle maxi dress in soft peach. Perfect for beach weddings and summer parties.",
@@ -187,7 +188,7 @@ export const products: Product[] = [
     colors: ["Peach", "White", "Yellow"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-12",
     name: "Silver Sequin Mini Dress",
     description: "Glamorous silver sequin mini dress for unforgettable party nights. Shine bright like a diamond.",
@@ -202,7 +203,7 @@ export const products: Product[] = [
     colors: ["Silver", "Gold", "Rose Gold"],
     sizes: ["XS", "S", "M", "L"],
   },
-{
+  {
     id: "dress-13",
     name: "White Halter Jumpsuit",
     description: "Elegant white halter jumpsuit with wide legs. Modern sophistication for special occasions.",
@@ -217,7 +218,7 @@ export const products: Product[] = [
     colors: ["White", "Black", "Navy"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-14",
     name: "Plum Velvet Slip Dress",
     description: "Luxurious plum velvet slip dress with cowl neckline. Rich texture for winter celebrations.",
@@ -233,7 +234,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     isNew: true,
   },
-{
+  {
     id: "dress-15",
     name: "Navy Polka Dot Dress",
     description: "Classic navy polka dot midi dress with belt. Timeless elegance never goes out of style.",
@@ -249,7 +250,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     isBestseller: true,
   },
-{
+  {
     id: "dress-16",
     name: "Red Floral Anarkali",
     description: "Beautiful red floral printed Anarkali suit with dupatta. Traditional Indian ethnic wear for festive occasions.",
@@ -264,7 +265,7 @@ export const products: Product[] = [
     colors: ["Red", "Green", "Blue"],
     sizes: ["S", "M", "L", "XL", "XXL"],
   },
-{
+  {
     id: "dress-17",
     name: "Black Velvet Evening Gown",
     description: "Luxurious black velvet evening gown with sweetheart neckline. Perfect for gala events and formal dinners.",
@@ -280,7 +281,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     isNew: true,
   },
-{
+  {
     id: "dress-18",
     name: "Yellow Cotton Kurti",
     description: "Bright yellow cotton kurti with white embroidery. Comfortable daily wear with traditional charm.",
@@ -295,7 +296,7 @@ export const products: Product[] = [
     colors: ["Yellow", "Orange", "Pink"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-19",
     name: "Teal Wrap Maxi Dress",
     description: "Flowing teal wrap maxi dress with floral print. Perfect for beach vacations and summer outings.",
@@ -310,7 +311,7 @@ export const products: Product[] = [
     colors: ["Teal", "Coral", "Navy"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-20",
     name: "Pink Embroidered Lehenga",
     description: "Stunning pink embroidered lehenga with heavy work. Bridal wear for the modern Indian bride.",
@@ -325,7 +326,7 @@ export const products: Product[] = [
     colors: ["Pink", "Red", "Maroon"],
     sizes: ["S", "M", "L"],
   },
-{
+  {
     id: "dress-21",
     name: "Grey Tweed Shift Dress",
     description: "Classic grey tweed shift dress with pearl buttons. Sophisticated office wear for professionals.",
@@ -340,7 +341,7 @@ export const products: Product[] = [
     colors: ["Grey", "Navy", "Black"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-22",
     name: "Orange Boho Maxi Dress",
     description: "Vibrant orange bohemian maxi dress with tassel details. Free-spirited style for music festivals.",
@@ -355,7 +356,7 @@ export const products: Product[] = [
     colors: ["Orange", "Mustard", "Rust"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-23",
     name: "Navy Lace Cocktail Dress",
     description: "Elegant navy blue lace cocktail dress with scalloped hem. Timeless sophistication for evening events.",
@@ -370,7 +371,7 @@ export const products: Product[] = [
     colors: ["Navy", "Black", "Burgundy"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-24",
     name: "Green Silk Saree Gown",
     description: "Innovative green silk saree-style gown with pre-stitched pleats. Fusion wear for modern women.",
@@ -386,7 +387,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
     isBestseller: true,
   },
-{
+  {
     id: "dress-25",
     name: "White Eyelet Summer Dress",
     description: "Charming white eyelet cotton summer dress with scalloped edges. Breezy and beautiful for hot days.",
@@ -401,7 +402,7 @@ export const products: Product[] = [
     colors: ["White", "Lavender", "Mint"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-26",
     name: "Maroon Velvet Anarkali",
     description: "Rich maroon velvet Anarkali with gold zari embroidery. Festive wear for special celebrations.",
@@ -416,7 +417,7 @@ export const products: Product[] = [
     colors: ["Maroon", "Green", "Navy"],
     sizes: ["S", "M", "L", "XL", "XXL"],
   },
-{
+  {
     id: "dress-27",
     name: "Blush Pink Tulle Gown",
     description: "Dreamy blush pink tulle ball gown with floral appliques. Perfect for engagement and reception.",
@@ -432,7 +433,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L"],
     isNew: true,
   },
-{
+  {
     id: "dress-28",
     name: "Denim Shirt Dress",
     description: "Trendy denim shirt dress with belt and chest pockets. Casual chic for everyday style.",
@@ -447,7 +448,7 @@ export const products: Product[] = [
     colors: ["Denim", "Light Blue", "Black"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-29",
     name: "Gold Sequin Saree",
     description: "Dazzling gold sequin saree with designer blouse. Glamorous choice for wedding receptions.",
@@ -463,7 +464,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L"],
     isNew: true,
   },
-{
+  {
     id: "dress-30",
     name: "Purple Georgette Gown",
     description: "Elegant purple georgette gown with cape sleeves. Flowy silhouette for formal occasions.",
@@ -479,7 +480,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     isNew: true,
   },
-{
+  {
     id: "dress-31",
     name: "Beige Linen Midi Dress",
     description: "Sophisticated beige linen midi dress with belt. Breathable fabric for summer office wear.",
@@ -495,7 +496,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL"],
     isNew: true,
   },
-{
+  {
     id: "dress-32",
     name: "Red Bandhani Lehenga",
     description: "Traditional red bandhani print lehenga with mirror work. Gujarati style for festive occasions.",
@@ -510,7 +511,7 @@ export const products: Product[] = [
     colors: ["Red", "Orange", "Green"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-33",
     name: "Black Mesh Party Dress",
     description: "Sultry black mesh party dress with sequin details. Turn heads at every celebration.",
@@ -526,7 +527,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L"],
     isNew: true,
   },
-{
+  {
     id: "dress-34",
     name: "Sky Blue Chiffon Saree",
     description: "Delicate sky blue chiffon saree with silver border. Lightweight and elegant for summer weddings.",
@@ -541,7 +542,7 @@ export const products: Product[] = [
     colors: ["Sky Blue", "Pink", "Peach"],
     sizes: ["S", "M", "L"],
   },
-{
+  {
     id: "dress-35",
     name: "Olive Green Jumpsuit",
     description: "Stylish olive green jumpsuit with wide legs and belt. Contemporary fashion for modern women.",
@@ -556,7 +557,7 @@ export const products: Product[] = [
     colors: ["Olive", "Black", "Navy"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-36",
     name: "Coral Ruffle Mini Dress",
     description: "Playful coral ruffle mini dress with off-shoulder design. Fun and flirty for parties.",
@@ -572,7 +573,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L"],
     isNew: true,
   },
-{
+  {
     id: "dress-37",
     name: "Indigo Block Print Kurti",
     description: "Artisanal indigo block print kurti with palazzo pants. Handcrafted beauty for everyday wear.",
@@ -587,7 +588,7 @@ export const products: Product[] = [
     colors: ["Indigo", "White", "Beige"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-38",
     name: "Champagne Lace Gown",
     description: "Elegant champagne lace mermaid gown with train. Sophisticated choice for formal weddings.",
@@ -603,7 +604,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L"],
     isBestseller: true,
   },
-{
+  {
     id: "dress-39",
     name: "Mustard Yellow Co-ord Set",
     description: "Trendy mustard yellow co-ord set with crop top and skirt. Fashion-forward casual wear.",
@@ -618,7 +619,7 @@ export const products: Product[] = [
     colors: ["Mustard", "Rust", "Olive"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-40",
     name: "Royal Blue Silk Gown",
     description: "Majestic royal blue silk gown with draped bodice. Regal elegance for special occasions.",
@@ -634,7 +635,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L", "XL"],
     isBestseller: true,
   },
-{
+  {
     id: "dress-41",
     name: "Peach Chikankari Suit",
     description: "Delicate peach chikankari embroidered suit with dupatta. Lucknowi craftsmanship at its finest.",
@@ -649,7 +650,7 @@ export const products: Product[] = [
     colors: ["Peach", "Mint", "Lavender"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-42",
     name: "Black Satin Slip Dress",
     description: "Classic black satin slip dress with lace trim. Versatile piece for day to night.",
@@ -664,7 +665,7 @@ export const products: Product[] = [
     colors: ["Black", "Red", "Navy"],
     sizes: ["XS", "S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-43",
     name: "Turquoise Kaftan Dress",
     description: "Flowing turquoise kaftan dress with gold embroidery. Resort wear for beach vacations.",
@@ -679,7 +680,7 @@ export const products: Product[] = [
     colors: ["Turquoise", "Coral", "White"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-44",
     name: "Burgundy Sharara Suit",
     description: "Elegant burgundy sharara suit with heavy embroidery. Pakistani style for festive occasions.",
@@ -694,7 +695,7 @@ export const products: Product[] = [
     colors: ["Burgundy", "Green", "Navy"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-45",
     name: "Ivory Pleated Midi Dress",
     description: "Sophisticated ivory pleated midi dress with bow tie. Professional yet feminine.",
@@ -709,7 +710,7 @@ export const products: Product[] = [
     colors: ["Ivory", "Navy", "Black"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-46",
     name: "Hot Pink Bandage Dress",
     description: "Figure-hugging hot pink bandage dress with cut-outs. Bold statement for club nights.",
@@ -725,7 +726,7 @@ export const products: Product[] = [
     sizes: ["XS", "S", "M", "L"],
     isBestseller: true,
   },
-{
+  {
     id: "dress-47",
     name: "Sea Green Anarkali Gown",
     description: "Ethereal sea green Anarkali gown with silver embroidery. Flowy and graceful for weddings.",
@@ -740,7 +741,7 @@ export const products: Product[] = [
     colors: ["Sea Green", "Lavender", "Peach"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-48",
     name: "Charcoal Wrap Dress",
     description: "Elegant charcoal wrap dress with abstract print. Versatile piece for office and beyond.",
@@ -755,7 +756,7 @@ export const products: Product[] = [
     colors: ["Charcoal", "Navy", "Black"],
     sizes: ["S", "M", "L", "XL"],
   },
-{
+  {
     id: "dress-49",
     name: "Gold Brocade Lehenga",
     description: "Opulent gold brocade lehenga with red dupatta. Traditional bridal wear for Indian weddings.",
@@ -770,7 +771,7 @@ export const products: Product[] = [
     colors: ["Gold", "Red", "Maroon"],
     sizes: ["S", "M", "L"],
   },
-{
+  {
     id: "dress-50",
     name: "Magenta Silk Saree",
     description: "Elegant magenta silk saree with gold zari border. Traditional South Indian style for weddings.",
@@ -787,7 +788,7 @@ export const products: Product[] = [
   },
 
   // JEWELRY - 50 Products
-{
+  {
     id: "jewelry-1",
     name: "Diamond Tennis Bracelet",
     description: "Exquisite diamond tennis bracelet in white gold setting. Timeless luxury for every occasion.",
@@ -802,7 +803,7 @@ export const products: Product[] = [
     colors: ["White Gold", "Yellow Gold", "Rose Gold"],
     isBestseller: true,
   },
-{
+  {
     id: "jewelry-2",
     name: "Gold Pearl Hoop Earrings",
     description: "Elegant gold hoop earrings with freshwater pearl drops. Modern meets classic beautifully.",
@@ -816,7 +817,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "Silver"],
   },
-{
+  {
     id: "jewelry-3",
     name: "Sapphire Halo Ring",
     description: "Stunning sapphire ring with diamond halo in platinum setting. A piece to treasure forever.",
@@ -832,7 +833,7 @@ export const products: Product[] = [
     sizes: ["5", "6", "7", "8", "9"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-4",
     name: "Gold Heart Pendant Necklace",
     description: "Delicate gold chain with dainty heart pendant. Perfect for everyday wear or layering.",
@@ -846,7 +847,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "Rose Gold", "Silver"],
   },
-{
+  {
     id: "jewelry-5",
     name: "Emerald Drop Earrings",
     description: "Luxurious emerald drop earrings with diamond accents in gold setting. Red carpet ready.",
@@ -860,7 +861,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-6",
     name: "Rose Gold Geometric Cuff",
     description: "Modern geometric cuff bracelet in rose gold. Bold statement piece for the fashion-forward.",
@@ -876,7 +877,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: true,
   },
-{
+  {
     id: "jewelry-7",
     name: "Classic Pearl Strand Necklace",
     description: "Timeless pearl strand necklace with gold clasp. Elegance that transcends generations.",
@@ -890,7 +891,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Cream", "Pink"],
   },
-{
+  {
     id: "jewelry-8",
     name: "Stackable Gold Rings Set",
     description: "Set of three stackable gold rings in different textures. Mix and match for endless styles.",
@@ -905,7 +906,7 @@ export const products: Product[] = [
     colors: ["Gold", "Rose Gold", "Silver"],
     sizes: ["5", "6", "7", "8", "9"],
   },
-{
+  {
     id: "jewelry-9",
     name: "Amethyst Cocktail Ring",
     description: "Bold amethyst cocktail ring in silver setting. Make a statement at your next event.",
@@ -920,7 +921,7 @@ export const products: Product[] = [
     colors: ["Silver"],
     sizes: ["6", "7", "8", "9"],
   },
-{
+  {
     id: "jewelry-10",
     name: "Celestial Charm Anklet",
     description: "Delicate gold anklet with star and moon charms. Add a touch of magic to your look.",
@@ -936,7 +937,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: true,
   },
-{
+  {
     id: "jewelry-11",
     name: "Diamond Choker Necklace",
     description: "Elegant diamond choker necklace in gold setting. Sophisticated glamour for special occasions.",
@@ -951,7 +952,7 @@ export const products: Product[] = [
     colors: ["Gold", "White Gold"],
     isBestseller: true,
   },
-{
+  {
     id: "jewelry-12",
     name: "Crystal Drop Earrings",
     description: "Sparkling crystal drop earrings in silver setting. Perfect for adding glamour to any outfit.",
@@ -965,7 +966,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Silver", "Gold"],
   },
-{
+  {
     id: "jewelry-13",
     name: "Gold Mangalsutra Black Beads",
     description: "Traditional gold mangalsutra with black beads and vati pendant. Symbol of married life.",
@@ -980,7 +981,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-14",
     name: "Diamond Stud Earrings",
     description: "Classic round diamond stud earrings in 18k gold setting. Everyday luxury.",
@@ -994,7 +995,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White Gold", "Yellow Gold"],
   },
-{
+  {
     id: "jewelry-15",
     name: "Ruby Gold Bangle Set",
     description: "Set of 4 gold bangles with ruby accents. Traditional Indian bridal jewelry.",
@@ -1008,7 +1009,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-16",
     name: "Silver Chain Link Necklace",
     description: "Modern silver chain link necklace. Contemporary design for everyday wear.",
@@ -1022,7 +1023,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Silver"],
   },
-{
+  {
     id: "jewelry-17",
     name: "Pearl Drop Earrings",
     description: "Elegant freshwater pearl drop earrings with gold hooks. Timeless sophistication.",
@@ -1036,7 +1037,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "Silver"],
   },
-{
+  {
     id: "jewelry-18",
     name: "Antique Gold Jhumka",
     description: "Traditional South Indian jhumka earrings with pearl drops. Temple jewelry design.",
@@ -1050,7 +1051,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-19",
     name: "Diamond Tennis Bracelet",
     description: "Exquisite diamond tennis bracelet in white gold. Continuous sparkle around your wrist.",
@@ -1065,7 +1066,7 @@ export const products: Product[] = [
     colors: ["White Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-20",
     name: "Kundan Maang Tikka",
     description: "Traditional Indian kundan maang tikka with pearls. Bridal forehead ornament.",
@@ -1080,7 +1081,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-21",
     name: "Rose Gold Hoop Earrings",
     description: "Medium-sized rose gold hoop earrings with pavé diamonds. Modern elegance.",
@@ -1094,7 +1095,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold"],
   },
-{
+  {
     id: "jewelry-22",
     name: "Temple Design Armlet",
     description: "Antique gold armlet with temple motifs. Traditional South Indian vanki design.",
@@ -1108,7 +1109,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-23",
     name: "Sapphire Diamond Pendant",
     description: "Stunning sapphire pendant surrounded by diamonds in platinum setting.",
@@ -1122,7 +1123,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Platinum"],
   },
-{
+  {
     id: "jewelry-24",
     name: "Polki Diamond Nath",
     description: "Traditional Indian bridal nose ring with polki diamonds and pearls. Rajputana style.",
@@ -1138,7 +1139,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: true,
   },
-{
+  {
     id: "jewelry-25",
     name: "Emerald Diamond Halo Earrings",
     description: "Luxurious emerald drop earrings with diamond halo in gold setting.",
@@ -1153,7 +1154,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-26",
     name: "Gold Kada Bracelet",
     description: "Heavy gold kada bracelet with elephant motifs. Statement piece for special occasions.",
@@ -1167,7 +1168,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-27",
     name: "Pearl Strand Diamond Clasp",
     description: "Classic white pearl strand necklace with diamond-studded clasp.",
@@ -1181,7 +1182,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Cream"],
   },
-{
+  {
     id: "jewelry-28",
     name: "Ruby Gold Choker",
     description: "Traditional Indian bridal choker with pigeon blood rubies and gold work.",
@@ -1196,7 +1197,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-29",
     name: "Amethyst Diamond Ring",
     description: "Bold amethyst cocktail ring with diamond accents in white gold setting.",
@@ -1211,7 +1212,7 @@ export const products: Product[] = [
     colors: ["White Gold"],
     sizes: ["6", "7", "8", "9"],
   },
-{
+  {
     id: "jewelry-30",
     name: "Gold Jhumka Pearls",
     description: "Traditional bell-shaped gold jhumka earrings with pearl drops and filigree work.",
@@ -1226,7 +1227,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-31",
     name: "Diamond Solitaire Ring",
     description: "Classic round brilliant cut diamond solitaire engagement ring in platinum.",
@@ -1243,7 +1244,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: true,
   },
-{
+  {
     id: "jewelry-32",
     name: "Meenakari Bangle Set",
     description: "Set of colorful Meenakari enamel bangles with floral designs. Rajasthani craft.",
@@ -1257,7 +1258,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Multicolor"],
   },
-{
+  {
     id: "jewelry-33",
     name: "Topaz Citrine Necklace",
     description: "Warm golden topaz and citrine statement necklace in gold chain design.",
@@ -1271,7 +1272,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-34",
     name: "Oxidized Silver Anklet",
     description: "Traditional Indian oxidized silver anklet with ghungroo bells. Ethnic charm.",
@@ -1285,7 +1286,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Silver"],
   },
-{
+  {
     id: "jewelry-35",
     name: "Diamond Cluster Studs",
     description: "Floral pattern diamond cluster stud earrings in 18k white gold.",
@@ -1300,7 +1301,7 @@ export const products: Product[] = [
     colors: ["White Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-36",
     name: "Gold Mangalsutra Diamond",
     description: "Elegant gold mangalsutra with diamond pendant and black beads.",
@@ -1315,7 +1316,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-37",
     name: "Opal Diamond Pendant",
     description: "Fiery Australian opal pendant with diamond halo in white gold chain.",
@@ -1329,7 +1330,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White Gold"],
   },
-{
+  {
     id: "jewelry-38",
     name: "Temple Waist Belt",
     description: "Traditional Indian temple jewelry waist belt with gold coins. Bridal kamarbandh.",
@@ -1343,7 +1344,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-39",
     name: "Aquamarine Diamond Earrings",
     description: "Light blue aquamarine drop earrings with diamond accents in white gold.",
@@ -1358,7 +1359,7 @@ export const products: Product[] = [
     colors: ["White Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-40",
     name: "Gold Toe Rings",
     description: "Pair of traditional Indian gold toe rings. Simple and elegant design.",
@@ -1373,7 +1374,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     sizes: ["5", "6", "7", "8"],
   },
-{
+  {
     id: "jewelry-41",
     name: "Garnet Tennis Bracelet",
     description: "Deep red garnet tennis bracelet in gold setting. January birthstone jewelry.",
@@ -1388,7 +1389,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-42",
     name: "Pachi Work Choker",
     description: "Traditional Indian bridal choker with uncut diamonds and green enamel work.",
@@ -1402,7 +1403,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-43",
     name: "Silver Charm Bracelet",
     description: "Sterling silver charm bracelet with various charms. Contemporary design.",
@@ -1416,7 +1417,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Silver"],
   },
-{
+  {
     id: "jewelry-44",
     name: "Peridot Diamond Ring",
     description: "Lime green peridot ring with diamond accents in yellow gold. August birthstone.",
@@ -1431,7 +1432,7 @@ export const products: Product[] = [
     colors: ["Yellow Gold"],
     sizes: ["6", "7", "8", "9"],
   },
-{
+  {
     id: "jewelry-45",
     name: "Gold Hathphool",
     description: "Traditional Indian hand jewelry connecting rings to bracelet with pearls. Bridal ornament.",
@@ -1446,7 +1447,7 @@ export const products: Product[] = [
     colors: ["Gold"],
     isNew: true,
   },
-{
+  {
     id: "jewelry-46",
     name: "Tanzanite Pendant",
     description: "Deep blue-purple tanzanite pendant in white gold setting. December birthstone.",
@@ -1460,7 +1461,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White Gold"],
   },
-{
+  {
     id: "jewelry-47",
     name: "Peacock Hair Pin",
     description: "Antique gold hair accessory with peacock design and kundan stones.",
@@ -1474,7 +1475,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-48",
     name: "Morganite Rose Gold Ring",
     description: "Pink peach morganite ring in vintage rose gold setting. Feminine elegance.",
@@ -1489,7 +1490,7 @@ export const products: Product[] = [
     colors: ["Rose Gold"],
     sizes: ["5", "6", "7", "8", "9"],
   },
-{
+  {
     id: "jewelry-49",
     name: "Diamond Bangle",
     description: "Elegant diamond bangle bracelet in 18k gold with intricate design.",
@@ -1503,7 +1504,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold"],
   },
-{
+  {
     id: "jewelry-50",
     name: "Citrine Stud Earrings",
     description: "Golden yellow citrine stud earrings with diamond halo in yellow gold.",
@@ -1519,7 +1520,7 @@ export const products: Product[] = [
   },
 
   // BEAUTY ELECTRONICS - 50 Products
-{
+  {
     id: "beauty-1",
     name: "Pro Electric Nail Drill",
     description: "Professional electric nail drill with 35,000 RPM and LED display. Perfect for salon-quality manicures at home.",
@@ -1533,7 +1534,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "White"],
   },
-{
+  {
     id: "beauty-2",
     name: "UV LED Nail Lamp 120W",
     description: "High-power UV LED nail lamp for quick gel polish curing. 4 timer settings and automatic sensor.",
@@ -1547,7 +1548,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Pink"],
   },
-{
+  {
     id: "beauty-3",
     name: "Heated Eyelash Curler Pro",
     description: "Electric heated eyelash curler with temperature control. USB rechargeable for perfect lashes anywhere.",
@@ -1561,7 +1562,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "White"],
   },
-{
+  {
     id: "beauty-4",
     name: "7-Color LED Face Mask",
     description: "Professional LED light therapy mask with 7 colors for various skin concerns. Spa treatment at home.",
@@ -1575,7 +1576,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White"],
   },
-{
+  {
     id: "beauty-5",
     name: "Smart Pore Vacuum Cleaner",
     description: "Electric blackhead remover with 5 suction levels and LCD display. Clear skin made easy.",
@@ -1589,7 +1590,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Pink"],
   },
-{
+  {
     id: "beauty-6",
     name: "Sonic Facial Cleansing Brush",
     description: "Waterproof sonic face cleanser with multiple brush heads. Deep clean for radiant skin.",
@@ -1603,7 +1604,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Pink", "White"],
   },
-{
+  {
     id: "beauty-7",
     name: "Professional Hair Steamer",
     description: "Nano ionic hair steamer for deep conditioning treatments. Salon-quality results at home.",
@@ -1618,7 +1619,7 @@ export const products: Product[] = [
     colors: ["White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-8",
     name: "Electric Callus Remover",
     description: "Rechargeable electric foot file for removing hard skin and calluses. Painless pedicure at home.",
@@ -1632,7 +1633,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Pink"],
   },
-{
+  {
     id: "beauty-9",
     name: "Microcurrent Face Device",
     description: "Advanced microcurrent device for face lifting and skin tightening. Non-surgical facelift.",
@@ -1646,7 +1647,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "White"],
   },
-{
+  {
     id: "beauty-10",
     name: "Ionic Hair Straightener",
     description: "Professional ionic hair straightener with ceramic plates. Sleek, frizz-free hair every day.",
@@ -1660,7 +1661,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Black", "White"],
   },
-{
+  {
     id: "beauty-11",
     name: "LED Makeup Mirror",
     description: "Touch screen LED makeup mirror with 3 color modes. Perfect lighting for flawless makeup.",
@@ -1674,7 +1675,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Pink"],
   },
-{
+  {
     id: "beauty-12",
     name: "Ultrasonic Skin Scrubber",
     description: "Ultrasonic spatula for deep cleansing and blackhead removal. Gentle exfoliation.",
@@ -1689,7 +1690,7 @@ export const products: Product[] = [
     colors: ["White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-13",
     name: "Electric Makeup Brush Cleaner",
     description: "Automatic electric makeup brush cleaner and dryer. Keeps brushes hygienic.",
@@ -1704,7 +1705,7 @@ export const products: Product[] = [
     colors: ["White", "Pink"],
     isNew: true,
   },
-{
+  {
     id: "beauty-14",
     name: "Nano Ionic Hair Steamer",
     description: "Professional nano ionic hair steamer for deep conditioning treatments at home.",
@@ -1718,7 +1719,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White"],
   },
-{
+  {
     id: "beauty-15",
     name: "Electric Foot Callus Remover",
     description: "Rechargeable electric foot file for removing hard skin and calluses.",
@@ -1733,7 +1734,7 @@ export const products: Product[] = [
     colors: ["White", "Pink"],
     isNew: true,
   },
-{
+  {
     id: "beauty-16",
     name: "Heated Eyelash Curler Pro",
     description: "Advanced heated eyelash curler with temperature display. Long-lasting curls.",
@@ -1748,7 +1749,7 @@ export const products: Product[] = [
     colors: ["Rose Gold"],
     isNew: true,
   },
-{
+  {
     id: "beauty-17",
     name: "RF Skin Tightening Device",
     description: "Radio frequency skin tightening machine for anti-aging treatment at home.",
@@ -1764,7 +1765,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: true,
   },
-{
+  {
     id: "beauty-18",
     name: "Professional Nail Dryer Lamp",
     description: "High-power UV LED nail lamp for quick gel polish curing with 4 timer settings.",
@@ -1778,7 +1779,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Pink"],
   },
-{
+  {
     id: "beauty-19",
     name: "Sonic Face Cleansing Brush",
     description: "Waterproof sonic face cleansing brush with multiple speed settings.",
@@ -1792,7 +1793,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Pink", "White"],
   },
-{
+  {
     id: "beauty-20",
     name: "Ionic Hair Dryer Pro",
     description: "Professional ionic hair dryer with diffuser attachment for salon-quality results.",
@@ -1806,7 +1807,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "White"],
   },
-{
+  {
     id: "beauty-21",
     name: "Microcurrent Face Lifter",
     description: "Microcurrent device for face lifting and skin tightening. Non-surgical facelift.",
@@ -1820,7 +1821,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "White"],
   },
-{
+  {
     id: "beauty-22",
     name: "Electric Eyebrow Trimmer",
     description: "Precision electric eyebrow trimmer for painless hair removal.",
@@ -1834,7 +1835,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "White"],
   },
-{
+  {
     id: "beauty-23",
     name: "Facial Steamer Spa",
     description: "Nano ionic facial steamer for deep pore cleansing and hydration.",
@@ -1849,7 +1850,7 @@ export const products: Product[] = [
     colors: ["White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-24",
     name: "IPL Hair Removal Device",
     description: "At-home IPL permanent hair removal device for face and body.",
@@ -1863,7 +1864,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White", "Rose Gold"],
   },
-{
+  {
     id: "beauty-25",
     name: "Scalp Massager Hair Growth",
     description: "Electric scalp massager with red light therapy for hair growth stimulation.",
@@ -1878,7 +1879,7 @@ export const products: Product[] = [
     colors: ["White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-26",
     name: "High Frequency Facial Machine",
     description: "Professional high frequency facial device with multiple glass electrodes.",
@@ -1892,7 +1893,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White"],
   },
-{
+  {
     id: "beauty-27",
     name: "Electric Body Brush",
     description: "Waterproof electric body brush with long handle for shower exfoliation.",
@@ -1906,7 +1907,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Blue", "White"],
   },
-{
+  {
     id: "beauty-28",
     name: "Red Light Therapy Wand",
     description: "Portable red light therapy wand for anti-aging and skin rejuvenation.",
@@ -1920,7 +1921,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "White"],
   },
-{
+  {
     id: "beauty-29",
     name: "Electric Manicure Set",
     description: "Complete electric manicure and pedicure kit with nail dryer lamp.",
@@ -1935,7 +1936,7 @@ export const products: Product[] = [
     colors: ["White", "Pink"],
     isNew: true,
   },
-{
+  {
     id: "beauty-30",
     name: "Sonic Face Massager",
     description: "Heated sonic face massager for anti-wrinkle treatment and better absorption.",
@@ -1950,7 +1951,7 @@ export const products: Product[] = [
     colors: ["Rose Gold"],
     isBestseller: true,
   },
-{
+  {
     id: "beauty-31",
     name: "LED Makeup Mirror",
     description: "Portable LED makeup mirror with touch screen and adjustable brightness.",
@@ -1965,7 +1966,7 @@ export const products: Product[] = [
     colors: ["White", "Pink"],
     isNew: true,
   },
-{
+  {
     id: "beauty-32",
     name: "Pore Vacuum Cleaner Pro",
     description: "Electric blackhead remover with 5 suction levels and hot compress function.",
@@ -1980,7 +1981,7 @@ export const products: Product[] = [
     colors: ["Blue", "White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-33",
     name: "Laser Hair Growth Helmet",
     description: "Red light therapy helmet for hair loss treatment and regrowth.",
@@ -1995,7 +1996,7 @@ export const products: Product[] = [
     colors: ["White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-34",
     name: "Auto-Rotating Curling Iron",
     description: "Automatic rotating curling iron with ceramic barrel for perfect curls.",
@@ -2010,7 +2011,7 @@ export const products: Product[] = [
     colors: ["Rose Gold", "Black"],
     isNew: true,
   },
-{
+  {
     id: "beauty-35",
     name: "Cooling Eye Massager",
     description: "Vibration eye massager with cooling function for dark circles and puffiness.",
@@ -2025,7 +2026,7 @@ export const products: Product[] = [
     colors: ["Silver", "White"],
     isBestseller: true,
   },
-{
+  {
     id: "beauty-36",
     name: "Makeup Airbrush Kit",
     description: "Professional cordless airbrush makeup system with compressor and foundation set.",
@@ -2040,7 +2041,7 @@ export const products: Product[] = [
     colors: ["White"],
     isBestseller: true,
   },
-{
+  {
     id: "beauty-37",
     name: "Facial Hair Remover",
     description: "Painless electric facial hair remover for women with LED light.",
@@ -2054,7 +2055,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "White"],
   },
-{
+  {
     id: "beauty-38",
     name: "Ultrasonic Jewelry Cleaner",
     description: "Professional ultrasonic cleaner for jewelry, glasses, and accessories.",
@@ -2069,7 +2070,7 @@ export const products: Product[] = [
     colors: ["White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-39",
     name: "Electric Foot Spa Massager",
     description: "Heated foot spa bath massager with bubbles and massage rollers.",
@@ -2083,7 +2084,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Blue", "White"],
   },
-{
+  {
     id: "beauty-40",
     name: "Galvanic Spa Device",
     description: "Professional galvanic spa device for face lifting and deep cleansing.",
@@ -2097,7 +2098,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "White"],
   },
-{
+  {
     id: "beauty-41",
     name: "7-in-1 Facial Care System",
     description: "Complete facial care system with 7 interchangeable attachments.",
@@ -2112,7 +2113,7 @@ export const products: Product[] = [
     colors: ["White"],
     isNew: true,
   },
-{
+  {
     id: "beauty-42",
     name: "LED Light Therapy Mask",
     description: "Professional 7-color LED face mask for various skin concerns treatment.",
@@ -2126,7 +2127,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White"],
   },
-{
+  {
     id: "beauty-43",
     name: "Electric Nail Drill Machine",
     description: "Professional electric nail drill with 35,000 RPM for salon-quality manicures.",
@@ -2140,7 +2141,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "White"],
   },
-{
+  {
     id: "beauty-44",
     name: "Jade Roller Gua Sha Set",
     description: "Natural jade face roller and gua sha scraping tool for facial massage.",
@@ -2156,7 +2157,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: true,
   },
-{
+  {
     id: "beauty-45",
     name: "Hair Straightener Brush",
     description: "Ionic hair straightening brush with LCD display and temperature control.",
@@ -2170,7 +2171,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "Black"],
   },
-{
+  {
     id: "beauty-46",
     name: "Ultrasonic Skin Scrubber",
     description: "Ultrasonic spatula for deep cleansing and blackhead removal.",
@@ -2184,7 +2185,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["White"],
   },
-{
+  {
     id: "beauty-47",
     name: "Silicone Face Cleanser",
     description: "Waterproof silicone facial cleansing brush with multiple vibration modes.",
@@ -2198,7 +2199,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Pink", "Blue"],
   },
-{
+  {
     id: "beauty-48",
     name: "Ionic Hair Dryer",
     description: "Professional salon-quality ionic hair dryer with multiple heat settings.",
@@ -2212,7 +2213,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Rose Gold", "White"],
   },
-{
+  {
     id: "beauty-49",
     name: "Microcurrent Face Device",
     description: "Advanced microcurrent device for non-invasive face lifting treatment.",
@@ -2226,7 +2227,7 @@ export const products: Product[] = [
     inStock: true,
     colors: ["Gold", "White"],
   },
-{
+  {
     id: "beauty-50",
     name: "Heated Lash Curler",
     description: "Electric heated eyelash curler with temperature control for long-lasting curls.",
@@ -2287,7 +2288,7 @@ export const searchSuggestions = [
 // Search products function
 export function searchProducts(query: string): Product[] {
   const lowerQuery = query.toLowerCase();
-  return products.filter(p => 
+  return products.filter(p =>
     p.name.toLowerCase().includes(lowerQuery) ||
     p.description.toLowerCase().includes(lowerQuery) ||
     p.subcategory.toLowerCase().includes(lowerQuery) ||

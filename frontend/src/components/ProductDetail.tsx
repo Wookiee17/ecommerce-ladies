@@ -63,18 +63,17 @@ export default function ProductDetail({ product, isOpen, onClose }: ProductDetai
               />
             </div>
 
-            {/* Thumbnail Images (using same image for demo) */}
+            {/* Thumbnail Images */}
             <div className="flex gap-3 justify-center">
-              {[0, 1, 2, 3].map((i) => (
+              {(product.images && product.images.length > 0 ? product.images : [product.image]).map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveImage(i)}
-                  className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${
-                    activeImage === i ? 'border-coral-400' : 'border-transparent'
-                  }`}
+                  className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${activeImage === i ? 'border-coral-400' : 'border-transparent'
+                    }`}
                 >
                   <img
-                    src={product.image}
+                    src={img}
                     alt={`${product.name} view ${i + 1}`}
                     className="w-full h-full object-cover"
                   />
@@ -98,18 +97,17 @@ export default function ProductDetail({ product, isOpen, onClose }: ProductDetai
               <div className="flex gap-2">
                 <button
                   onClick={() => toggleWishlist(product)}
-                  className={`p-2 rounded-full border transition-colors ${
-                    isInWishlist(product.id)
+                  className={`p-2 rounded-full border transition-colors ${isInWishlist(product.id)
                       ? 'border-coral-400 bg-coral-50 text-coral-400'
                       : 'border-gray-200 hover:border-coral-400'
-                  }`}
+                    }`}
                 >
                   <Heart
                     className="w-5 h-5"
                     fill={isInWishlist(product.id) ? 'currentColor' : 'none'}
                   />
                 </button>
-                <button 
+                <button
                   onClick={() => setShowReviewShare(true)}
                   className="p-2 rounded-full border border-gray-200 hover:border-coral-400 transition-colors"
                   title="Share Review Link"
@@ -125,11 +123,10 @@ export default function ProductDetail({ product, isOpen, onClose }: ProductDetai
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-4 h-4 ${
-                      i < Math.floor(product.rating)
+                    className={`w-4 h-4 ${i < Math.floor(product.rating)
                         ? 'fill-gold-400 text-gold-400'
                         : 'text-gray-300'
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
@@ -169,11 +166,10 @@ export default function ProductDetail({ product, isOpen, onClose }: ProductDetai
                     <button
                       key={color}
                       onClick={() => setSelectedColor(color)}
-                      className={`px-4 py-2 rounded-lg text-sm border transition-colors ${
-                        selectedColor === color
+                      className={`px-4 py-2 rounded-lg text-sm border transition-colors ${selectedColor === color
                           ? 'border-coral-400 bg-coral-50 text-coral-400'
                           : 'border-gray-200 hover:border-coral-400'
-                      }`}
+                        }`}
                     >
                       {color}
                     </button>
@@ -193,11 +189,10 @@ export default function ProductDetail({ product, isOpen, onClose }: ProductDetai
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`w-12 h-12 rounded-lg text-sm border transition-colors ${
-                        selectedSize === size
+                      className={`w-12 h-12 rounded-lg text-sm border transition-colors ${selectedSize === size
                           ? 'border-coral-400 bg-coral-50 text-coral-400'
                           : 'border-gray-200 hover:border-coral-400'
-                      }`}
+                        }`}
                     >
                       {size}
                     </button>
