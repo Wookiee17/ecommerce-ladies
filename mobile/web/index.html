@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="theme-color" content="#ff6c79" />
+    <meta name="background-color" content="#fff8f0" />
+    <meta name="description" content="Evara - Your destination for premium dresses, jewelry, and beauty electronics. Shop the latest trends in fashion and beauty." />
+    <meta name="keywords" content="fashion, dresses, jewelry, beauty electronics, online shopping, ladies fashion" />
+    <meta name="author" content="Evara" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png" />
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Evara" />
+    
+    <!-- iOS Splash Screen Images -->
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-2048-2732.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1668-2388.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1536-2048.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1125-2436.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-1242-2688.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-750-1334.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    <link rel="apple-touch-startup-image" href="/splash/apple-splash-640-1136.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
+    
+    <!-- Android Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Evara" />
+    
+    <!-- Microsoft Meta Tags -->
+    <meta name="msapplication-TileColor" content="#ff6c79" />
+    <meta name="msapplication-TileImage" content="./icons/icon-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Evara - Ladies Fashion & Beauty" />
+    <meta property="og:description" content="Your destination for premium dresses, jewelry, and beauty electronics." />
+    <meta property="og:image" content="./icons/icon-512x512.png" />
+    <meta property="og:url" content="https://evara.com" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Evara - Ladies Fashion & Beauty" />
+    <meta name="twitter:description" content="Your destination for premium dresses, jewelry, and beauty electronics." />
+    <meta name="twitter:image" content="./icons/icon-512x512.png" />
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="./images/hero-1.jpg" as="image" />
+    
+    <title>Evara - Ladies Fashion & Beauty</title>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered:', registration);
+            })
+            .catch((error) => {
+              console.log('SW registration failed:', error);
+            });
+        });
+      }
+    </script>
+    
+    <!-- Prevent Flash of Wrong Theme -->
+    <style>
+      html {
+        background-color: #fff8f0;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #fff8f0;
+      }
+      /* Prevent FOUC */
+      .loading {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .loaded {
+        opacity: 1;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/js/index-oqus9YuW.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/js/vendor-DF3nNwgj.js">
+    <link rel="modulepreload" crossorigin href="./assets/js/ui-BVaIB6J5.js">
+    <link rel="modulepreload" crossorigin href="./assets/js/icons-D5RojKyF.js">
+    <link rel="stylesheet" crossorigin href="./assets/css/index-FRlkbLKl.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- Install Prompt for PWA -->
+    <script>
+      let deferredPrompt;
+      
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the mini-infobar from appearing on mobile
+        e.preventDefault();
+        // Store the event so it can be triggered later
+        deferredPrompt = e;
+        // Update UI to show install button
+        console.log('PWA install prompt available');
+      });
+      
+      // Handle app installed
+      window.addEventListener('appinstalled', () => {
+        console.log('PWA was installed');
+        deferredPrompt = null;
+      });
+    </script>
+    
+    <!-- Performance Monitoring -->
+    <script>
+      // Report Web Vitals
+      if ('web-vitals' in window) {
+        // Core Web Vitals will be tracked here
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # Android Build Service
+  android-build:
+    build:
+      context: .
+      dockerfile: Dockerfile.android
+    image: evara-android-builder
+    container_name: evara-android-build
+    volumes:
+      - ./dist:/app/dist
+      - ./output:/app/android/app/build/outputs
+    environment:
+      - ANDROID_HOME=/opt/android-sdk
+    command: >
+      sh -c "
+        npx cap sync android &&
+        cd android &&
+        gradle assembleDebug --no-daemon &&
+        cp app/build/outputs/apk/debug/app-debug.apk /app/output/
+      "
+
+  # Web Build Service (for rebuilding web assets)
+  web-build:
+    image: node:20-slim
+    container_name: evara-web-build
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "
+        npm install &&
+        npm run build
+      "

@@ -1,0 +1,3172 @@
+[
+  {
+    "name": "Champagne Satin Slip Dress",
+    "description": "Elegant champagne gold satin slip dress with cowl neckline. Perfect for evening events and special occasions. Made with premium silk-blend fabric.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.4,
+    "reviews": 47,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Champagne",
+      "Black",
+      "Blush"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-1.jpg"
+  },
+  {
+    "name": "Powder Pink Blazer Dress",
+    "description": "Trendy oversized blazer dress in powder pink with self-tie belt. Modern power dressing for the confident woman.",
+    "price": 3999,
+    "originalPrice": 5499,
+    "category": "dress",
+    "subcategory": "workwear",
+    "rating": 4.8,
+    "reviews": 510,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Pink",
+      "Navy",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-2.jpg"
+  },
+  {
+    "name": "Emerald Silk Wrap Dress",
+    "description": "Stunning emerald green silk wrap dress with flowing silhouette. Elegant cocktail attire that turns heads.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "dress",
+    "subcategory": "cocktail",
+    "rating": 4.7,
+    "reviews": 543,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Emerald",
+      "Ruby",
+      "Sapphire"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/images/dress-3.jpg"
+  },
+  {
+    "name": "Dusty Rose Puff Sleeve Dress",
+    "description": "Romantic midi dress with puff sleeves in dusty rose. Feminine and flattering for any occasion.",
+    "price": 3499,
+    "originalPrice": 4499,
+    "category": "dress",
+    "subcategory": "casual",
+    "rating": 4.9,
+    "reviews": 107,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose",
+      "Lavender",
+      "Mint"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-4.jpg"
+  },
+  {
+    "name": "Classic Black Bodycon Dress",
+    "description": "Sleek black bodycon dress that hugs your curves perfectly. A wardrobe essential for every woman.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.7,
+    "reviews": 559,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Black",
+      "Red",
+      "White"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/images/dress-5.jpg"
+  },
+  {
+    "name": "Navy Shirt Dress",
+    "description": "Sophisticated navy shirt dress with belt. Perfect for office to evening transitions.",
+    "price": 3299,
+    "originalPrice": 4299,
+    "category": "dress",
+    "subcategory": "workwear",
+    "rating": 4.3,
+    "reviews": 565,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Navy",
+      "White",
+      "Khaki"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-6.jpg"
+  },
+  {
+    "name": "Burgundy Cut-Out Maxi Dress",
+    "description": "Dramatic burgundy maxi dress with cut-out details and side slit. Perfect for red carpet moments.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.7,
+    "reviews": 285,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Burgundy",
+      "Black",
+      "Navy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-7.jpg"
+  },
+  {
+    "name": "Lavender Pleated Midi Dress",
+    "description": "Elegant pleated midi dress in soft lavender. Flowy and comfortable for all-day wear.",
+    "price": 3799,
+    "originalPrice": 4999,
+    "category": "dress",
+    "subcategory": "casual",
+    "rating": 4.6,
+    "reviews": 85,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Lavender",
+      "Peach",
+      "Mint"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-8.jpg"
+  },
+  {
+    "name": "Cream Ribbed Knit Dress",
+    "description": "Cozy ribbed knit dress in cream beige. Perfect for casual outings and coffee dates.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "dress",
+    "subcategory": "casual",
+    "rating": 4.7,
+    "reviews": 368,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Cream",
+      "Grey",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/images/dress-9.jpg"
+  },
+  {
+    "name": "Coral One-Shoulder Dress",
+    "description": "Stunning one-shoulder asymmetric dress in coral orange. Modern and chic for any celebration.",
+    "price": 4499,
+    "originalPrice": 5999,
+    "category": "dress",
+    "subcategory": "cocktail",
+    "rating": 4.7,
+    "reviews": 289,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Coral",
+      "Pink",
+      "Red"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-10.jpg"
+  },
+  {
+    "name": "Peach Tiered Ruffle Maxi",
+    "description": "Bohemian-inspired tiered ruffle maxi dress in soft peach. Perfect for beach weddings and summer parties.",
+    "price": 4299,
+    "originalPrice": 5499,
+    "category": "dress",
+    "subcategory": "boho",
+    "rating": 4.7,
+    "reviews": 513,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Peach",
+      "White",
+      "Yellow"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-11.jpg"
+  },
+  {
+    "name": "Silver Sequin Mini Dress",
+    "description": "Glamorous silver sequin mini dress for unforgettable party nights. Shine bright like a diamond.",
+    "price": 5499,
+    "originalPrice": 7499,
+    "category": "dress",
+    "subcategory": "party",
+    "rating": 4.3,
+    "reviews": 514,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Silver",
+      "Gold",
+      "Rose Gold"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-12.jpg"
+  },
+  {
+    "name": "White Halter Jumpsuit",
+    "description": "Elegant white halter jumpsuit with wide legs. Modern sophistication for special occasions.",
+    "price": 4999,
+    "originalPrice": 6499,
+    "category": "dress",
+    "subcategory": "jumpsuit",
+    "rating": 4.4,
+    "reviews": 263,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Black",
+      "Navy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-13.jpg"
+  },
+  {
+    "name": "Plum Velvet Slip Dress",
+    "description": "Luxurious plum velvet slip dress with cowl neckline. Rich texture for winter celebrations.",
+    "price": 5799,
+    "originalPrice": 7499,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.5,
+    "reviews": 115,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Plum",
+      "Emerald",
+      "Burgundy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-14.jpg"
+  },
+  {
+    "name": "Navy Polka Dot Dress",
+    "description": "Classic navy polka dot midi dress with belt. Timeless elegance never goes out of style.",
+    "price": 3299,
+    "originalPrice": 4299,
+    "category": "dress",
+    "subcategory": "vintage",
+    "rating": 4.4,
+    "reviews": 354,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Navy",
+      "Red",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/images/dress-15.jpg"
+  },
+  {
+    "name": "Red Floral Anarkali",
+    "description": "Beautiful red floral printed Anarkali suit with dupatta. Traditional Indian ethnic wear for festive occasions.",
+    "price": 4599,
+    "originalPrice": 5999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.7,
+    "reviews": 53,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Red",
+      "Green",
+      "Blue"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/images/dress-16.jpg"
+  },
+  {
+    "name": "Black Velvet Evening Gown",
+    "description": "Luxurious black velvet evening gown with sweetheart neckline. Perfect for gala events and formal dinners.",
+    "price": 7999,
+    "originalPrice": 9999,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.9,
+    "reviews": 151,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Black",
+      "Navy",
+      "Burgundy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-17.jpg"
+  },
+  {
+    "name": "Yellow Cotton Kurti",
+    "description": "Bright yellow cotton kurti with white embroidery. Comfortable daily wear with traditional charm.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.4,
+    "reviews": 154,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Yellow",
+      "Orange",
+      "Pink"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-18.jpg"
+  },
+  {
+    "name": "Teal Wrap Maxi Dress",
+    "description": "Flowing teal wrap maxi dress with floral print. Perfect for beach vacations and summer outings.",
+    "price": 3799,
+    "originalPrice": 4999,
+    "category": "dress",
+    "subcategory": "casual",
+    "rating": 4.5,
+    "reviews": 260,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Teal",
+      "Coral",
+      "Navy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-19.jpg"
+  },
+  {
+    "name": "Pink Embroidered Lehenga",
+    "description": "Stunning pink embroidered lehenga with heavy work. Bridal wear for the modern Indian bride.",
+    "price": 15999,
+    "originalPrice": 19999,
+    "category": "dress",
+    "subcategory": "bridal",
+    "rating": 4.7,
+    "reviews": 315,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Pink",
+      "Red",
+      "Maroon"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-20.jpg"
+  },
+  {
+    "name": "Grey Tweed Shift Dress",
+    "description": "Classic grey tweed shift dress with pearl buttons. Sophisticated office wear for professionals.",
+    "price": 4299,
+    "originalPrice": 5499,
+    "category": "dress",
+    "subcategory": "workwear",
+    "rating": 4.8,
+    "reviews": 97,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Grey",
+      "Navy",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-21.jpg"
+  },
+  {
+    "name": "Orange Boho Maxi Dress",
+    "description": "Vibrant orange bohemian maxi dress with tassel details. Free-spirited style for music festivals.",
+    "price": 3499,
+    "originalPrice": 4499,
+    "category": "dress",
+    "subcategory": "boho",
+    "rating": 4.5,
+    "reviews": 48,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Orange",
+      "Mustard",
+      "Rust"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-22.jpg"
+  },
+  {
+    "name": "Navy Lace Cocktail Dress",
+    "description": "Elegant navy blue lace cocktail dress with scalloped hem. Timeless sophistication for evening events.",
+    "price": 5499,
+    "originalPrice": 6999,
+    "category": "dress",
+    "subcategory": "cocktail",
+    "rating": 4.9,
+    "reviews": 210,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Navy",
+      "Black",
+      "Burgundy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-23.jpg"
+  },
+  {
+    "name": "Green Silk Saree Gown",
+    "description": "Innovative green silk saree-style gown with pre-stitched pleats. Fusion wear for modern women.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.6,
+    "reviews": 54,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Green",
+      "Blue",
+      "Purple"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-24.jpg"
+  },
+  {
+    "name": "White Eyelet Summer Dress",
+    "description": "Charming white eyelet cotton summer dress with scalloped edges. Breezy and beautiful for hot days.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "dress",
+    "subcategory": "casual",
+    "rating": 4.7,
+    "reviews": 197,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Lavender",
+      "Mint"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-25.jpg"
+  },
+  {
+    "name": "Maroon Velvet Anarkali",
+    "description": "Rich maroon velvet Anarkali with gold zari embroidery. Festive wear for special celebrations.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.6,
+    "reviews": 196,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Maroon",
+      "Green",
+      "Navy"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "image": "/images/dress-26.jpg"
+  },
+  {
+    "name": "Blush Pink Tulle Gown",
+    "description": "Dreamy blush pink tulle ball gown with floral appliques. Perfect for engagement and reception.",
+    "price": 12999,
+    "originalPrice": 15999,
+    "category": "dress",
+    "subcategory": "bridal",
+    "rating": 4.5,
+    "reviews": 85,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Blush",
+      "Ivory",
+      "Champagne"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-27.jpg"
+  },
+  {
+    "name": "Denim Shirt Dress",
+    "description": "Trendy denim shirt dress with belt and chest pockets. Casual chic for everyday style.",
+    "price": 3299,
+    "originalPrice": 4299,
+    "category": "dress",
+    "subcategory": "casual",
+    "rating": 4.4,
+    "reviews": 150,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Denim",
+      "Light Blue",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-28.jpg"
+  },
+  {
+    "name": "Gold Sequin Saree",
+    "description": "Dazzling gold sequin saree with designer blouse. Glamorous choice for wedding receptions.",
+    "price": 8999,
+    "originalPrice": 11999,
+    "category": "dress",
+    "subcategory": "bridal",
+    "rating": 4.8,
+    "reviews": 203,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "Silver",
+      "Rose Gold"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-29.jpg"
+  },
+  {
+    "name": "Purple Georgette Gown",
+    "description": "Elegant purple georgette gown with cape sleeves. Flowy silhouette for formal occasions.",
+    "price": 4999,
+    "originalPrice": 6499,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.4,
+    "reviews": 226,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Purple",
+      "Wine",
+      "Navy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-30.jpg"
+  },
+  {
+    "name": "Beige Linen Midi Dress",
+    "description": "Sophisticated beige linen midi dress with belt. Breathable fabric for summer office wear.",
+    "price": 3999,
+    "originalPrice": 4999,
+    "category": "dress",
+    "subcategory": "workwear",
+    "rating": 4.7,
+    "reviews": 385,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Beige",
+      "White",
+      "Navy"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-31.jpg"
+  },
+  {
+    "name": "Red Bandhani Lehenga",
+    "description": "Traditional red bandhani print lehenga with mirror work. Gujarati style for festive occasions.",
+    "price": 7499,
+    "originalPrice": 9499,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.7,
+    "reviews": 299,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Red",
+      "Orange",
+      "Green"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-32.jpg"
+  },
+  {
+    "name": "Black Mesh Party Dress",
+    "description": "Sultry black mesh party dress with sequin details. Turn heads at every celebration.",
+    "price": 4599,
+    "originalPrice": 5999,
+    "category": "dress",
+    "subcategory": "party",
+    "rating": 4.4,
+    "reviews": 84,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Black",
+      "Red",
+      "Gold"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-33.jpg"
+  },
+  {
+    "name": "Sky Blue Chiffon Saree",
+    "description": "Delicate sky blue chiffon saree with silver border. Lightweight and elegant for summer weddings.",
+    "price": 3999,
+    "originalPrice": 4999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.8,
+    "reviews": 516,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Sky Blue",
+      "Pink",
+      "Peach"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-34.jpg"
+  },
+  {
+    "name": "Olive Green Jumpsuit",
+    "description": "Stylish olive green jumpsuit with wide legs and belt. Contemporary fashion for modern women.",
+    "price": 4299,
+    "originalPrice": 5499,
+    "category": "dress",
+    "subcategory": "jumpsuit",
+    "rating": 4.8,
+    "reviews": 273,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Olive",
+      "Black",
+      "Navy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-35.jpg"
+  },
+  {
+    "name": "Coral Ruffle Mini Dress",
+    "description": "Playful coral ruffle mini dress with off-shoulder design. Fun and flirty for parties.",
+    "price": 3499,
+    "originalPrice": 4499,
+    "category": "dress",
+    "subcategory": "party",
+    "rating": 4.5,
+    "reviews": 116,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Coral",
+      "Pink",
+      "Yellow"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-36.jpg"
+  },
+  {
+    "name": "Indigo Block Print Kurti",
+    "description": "Artisanal indigo block print kurti with palazzo pants. Handcrafted beauty for everyday wear.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.7,
+    "reviews": 454,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Indigo",
+      "White",
+      "Beige"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-37.jpg"
+  },
+  {
+    "name": "Champagne Lace Gown",
+    "description": "Elegant champagne lace mermaid gown with train. Sophisticated choice for formal weddings.",
+    "price": 14999,
+    "originalPrice": 18999,
+    "category": "dress",
+    "subcategory": "bridal",
+    "rating": 4.5,
+    "reviews": 73,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Champagne",
+      "Ivory",
+      "White"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-38.jpg"
+  },
+  {
+    "name": "Mustard Yellow Co-ord Set",
+    "description": "Trendy mustard yellow co-ord set with crop top and skirt. Fashion-forward casual wear.",
+    "price": 3999,
+    "originalPrice": 4999,
+    "category": "dress",
+    "subcategory": "casual",
+    "rating": 4.4,
+    "reviews": 316,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Mustard",
+      "Rust",
+      "Olive"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-39.jpg"
+  },
+  {
+    "name": "Royal Blue Silk Gown",
+    "description": "Majestic royal blue silk gown with draped bodice. Regal elegance for special occasions.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.5,
+    "reviews": 366,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Royal Blue",
+      "Emerald",
+      "Purple"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-40.jpg"
+  },
+  {
+    "name": "Peach Chikankari Suit",
+    "description": "Delicate peach chikankari embroidered suit with dupatta. Lucknowi craftsmanship at its finest.",
+    "price": 4999,
+    "originalPrice": 6499,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.4,
+    "reviews": 239,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Peach",
+      "Mint",
+      "Lavender"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-41.jpg"
+  },
+  {
+    "name": "Black Satin Slip Dress",
+    "description": "Classic black satin slip dress with lace trim. Versatile piece for day to night.",
+    "price": 3299,
+    "originalPrice": 4299,
+    "category": "dress",
+    "subcategory": "evening",
+    "rating": 4.3,
+    "reviews": 246,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Black",
+      "Red",
+      "Navy"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-42.jpg"
+  },
+  {
+    "name": "Turquoise Kaftan Dress",
+    "description": "Flowing turquoise kaftan dress with gold embroidery. Resort wear for beach vacations.",
+    "price": 4499,
+    "originalPrice": 5999,
+    "category": "dress",
+    "subcategory": "boho",
+    "rating": 4.7,
+    "reviews": 383,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Turquoise",
+      "Coral",
+      "White"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-43.jpg"
+  },
+  {
+    "name": "Burgundy Sharara Suit",
+    "description": "Elegant burgundy sharara suit with heavy embroidery. Pakistani style for festive occasions.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.4,
+    "reviews": 352,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Burgundy",
+      "Green",
+      "Navy"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-44.jpg"
+  },
+  {
+    "name": "Ivory Pleated Midi Dress",
+    "description": "Sophisticated ivory pleated midi dress with bow tie. Professional yet feminine.",
+    "price": 4299,
+    "originalPrice": 5499,
+    "category": "dress",
+    "subcategory": "workwear",
+    "rating": 4.5,
+    "reviews": 347,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Ivory",
+      "Navy",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-45.jpg"
+  },
+  {
+    "name": "Hot Pink Bandage Dress",
+    "description": "Figure-hugging hot pink bandage dress with cut-outs. Bold statement for club nights.",
+    "price": 4999,
+    "originalPrice": 6499,
+    "category": "dress",
+    "subcategory": "party",
+    "rating": 4.7,
+    "reviews": 433,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Hot Pink",
+      "Red",
+      "Black"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-46.jpg"
+  },
+  {
+    "name": "Sea Green Anarkali Gown",
+    "description": "Ethereal sea green Anarkali gown with silver embroidery. Flowy and graceful for weddings.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.7,
+    "reviews": 353,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Sea Green",
+      "Lavender",
+      "Peach"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-47.jpg"
+  },
+  {
+    "name": "Charcoal Wrap Dress",
+    "description": "Elegant charcoal wrap dress with abstract print. Versatile piece for office and beyond.",
+    "price": 3799,
+    "originalPrice": 4799,
+    "category": "dress",
+    "subcategory": "workwear",
+    "rating": 4.5,
+    "reviews": 260,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Charcoal",
+      "Navy",
+      "Black"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "image": "/images/dress-48.jpg"
+  },
+  {
+    "name": "Gold Brocade Lehenga",
+    "description": "Opulent gold brocade lehenga with red dupatta. Traditional bridal wear for Indian weddings.",
+    "price": 18999,
+    "originalPrice": 23999,
+    "category": "dress",
+    "subcategory": "bridal",
+    "rating": 4.7,
+    "reviews": 521,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "Red",
+      "Maroon"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-49.jpg"
+  },
+  {
+    "name": "Magenta Silk Saree",
+    "description": "Elegant magenta silk saree with gold zari border. Traditional South Indian style for weddings.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "dress",
+    "subcategory": "ethnic",
+    "rating": 4.6,
+    "reviews": 218,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Magenta",
+      "Purple",
+      "Pink"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L"
+    ],
+    "image": "/images/dress-50.jpg"
+  },
+  {
+    "name": "Diamond Tennis Bracelet",
+    "description": "Exquisite diamond tennis bracelet in white gold setting. Timeless luxury for every occasion.",
+    "price": 89999,
+    "originalPrice": 119999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.7,
+    "reviews": 388,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "White Gold",
+      "Yellow Gold",
+      "Rose Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-1.jpg"
+  },
+  {
+    "name": "Gold Pearl Hoop Earrings",
+    "description": "Elegant gold hoop earrings with freshwater pearl drops. Modern meets classic beautifully.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.4,
+    "reviews": 362,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-2.jpg"
+  },
+  {
+    "name": "Sapphire Halo Ring",
+    "description": "Stunning sapphire ring with diamond halo in platinum setting. A piece to treasure forever.",
+    "price": 45999,
+    "originalPrice": 59999,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.3,
+    "reviews": 295,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Platinum",
+      "White Gold"
+    ],
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "image": "/images/jewelry-3.jpg"
+  },
+  {
+    "name": "Gold Heart Pendant Necklace",
+    "description": "Delicate gold chain with dainty heart pendant. Perfect for everyday wear or layering.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.8,
+    "reviews": 511,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "Rose Gold",
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-4.jpg"
+  },
+  {
+    "name": "Emerald Drop Earrings",
+    "description": "Luxurious emerald drop earrings with diamond accents in gold setting. Red carpet ready.",
+    "price": 24999,
+    "originalPrice": 32999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.4,
+    "reviews": 438,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-5.jpg"
+  },
+  {
+    "name": "Rose Gold Geometric Cuff",
+    "description": "Modern geometric cuff bracelet in rose gold. Bold statement piece for the fashion-forward.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.7,
+    "reviews": 50,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": true,
+    "colors": [
+      "Rose Gold",
+      "Gold",
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-6.jpg"
+  },
+  {
+    "name": "Classic Pearl Strand Necklace",
+    "description": "Timeless pearl strand necklace with gold clasp. Elegance that transcends generations.",
+    "price": 12999,
+    "originalPrice": 16999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.8,
+    "reviews": 480,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Cream",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-7.jpg"
+  },
+  {
+    "name": "Stackable Gold Rings Set",
+    "description": "Set of three stackable gold rings in different textures. Mix and match for endless styles.",
+    "price": 3999,
+    "originalPrice": 5499,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.7,
+    "reviews": 520,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "Rose Gold",
+      "Silver"
+    ],
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "image": "/images/jewelry-8.jpg"
+  },
+  {
+    "name": "Amethyst Cocktail Ring",
+    "description": "Bold amethyst cocktail ring in silver setting. Make a statement at your next event.",
+    "price": 8999,
+    "originalPrice": 11999,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.8,
+    "reviews": 512,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Silver"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "image": "/images/jewelry-9.jpg"
+  },
+  {
+    "name": "Celestial Charm Anklet",
+    "description": "Delicate gold anklet with star and moon charms. Add a touch of magic to your look.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "jewelry",
+    "subcategory": "anklet",
+    "rating": 4.6,
+    "reviews": 369,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": true,
+    "colors": [
+      "Gold",
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-10.jpg"
+  },
+  {
+    "name": "Diamond Choker Necklace",
+    "description": "Elegant diamond choker necklace in gold setting. Sophisticated glamour for special occasions.",
+    "price": 34999,
+    "originalPrice": 44999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.7,
+    "reviews": 561,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Gold",
+      "White Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-11.jpg"
+  },
+  {
+    "name": "Crystal Drop Earrings",
+    "description": "Sparkling crystal drop earrings in silver setting. Perfect for adding glamour to any outfit.",
+    "price": 3499,
+    "originalPrice": 4999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.6,
+    "reviews": 207,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Silver",
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-12.jpg"
+  },
+  {
+    "name": "Gold Mangalsutra Black Beads",
+    "description": "Traditional gold mangalsutra with black beads and vati pendant. Symbol of married life.",
+    "price": 12999,
+    "originalPrice": 16999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.5,
+    "reviews": 298,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-13.jpg"
+  },
+  {
+    "name": "Diamond Stud Earrings",
+    "description": "Classic round diamond stud earrings in 18k gold setting. Everyday luxury.",
+    "price": 24999,
+    "originalPrice": 32999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.8,
+    "reviews": 541,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White Gold",
+      "Yellow Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-14.jpg"
+  },
+  {
+    "name": "Ruby Gold Bangle Set",
+    "description": "Set of 4 gold bangles with ruby accents. Traditional Indian bridal jewelry.",
+    "price": 19999,
+    "originalPrice": 25999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.3,
+    "reviews": 337,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-15.jpg"
+  },
+  {
+    "name": "Silver Chain Link Necklace",
+    "description": "Modern silver chain link necklace. Contemporary design for everyday wear.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.8,
+    "reviews": 127,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-16.jpg"
+  },
+  {
+    "name": "Pearl Drop Earrings",
+    "description": "Elegant freshwater pearl drop earrings with gold hooks. Timeless sophistication.",
+    "price": 3999,
+    "originalPrice": 5499,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.7,
+    "reviews": 264,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-17.jpg"
+  },
+  {
+    "name": "Antique Gold Jhumka",
+    "description": "Traditional South Indian jhumka earrings with pearl drops. Temple jewelry design.",
+    "price": 8999,
+    "originalPrice": 11999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.6,
+    "reviews": 470,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-18.jpg"
+  },
+  {
+    "name": "Diamond Tennis Bracelet",
+    "description": "Exquisite diamond tennis bracelet in white gold. Continuous sparkle around your wrist.",
+    "price": 89999,
+    "originalPrice": 119999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.5,
+    "reviews": 65,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-19.jpg"
+  },
+  {
+    "name": "Kundan Maang Tikka",
+    "description": "Traditional Indian kundan maang tikka with pearls. Bridal forehead ornament.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "jewelry",
+    "subcategory": "hair-accessory",
+    "rating": 4.5,
+    "reviews": 51,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-20.jpg"
+  },
+  {
+    "name": "Rose Gold Hoop Earrings",
+    "description": "Medium-sized rose gold hoop earrings with pav\u00e9 diamonds. Modern elegance.",
+    "price": 7999,
+    "originalPrice": 9999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.5,
+    "reviews": 474,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-21.jpg"
+  },
+  {
+    "name": "Temple Design Armlet",
+    "description": "Antique gold armlet with temple motifs. Traditional South Indian vanki design.",
+    "price": 14999,
+    "originalPrice": 18999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.8,
+    "reviews": 270,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-22.jpg"
+  },
+  {
+    "name": "Sapphire Diamond Pendant",
+    "description": "Stunning sapphire pendant surrounded by diamonds in platinum setting.",
+    "price": 49999,
+    "originalPrice": 64999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.6,
+    "reviews": 443,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Platinum"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-23.jpg"
+  },
+  {
+    "name": "Polki Diamond Nath",
+    "description": "Traditional Indian bridal nose ring with polki diamonds and pearls. Rajputana style.",
+    "price": 12999,
+    "originalPrice": 16999,
+    "category": "jewelry",
+    "subcategory": "nose-ring",
+    "rating": 4.5,
+    "reviews": 214,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": true,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-24.jpg"
+  },
+  {
+    "name": "Emerald Diamond Halo Earrings",
+    "description": "Luxurious emerald drop earrings with diamond halo in gold setting.",
+    "price": 34999,
+    "originalPrice": 44999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.9,
+    "reviews": 72,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-25.jpg"
+  },
+  {
+    "name": "Gold Kada Bracelet",
+    "description": "Heavy gold kada bracelet with elephant motifs. Statement piece for special occasions.",
+    "price": 24999,
+    "originalPrice": 31999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.7,
+    "reviews": 130,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-26.jpg"
+  },
+  {
+    "name": "Pearl Strand Diamond Clasp",
+    "description": "Classic white pearl strand necklace with diamond-studded clasp.",
+    "price": 19999,
+    "originalPrice": 25999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.6,
+    "reviews": 96,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Cream"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-27.jpg"
+  },
+  {
+    "name": "Ruby Gold Choker",
+    "description": "Traditional Indian bridal choker with pigeon blood rubies and gold work.",
+    "price": 59999,
+    "originalPrice": 79999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.6,
+    "reviews": 390,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-28.jpg"
+  },
+  {
+    "name": "Amethyst Diamond Ring",
+    "description": "Bold amethyst cocktail ring with diamond accents in white gold setting.",
+    "price": 14999,
+    "originalPrice": 19999,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.8,
+    "reviews": 476,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White Gold"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "image": "/images/jewelry-29.jpg"
+  },
+  {
+    "name": "Gold Jhumka Pearls",
+    "description": "Traditional bell-shaped gold jhumka earrings with pearl drops and filigree work.",
+    "price": 7999,
+    "originalPrice": 9999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.3,
+    "reviews": 98,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-30.jpg"
+  },
+  {
+    "name": "Diamond Solitaire Ring",
+    "description": "Classic round brilliant cut diamond solitaire engagement ring in platinum.",
+    "price": 99999,
+    "originalPrice": 129999,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.7,
+    "reviews": 86,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": true,
+    "colors": [
+      "Platinum"
+    ],
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "image": "/images/jewelry-31.jpg"
+  },
+  {
+    "name": "Meenakari Bangle Set",
+    "description": "Set of colorful Meenakari enamel bangles with floral designs. Rajasthani craft.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.4,
+    "reviews": 65,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Multicolor"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-32.jpg"
+  },
+  {
+    "name": "Topaz Citrine Necklace",
+    "description": "Warm golden topaz and citrine statement necklace in gold chain design.",
+    "price": 24999,
+    "originalPrice": 31999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.6,
+    "reviews": 162,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-33.jpg"
+  },
+  {
+    "name": "Oxidized Silver Anklet",
+    "description": "Traditional Indian oxidized silver anklet with ghungroo bells. Ethnic charm.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "jewelry",
+    "subcategory": "anklet",
+    "rating": 4.7,
+    "reviews": 422,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-34.jpg"
+  },
+  {
+    "name": "Diamond Cluster Studs",
+    "description": "Floral pattern diamond cluster stud earrings in 18k white gold.",
+    "price": 19999,
+    "originalPrice": 25999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.7,
+    "reviews": 162,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-35.jpg"
+  },
+  {
+    "name": "Gold Mangalsutra Diamond",
+    "description": "Elegant gold mangalsutra with diamond pendant and black beads.",
+    "price": 15999,
+    "originalPrice": 19999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.5,
+    "reviews": 71,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-36.jpg"
+  },
+  {
+    "name": "Opal Diamond Pendant",
+    "description": "Fiery Australian opal pendant with diamond halo in white gold chain.",
+    "price": 12999,
+    "originalPrice": 16999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.8,
+    "reviews": 429,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-37.jpg"
+  },
+  {
+    "name": "Temple Waist Belt",
+    "description": "Traditional Indian temple jewelry waist belt with gold coins. Bridal kamarbandh.",
+    "price": 19999,
+    "originalPrice": 24999,
+    "category": "jewelry",
+    "subcategory": "accessory",
+    "rating": 4.3,
+    "reviews": 293,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-38.jpg"
+  },
+  {
+    "name": "Aquamarine Diamond Earrings",
+    "description": "Light blue aquamarine drop earrings with diamond accents in white gold.",
+    "price": 19999,
+    "originalPrice": 25999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.8,
+    "reviews": 168,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-39.jpg"
+  },
+  {
+    "name": "Gold Toe Rings",
+    "description": "Pair of traditional Indian gold toe rings. Simple and elegant design.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.3,
+    "reviews": 483,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "image": "/images/jewelry-40.jpg"
+  },
+  {
+    "name": "Garnet Tennis Bracelet",
+    "description": "Deep red garnet tennis bracelet in gold setting. January birthstone jewelry.",
+    "price": 14999,
+    "originalPrice": 19999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.7,
+    "reviews": 57,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-41.jpg"
+  },
+  {
+    "name": "Pachi Work Choker",
+    "description": "Traditional Indian bridal choker with uncut diamonds and green enamel work.",
+    "price": 79999,
+    "originalPrice": 99999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.4,
+    "reviews": 415,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-42.jpg"
+  },
+  {
+    "name": "Silver Charm Bracelet",
+    "description": "Sterling silver charm bracelet with various charms. Contemporary design.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.7,
+    "reviews": 490,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Silver"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-43.jpg"
+  },
+  {
+    "name": "Peridot Diamond Ring",
+    "description": "Lime green peridot ring with diamond accents in yellow gold. August birthstone.",
+    "price": 9999,
+    "originalPrice": 12999,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.7,
+    "reviews": 540,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Yellow Gold"
+    ],
+    "sizes": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "image": "/images/jewelry-44.jpg"
+  },
+  {
+    "name": "Gold Hathphool",
+    "description": "Traditional Indian hand jewelry connecting rings to bracelet with pearls. Bridal ornament.",
+    "price": 8999,
+    "originalPrice": 11999,
+    "category": "jewelry",
+    "subcategory": "hand-jewelry",
+    "rating": 4.7,
+    "reviews": 375,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-45.jpg"
+  },
+  {
+    "name": "Tanzanite Pendant",
+    "description": "Deep blue-purple tanzanite pendant in white gold setting. December birthstone.",
+    "price": 19999,
+    "originalPrice": 25999,
+    "category": "jewelry",
+    "subcategory": "necklace",
+    "rating": 4.4,
+    "reviews": 506,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-46.jpg"
+  },
+  {
+    "name": "Peacock Hair Pin",
+    "description": "Antique gold hair accessory with peacock design and kundan stones.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "jewelry",
+    "subcategory": "hair-accessory",
+    "rating": 4.7,
+    "reviews": 433,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-47.jpg"
+  },
+  {
+    "name": "Morganite Rose Gold Ring",
+    "description": "Pink peach morganite ring in vintage rose gold setting. Feminine elegance.",
+    "price": 12999,
+    "originalPrice": 16999,
+    "category": "jewelry",
+    "subcategory": "ring",
+    "rating": 4.5,
+    "reviews": 544,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold"
+    ],
+    "sizes": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "image": "/images/jewelry-48.jpg"
+  },
+  {
+    "name": "Diamond Bangle",
+    "description": "Elegant diamond bangle bracelet in 18k gold with intricate design.",
+    "price": 49999,
+    "originalPrice": 64999,
+    "category": "jewelry",
+    "subcategory": "bracelet",
+    "rating": 4.5,
+    "reviews": 327,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-49.jpg"
+  },
+  {
+    "name": "Citrine Stud Earrings",
+    "description": "Golden yellow citrine stud earrings with diamond halo in yellow gold.",
+    "price": 7999,
+    "originalPrice": 9999,
+    "category": "jewelry",
+    "subcategory": "earrings",
+    "rating": 4.4,
+    "reviews": 292,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Yellow Gold"
+    ],
+    "sizes": [],
+    "image": "/images/jewelry-50.jpg"
+  },
+  {
+    "name": "Pro Electric Nail Drill",
+    "description": "Professional electric nail drill with 35,000 RPM and LED display. Perfect for salon-quality manicures at home.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "beauty",
+    "subcategory": "nail-tools",
+    "rating": 4.8,
+    "reviews": 532,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-1.jpg"
+  },
+  {
+    "name": "UV LED Nail Lamp 120W",
+    "description": "High-power UV LED nail lamp for quick gel polish curing. 4 timer settings and automatic sensor.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "beauty",
+    "subcategory": "nail-tools",
+    "rating": 4.8,
+    "reviews": 140,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-2.jpg"
+  },
+  {
+    "name": "Heated Eyelash Curler Pro",
+    "description": "Electric heated eyelash curler with temperature control. USB rechargeable for perfect lashes anywhere.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "beauty",
+    "subcategory": "eye-tools",
+    "rating": 4.4,
+    "reviews": 422,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-3.jpg"
+  },
+  {
+    "name": "7-Color LED Face Mask",
+    "description": "Professional LED light therapy mask with 7 colors for various skin concerns. Spa treatment at home.",
+    "price": 8999,
+    "originalPrice": 12999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.6,
+    "reviews": 383,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-4.jpg"
+  },
+  {
+    "name": "Smart Pore Vacuum Cleaner",
+    "description": "Electric blackhead remover with 5 suction levels and LCD display. Clear skin made easy.",
+    "price": 2999,
+    "originalPrice": 4499,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.5,
+    "reviews": 281,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-5.jpg"
+  },
+  {
+    "name": "Sonic Facial Cleansing Brush",
+    "description": "Waterproof sonic face cleanser with multiple brush heads. Deep clean for radiant skin.",
+    "price": 3499,
+    "originalPrice": 4999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.4,
+    "reviews": 234,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Pink",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-6.jpg"
+  },
+  {
+    "name": "Professional Hair Steamer",
+    "description": "Nano ionic hair steamer for deep conditioning treatments. Salon-quality results at home.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.5,
+    "reviews": 334,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-7.jpg"
+  },
+  {
+    "name": "Electric Callus Remover",
+    "description": "Rechargeable electric foot file for removing hard skin and calluses. Painless pedicure at home.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "beauty",
+    "subcategory": "foot-care",
+    "rating": 4.5,
+    "reviews": 414,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-8.jpg"
+  },
+  {
+    "name": "Microcurrent Face Device",
+    "description": "Advanced microcurrent device for face lifting and skin tightening. Non-surgical facelift.",
+    "price": 7999,
+    "originalPrice": 9999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.6,
+    "reviews": 325,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-9.jpg"
+  },
+  {
+    "name": "Ionic Hair Straightener",
+    "description": "Professional ionic hair straightener with ceramic plates. Sleek, frizz-free hair every day.",
+    "price": 4499,
+    "originalPrice": 5999,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.5,
+    "reviews": 174,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Black",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-10.jpg"
+  },
+  {
+    "name": "LED Makeup Mirror",
+    "description": "Touch screen LED makeup mirror with 3 color modes. Perfect lighting for flawless makeup.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "beauty",
+    "subcategory": "makeup-tools",
+    "rating": 4.4,
+    "reviews": 57,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-11.jpg"
+  },
+  {
+    "name": "Ultrasonic Skin Scrubber",
+    "description": "Ultrasonic spatula for deep cleansing and blackhead removal. Gentle exfoliation.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.6,
+    "reviews": 233,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-12.jpg"
+  },
+  {
+    "name": "Electric Makeup Brush Cleaner",
+    "description": "Automatic electric makeup brush cleaner and dryer. Keeps brushes hygienic.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "beauty",
+    "subcategory": "makeup-tools",
+    "rating": 4.8,
+    "reviews": 161,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-13.jpg"
+  },
+  {
+    "name": "Nano Ionic Hair Steamer",
+    "description": "Professional nano ionic hair steamer for deep conditioning treatments at home.",
+    "price": 3999,
+    "originalPrice": 5499,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.3,
+    "reviews": 99,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-14.jpg"
+  },
+  {
+    "name": "Electric Foot Callus Remover",
+    "description": "Rechargeable electric foot file for removing hard skin and calluses.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "beauty",
+    "subcategory": "foot-care",
+    "rating": 4.9,
+    "reviews": 132,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-15.jpg"
+  },
+  {
+    "name": "Heated Eyelash Curler Pro",
+    "description": "Advanced heated eyelash curler with temperature display. Long-lasting curls.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "beauty",
+    "subcategory": "eye-tools",
+    "rating": 4.8,
+    "reviews": 276,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-16.jpg"
+  },
+  {
+    "name": "RF Skin Tightening Device",
+    "description": "Radio frequency skin tightening machine for anti-aging treatment at home.",
+    "price": 8999,
+    "originalPrice": 11999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.8,
+    "reviews": 349,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": true,
+    "colors": [
+      "White",
+      "Gold"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-17.jpg"
+  },
+  {
+    "name": "Professional Nail Dryer Lamp",
+    "description": "High-power UV LED nail lamp for quick gel polish curing with 4 timer settings.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "beauty",
+    "subcategory": "nail-tools",
+    "rating": 4.5,
+    "reviews": 106,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-18.jpg"
+  },
+  {
+    "name": "Sonic Face Cleansing Brush",
+    "description": "Waterproof sonic face cleansing brush with multiple speed settings.",
+    "price": 3499,
+    "originalPrice": 4499,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.9,
+    "reviews": 257,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Pink",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-19.jpg"
+  },
+  {
+    "name": "Ionic Hair Dryer Pro",
+    "description": "Professional ionic hair dryer with diffuser attachment for salon-quality results.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.3,
+    "reviews": 290,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-20.jpg"
+  },
+  {
+    "name": "Microcurrent Face Lifter",
+    "description": "Microcurrent device for face lifting and skin tightening. Non-surgical facelift.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.3,
+    "reviews": 506,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-21.jpg"
+  },
+  {
+    "name": "Electric Eyebrow Trimmer",
+    "description": "Precision electric eyebrow trimmer for painless hair removal.",
+    "price": 1499,
+    "originalPrice": 2499,
+    "category": "beauty",
+    "subcategory": "hair-removal",
+    "rating": 4.3,
+    "reviews": 340,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-22.jpg"
+  },
+  {
+    "name": "Facial Steamer Spa",
+    "description": "Nano ionic facial steamer for deep pore cleansing and hydration.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.6,
+    "reviews": 284,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-23.jpg"
+  },
+  {
+    "name": "IPL Hair Removal Device",
+    "description": "At-home IPL permanent hair removal device for face and body.",
+    "price": 8999,
+    "originalPrice": 11999,
+    "category": "beauty",
+    "subcategory": "hair-removal",
+    "rating": 4.7,
+    "reviews": 247,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Rose Gold"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-24.jpg"
+  },
+  {
+    "name": "Scalp Massager Hair Growth",
+    "description": "Electric scalp massager with red light therapy for hair growth stimulation.",
+    "price": 3499,
+    "originalPrice": 4499,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.7,
+    "reviews": 317,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-25.jpg"
+  },
+  {
+    "name": "High Frequency Facial Machine",
+    "description": "Professional high frequency facial device with multiple glass electrodes.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.4,
+    "reviews": 359,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-26.jpg"
+  },
+  {
+    "name": "Electric Body Brush",
+    "description": "Waterproof electric body brush with long handle for shower exfoliation.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "beauty",
+    "subcategory": "body-care",
+    "rating": 4.9,
+    "reviews": 494,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Blue",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-27.jpg"
+  },
+  {
+    "name": "Red Light Therapy Wand",
+    "description": "Portable red light therapy wand for anti-aging and skin rejuvenation.",
+    "price": 3999,
+    "originalPrice": 5499,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.7,
+    "reviews": 323,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-28.jpg"
+  },
+  {
+    "name": "Electric Manicure Set",
+    "description": "Complete electric manicure and pedicure kit with nail dryer lamp.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "beauty",
+    "subcategory": "nail-tools",
+    "rating": 4.3,
+    "reviews": 85,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-29.jpg"
+  },
+  {
+    "name": "Sonic Face Massager",
+    "description": "Heated sonic face massager for anti-wrinkle treatment and better absorption.",
+    "price": 4499,
+    "originalPrice": 5999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.7,
+    "reviews": 71,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Rose Gold"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-30.jpg"
+  },
+  {
+    "name": "LED Makeup Mirror",
+    "description": "Portable LED makeup mirror with touch screen and adjustable brightness.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "beauty",
+    "subcategory": "makeup-tools",
+    "rating": 4.8,
+    "reviews": 66,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White",
+      "Pink"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-31.jpg"
+  },
+  {
+    "name": "Pore Vacuum Cleaner Pro",
+    "description": "Electric blackhead remover with 5 suction levels and hot compress function.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.5,
+    "reviews": 86,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Blue",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-32.jpg"
+  },
+  {
+    "name": "Laser Hair Growth Helmet",
+    "description": "Red light therapy helmet for hair loss treatment and regrowth.",
+    "price": 14999,
+    "originalPrice": 19999,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.6,
+    "reviews": 497,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-33.jpg"
+  },
+  {
+    "name": "Auto-Rotating Curling Iron",
+    "description": "Automatic rotating curling iron with ceramic barrel for perfect curls.",
+    "price": 3999,
+    "originalPrice": 5499,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.7,
+    "reviews": 548,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "Black"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-34.jpg"
+  },
+  {
+    "name": "Cooling Eye Massager",
+    "description": "Vibration eye massager with cooling function for dark circles and puffiness.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "beauty",
+    "subcategory": "eye-tools",
+    "rating": 4.5,
+    "reviews": 373,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "Silver",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-35.jpg"
+  },
+  {
+    "name": "Makeup Airbrush Kit",
+    "description": "Professional cordless airbrush makeup system with compressor and foundation set.",
+    "price": 7999,
+    "originalPrice": 9999,
+    "category": "beauty",
+    "subcategory": "makeup-tools",
+    "rating": 4.5,
+    "reviews": 552,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": true,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-36.jpg"
+  },
+  {
+    "name": "Facial Hair Remover",
+    "description": "Painless electric facial hair remover for women with LED light.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "beauty",
+    "subcategory": "hair-removal",
+    "rating": 4.8,
+    "reviews": 82,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-37.jpg"
+  },
+  {
+    "name": "Ultrasonic Jewelry Cleaner",
+    "description": "Professional ultrasonic cleaner for jewelry, glasses, and accessories.",
+    "price": 3999,
+    "originalPrice": 4999,
+    "category": "beauty",
+    "subcategory": "accessory",
+    "rating": 4.5,
+    "reviews": 458,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-38.jpg"
+  },
+  {
+    "name": "Electric Foot Spa Massager",
+    "description": "Heated foot spa bath massager with bubbles and massage rollers.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "beauty",
+    "subcategory": "foot-care",
+    "rating": 4.3,
+    "reviews": 518,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Blue",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-39.jpg"
+  },
+  {
+    "name": "Galvanic Spa Device",
+    "description": "Professional galvanic spa device for face lifting and deep cleansing.",
+    "price": 5999,
+    "originalPrice": 7999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.5,
+    "reviews": 555,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-40.jpg"
+  },
+  {
+    "name": "7-in-1 Facial Care System",
+    "description": "Complete facial care system with 7 interchangeable attachments.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.4,
+    "reviews": 179,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-41.jpg"
+  },
+  {
+    "name": "LED Light Therapy Mask",
+    "description": "Professional 7-color LED face mask for various skin concerns treatment.",
+    "price": 8999,
+    "originalPrice": 11999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.7,
+    "reviews": 169,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-42.jpg"
+  },
+  {
+    "name": "Electric Nail Drill Machine",
+    "description": "Professional electric nail drill with 35,000 RPM for salon-quality manicures.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "beauty",
+    "subcategory": "nail-tools",
+    "rating": 4.8,
+    "reviews": 207,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-43.jpg"
+  },
+  {
+    "name": "Jade Roller Gua Sha Set",
+    "description": "Natural jade face roller and gua sha scraping tool for facial massage.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "beauty",
+    "subcategory": "skincare-tools",
+    "rating": 4.5,
+    "reviews": 275,
+    "inStock": true,
+    "isNew": true,
+    "isBestseller": true,
+    "colors": [
+      "Green"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-44.jpg"
+  },
+  {
+    "name": "Hair Straightener Brush",
+    "description": "Ionic hair straightening brush with LCD display and temperature control.",
+    "price": 3999,
+    "originalPrice": 4999,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.6,
+    "reviews": 165,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "Black"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-45.jpg"
+  },
+  {
+    "name": "Ultrasonic Skin Scrubber",
+    "description": "Ultrasonic spatula for deep cleansing and blackhead removal.",
+    "price": 2999,
+    "originalPrice": 3999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.9,
+    "reviews": 343,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-46.jpg"
+  },
+  {
+    "name": "Silicone Face Cleanser",
+    "description": "Waterproof silicone facial cleansing brush with multiple vibration modes.",
+    "price": 2499,
+    "originalPrice": 3499,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.8,
+    "reviews": 528,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Pink",
+      "Blue"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-47.jpg"
+  },
+  {
+    "name": "Ionic Hair Dryer",
+    "description": "Professional salon-quality ionic hair dryer with multiple heat settings.",
+    "price": 4999,
+    "originalPrice": 6999,
+    "category": "beauty",
+    "subcategory": "hair-tools",
+    "rating": 4.5,
+    "reviews": 565,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-48.jpg"
+  },
+  {
+    "name": "Microcurrent Face Device",
+    "description": "Advanced microcurrent device for non-invasive face lifting treatment.",
+    "price": 6999,
+    "originalPrice": 8999,
+    "category": "beauty",
+    "subcategory": "skincare-devices",
+    "rating": 4.3,
+    "reviews": 469,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-49.jpg"
+  },
+  {
+    "name": "Heated Lash Curler",
+    "description": "Electric heated eyelash curler with temperature control for long-lasting curls.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "beauty",
+    "subcategory": "eye-tools",
+    "rating": 4.5,
+    "reviews": 47,
+    "inStock": true,
+    "isNew": false,
+    "isBestseller": false,
+    "colors": [
+      "Rose Gold",
+      "White"
+    ],
+    "sizes": [],
+    "image": "/images/beauty-50.jpg"
+  }
+]

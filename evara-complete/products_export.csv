@@ -1,0 +1,151 @@
+name,description,price,originalPrice,category,subcategory,rating,reviews,inStock,isNew,isBestseller,colors,sizes,image
+Champagne Satin Slip Dress,Elegant champagne gold satin slip dress with cowl neckline. Perfect for evening events and special occasions. Made with premium silk-blend fabric.,4999,6999,dress,evening,4.4,47,Yes,Yes,No,"Champagne, Black, Blush","XS, S, M, L, XL",/images/dress-1.jpg
+Powder Pink Blazer Dress,Trendy oversized blazer dress in powder pink with self-tie belt. Modern power dressing for the confident woman.,3999,5499,dress,workwear,4.8,510,Yes,No,No,"Pink, Navy, Black","S, M, L, XL",/images/dress-2.jpg
+Emerald Silk Wrap Dress,Stunning emerald green silk wrap dress with flowing silhouette. Elegant cocktail attire that turns heads.,5999,7999,dress,cocktail,4.7,543,Yes,No,No,"Emerald, Ruby, Sapphire","XS, S, M, L, XL, XXL",/images/dress-3.jpg
+Dusty Rose Puff Sleeve Dress,Romantic midi dress with puff sleeves in dusty rose. Feminine and flattering for any occasion.,3499,4499,dress,casual,4.9,107,Yes,No,No,"Rose, Lavender, Mint","XS, S, M, L, XL",/images/dress-4.jpg
+Classic Black Bodycon Dress,Sleek black bodycon dress that hugs your curves perfectly. A wardrobe essential for every woman.,2999,3999,dress,evening,4.7,559,Yes,Yes,No,"Black, Red, White","XS, S, M, L, XL, XXL",/images/dress-5.jpg
+Navy Shirt Dress,Sophisticated navy shirt dress with belt. Perfect for office to evening transitions.,3299,4299,dress,workwear,4.3,565,Yes,No,No,"Navy, White, Khaki","S, M, L, XL",/images/dress-6.jpg
+Burgundy Cut-Out Maxi Dress,Dramatic burgundy maxi dress with cut-out details and side slit. Perfect for red carpet moments.,6999,8999,dress,evening,4.7,285,Yes,No,Yes,"Burgundy, Black, Navy","XS, S, M, L, XL",/images/dress-7.jpg
+Lavender Pleated Midi Dress,Elegant pleated midi dress in soft lavender. Flowy and comfortable for all-day wear.,3799,4999,dress,casual,4.6,85,Yes,No,No,"Lavender, Peach, Mint","XS, S, M, L, XL",/images/dress-8.jpg
+Cream Ribbed Knit Dress,Cozy ribbed knit dress in cream beige. Perfect for casual outings and coffee dates.,2499,3499,dress,casual,4.7,368,Yes,Yes,No,"Cream, Grey, Black","XS, S, M, L, XL, XXL",/images/dress-9.jpg
+Coral One-Shoulder Dress,Stunning one-shoulder asymmetric dress in coral orange. Modern and chic for any celebration.,4499,5999,dress,cocktail,4.7,289,Yes,No,No,"Coral, Pink, Red","XS, S, M, L, XL",/images/dress-10.jpg
+Peach Tiered Ruffle Maxi,Bohemian-inspired tiered ruffle maxi dress in soft peach. Perfect for beach weddings and summer parties.,4299,5499,dress,boho,4.7,513,Yes,No,No,"Peach, White, Yellow","XS, S, M, L, XL",/images/dress-11.jpg
+Silver Sequin Mini Dress,Glamorous silver sequin mini dress for unforgettable party nights. Shine bright like a diamond.,5499,7499,dress,party,4.3,514,Yes,No,No,"Silver, Gold, Rose Gold","XS, S, M, L",/images/dress-12.jpg
+White Halter Jumpsuit,Elegant white halter jumpsuit with wide legs. Modern sophistication for special occasions.,4999,6499,dress,jumpsuit,4.4,263,Yes,No,No,"White, Black, Navy","XS, S, M, L, XL",/images/dress-13.jpg
+Plum Velvet Slip Dress,Luxurious plum velvet slip dress with cowl neckline. Rich texture for winter celebrations.,5799,7499,dress,evening,4.5,115,Yes,Yes,No,"Plum, Emerald, Burgundy","XS, S, M, L, XL",/images/dress-14.jpg
+Navy Polka Dot Dress,Classic navy polka dot midi dress with belt. Timeless elegance never goes out of style.,3299,4299,dress,vintage,4.4,354,Yes,No,Yes,"Navy, Red, Black","XS, S, M, L, XL, XXL",/images/dress-15.jpg
+Red Floral Anarkali,Beautiful red floral printed Anarkali suit with dupatta. Traditional Indian ethnic wear for festive occasions.,4599,5999,dress,ethnic,4.7,53,Yes,No,No,"Red, Green, Blue","S, M, L, XL, XXL",/images/dress-16.jpg
+Black Velvet Evening Gown,Luxurious black velvet evening gown with sweetheart neckline. Perfect for gala events and formal dinners.,7999,9999,dress,evening,4.9,151,Yes,Yes,No,"Black, Navy, Burgundy","XS, S, M, L, XL",/images/dress-17.jpg
+Yellow Cotton Kurti,Bright yellow cotton kurti with white embroidery. Comfortable daily wear with traditional charm.,1999,2999,dress,ethnic,4.4,154,Yes,No,No,"Yellow, Orange, Pink","S, M, L, XL",/images/dress-18.jpg
+Teal Wrap Maxi Dress,Flowing teal wrap maxi dress with floral print. Perfect for beach vacations and summer outings.,3799,4999,dress,casual,4.5,260,Yes,No,No,"Teal, Coral, Navy","XS, S, M, L, XL",/images/dress-19.jpg
+Pink Embroidered Lehenga,Stunning pink embroidered lehenga with heavy work. Bridal wear for the modern Indian bride.,15999,19999,dress,bridal,4.7,315,Yes,No,No,"Pink, Red, Maroon","S, M, L",/images/dress-20.jpg
+Grey Tweed Shift Dress,Classic grey tweed shift dress with pearl buttons. Sophisticated office wear for professionals.,4299,5499,dress,workwear,4.8,97,Yes,No,No,"Grey, Navy, Black","S, M, L, XL",/images/dress-21.jpg
+Orange Boho Maxi Dress,Vibrant orange bohemian maxi dress with tassel details. Free-spirited style for music festivals.,3499,4499,dress,boho,4.5,48,Yes,No,No,"Orange, Mustard, Rust","XS, S, M, L, XL",/images/dress-22.jpg
+Navy Lace Cocktail Dress,Elegant navy blue lace cocktail dress with scalloped hem. Timeless sophistication for evening events.,5499,6999,dress,cocktail,4.9,210,Yes,No,No,"Navy, Black, Burgundy","XS, S, M, L, XL",/images/dress-23.jpg
+Green Silk Saree Gown,Innovative green silk saree-style gown with pre-stitched pleats. Fusion wear for modern women.,6999,8999,dress,ethnic,4.6,54,Yes,No,Yes,"Green, Blue, Purple","S, M, L, XL",/images/dress-24.jpg
+White Eyelet Summer Dress,Charming white eyelet cotton summer dress with scalloped edges. Breezy and beautiful for hot days.,2999,3999,dress,casual,4.7,197,Yes,No,No,"White, Lavender, Mint","XS, S, M, L, XL",/images/dress-25.jpg
+Maroon Velvet Anarkali,Rich maroon velvet Anarkali with gold zari embroidery. Festive wear for special celebrations.,5999,7999,dress,ethnic,4.6,196,Yes,No,No,"Maroon, Green, Navy","S, M, L, XL, XXL",/images/dress-26.jpg
+Blush Pink Tulle Gown,Dreamy blush pink tulle ball gown with floral appliques. Perfect for engagement and reception.,12999,15999,dress,bridal,4.5,85,Yes,Yes,No,"Blush, Ivory, Champagne","XS, S, M, L",/images/dress-27.jpg
+Denim Shirt Dress,Trendy denim shirt dress with belt and chest pockets. Casual chic for everyday style.,3299,4299,dress,casual,4.4,150,Yes,No,No,"Denim, Light Blue, Black","XS, S, M, L, XL",/images/dress-28.jpg
+Gold Sequin Saree,Dazzling gold sequin saree with designer blouse. Glamorous choice for wedding receptions.,8999,11999,dress,bridal,4.8,203,Yes,Yes,No,"Gold, Silver, Rose Gold","S, M, L",/images/dress-29.jpg
+Purple Georgette Gown,Elegant purple georgette gown with cape sleeves. Flowy silhouette for formal occasions.,4999,6499,dress,evening,4.4,226,Yes,Yes,No,"Purple, Wine, Navy","XS, S, M, L, XL",/images/dress-30.jpg
+Beige Linen Midi Dress,Sophisticated beige linen midi dress with belt. Breathable fabric for summer office wear.,3999,4999,dress,workwear,4.7,385,Yes,Yes,No,"Beige, White, Navy","S, M, L, XL",/images/dress-31.jpg
+Red Bandhani Lehenga,Traditional red bandhani print lehenga with mirror work. Gujarati style for festive occasions.,7499,9499,dress,ethnic,4.7,299,Yes,No,No,"Red, Orange, Green","S, M, L, XL",/images/dress-32.jpg
+Black Mesh Party Dress,Sultry black mesh party dress with sequin details. Turn heads at every celebration.,4599,5999,dress,party,4.4,84,Yes,Yes,No,"Black, Red, Gold","XS, S, M, L",/images/dress-33.jpg
+Sky Blue Chiffon Saree,Delicate sky blue chiffon saree with silver border. Lightweight and elegant for summer weddings.,3999,4999,dress,ethnic,4.8,516,Yes,No,No,"Sky Blue, Pink, Peach","S, M, L",/images/dress-34.jpg
+Olive Green Jumpsuit,Stylish olive green jumpsuit with wide legs and belt. Contemporary fashion for modern women.,4299,5499,dress,jumpsuit,4.8,273,Yes,No,No,"Olive, Black, Navy","XS, S, M, L, XL",/images/dress-35.jpg
+Coral Ruffle Mini Dress,Playful coral ruffle mini dress with off-shoulder design. Fun and flirty for parties.,3499,4499,dress,party,4.5,116,Yes,Yes,No,"Coral, Pink, Yellow","XS, S, M, L",/images/dress-36.jpg
+Indigo Block Print Kurti,Artisanal indigo block print kurti with palazzo pants. Handcrafted beauty for everyday wear.,2499,3499,dress,ethnic,4.7,454,Yes,No,No,"Indigo, White, Beige","S, M, L, XL",/images/dress-37.jpg
+Champagne Lace Gown,Elegant champagne lace mermaid gown with train. Sophisticated choice for formal weddings.,14999,18999,dress,bridal,4.5,73,Yes,No,Yes,"Champagne, Ivory, White","XS, S, M, L",/images/dress-38.jpg
+Mustard Yellow Co-ord Set,Trendy mustard yellow co-ord set with crop top and skirt. Fashion-forward casual wear.,3999,4999,dress,casual,4.4,316,Yes,No,No,"Mustard, Rust, Olive","XS, S, M, L, XL",/images/dress-39.jpg
+Royal Blue Silk Gown,Majestic royal blue silk gown with draped bodice. Regal elegance for special occasions.,6999,8999,dress,evening,4.5,366,Yes,No,Yes,"Royal Blue, Emerald, Purple","XS, S, M, L, XL",/images/dress-40.jpg
+Peach Chikankari Suit,Delicate peach chikankari embroidered suit with dupatta. Lucknowi craftsmanship at its finest.,4999,6499,dress,ethnic,4.4,239,Yes,No,No,"Peach, Mint, Lavender","S, M, L, XL",/images/dress-41.jpg
+Black Satin Slip Dress,Classic black satin slip dress with lace trim. Versatile piece for day to night.,3299,4299,dress,evening,4.3,246,Yes,No,No,"Black, Red, Navy","XS, S, M, L, XL",/images/dress-42.jpg
+Turquoise Kaftan Dress,Flowing turquoise kaftan dress with gold embroidery. Resort wear for beach vacations.,4499,5999,dress,boho,4.7,383,Yes,No,No,"Turquoise, Coral, White","S, M, L, XL",/images/dress-43.jpg
+Burgundy Sharara Suit,Elegant burgundy sharara suit with heavy embroidery. Pakistani style for festive occasions.,5999,7999,dress,ethnic,4.4,352,Yes,No,No,"Burgundy, Green, Navy","S, M, L, XL",/images/dress-44.jpg
+Ivory Pleated Midi Dress,Sophisticated ivory pleated midi dress with bow tie. Professional yet feminine.,4299,5499,dress,workwear,4.5,347,Yes,No,No,"Ivory, Navy, Black","S, M, L, XL",/images/dress-45.jpg
+Hot Pink Bandage Dress,Figure-hugging hot pink bandage dress with cut-outs. Bold statement for club nights.,4999,6499,dress,party,4.7,433,Yes,No,Yes,"Hot Pink, Red, Black","XS, S, M, L",/images/dress-46.jpg
+Sea Green Anarkali Gown,Ethereal sea green Anarkali gown with silver embroidery. Flowy and graceful for weddings.,6999,8999,dress,ethnic,4.7,353,Yes,No,No,"Sea Green, Lavender, Peach","S, M, L, XL",/images/dress-47.jpg
+Charcoal Wrap Dress,Elegant charcoal wrap dress with abstract print. Versatile piece for office and beyond.,3799,4799,dress,workwear,4.5,260,Yes,No,No,"Charcoal, Navy, Black","S, M, L, XL",/images/dress-48.jpg
+Gold Brocade Lehenga,Opulent gold brocade lehenga with red dupatta. Traditional bridal wear for Indian weddings.,18999,23999,dress,bridal,4.7,521,Yes,No,No,"Gold, Red, Maroon","S, M, L",/images/dress-49.jpg
+Magenta Silk Saree,Elegant magenta silk saree with gold zari border. Traditional South Indian style for weddings.,5999,7999,dress,ethnic,4.6,218,Yes,No,No,"Magenta, Purple, Pink","S, M, L",/images/dress-50.jpg
+Diamond Tennis Bracelet,Exquisite diamond tennis bracelet in white gold setting. Timeless luxury for every occasion.,89999,119999,jewelry,bracelet,4.7,388,Yes,No,Yes,"White Gold, Yellow Gold, Rose Gold",,/images/jewelry-1.jpg
+Gold Pearl Hoop Earrings,Elegant gold hoop earrings with freshwater pearl drops. Modern meets classic beautifully.,4999,6999,jewelry,earrings,4.4,362,Yes,No,No,"Gold, Silver",,/images/jewelry-2.jpg
+Sapphire Halo Ring,Stunning sapphire ring with diamond halo in platinum setting. A piece to treasure forever.,45999,59999,jewelry,ring,4.3,295,Yes,Yes,No,"Platinum, White Gold","5, 6, 7, 8, 9",/images/jewelry-3.jpg
+Gold Heart Pendant Necklace,Delicate gold chain with dainty heart pendant. Perfect for everyday wear or layering.,2999,3999,jewelry,necklace,4.8,511,Yes,No,No,"Gold, Rose Gold, Silver",,/images/jewelry-4.jpg
+Emerald Drop Earrings,Luxurious emerald drop earrings with diamond accents in gold setting. Red carpet ready.,24999,32999,jewelry,earrings,4.4,438,Yes,No,No,Gold,,/images/jewelry-5.jpg
+Rose Gold Geometric Cuff,Modern geometric cuff bracelet in rose gold. Bold statement piece for the fashion-forward.,5999,7999,jewelry,bracelet,4.7,50,Yes,Yes,Yes,"Rose Gold, Gold, Silver",,/images/jewelry-6.jpg
+Classic Pearl Strand Necklace,Timeless pearl strand necklace with gold clasp. Elegance that transcends generations.,12999,16999,jewelry,necklace,4.8,480,Yes,No,No,"White, Cream, Pink",,/images/jewelry-7.jpg
+Stackable Gold Rings Set,Set of three stackable gold rings in different textures. Mix and match for endless styles.,3999,5499,jewelry,ring,4.7,520,Yes,No,No,"Gold, Rose Gold, Silver","5, 6, 7, 8, 9",/images/jewelry-8.jpg
+Amethyst Cocktail Ring,Bold amethyst cocktail ring in silver setting. Make a statement at your next event.,8999,11999,jewelry,ring,4.8,512,Yes,No,No,Silver,"6, 7, 8, 9",/images/jewelry-9.jpg
+Celestial Charm Anklet,Delicate gold anklet with star and moon charms. Add a touch of magic to your look.,1999,2999,jewelry,anklet,4.6,369,Yes,Yes,Yes,"Gold, Silver",,/images/jewelry-10.jpg
+Diamond Choker Necklace,Elegant diamond choker necklace in gold setting. Sophisticated glamour for special occasions.,34999,44999,jewelry,necklace,4.7,561,Yes,No,Yes,"Gold, White Gold",,/images/jewelry-11.jpg
+Crystal Drop Earrings,Sparkling crystal drop earrings in silver setting. Perfect for adding glamour to any outfit.,3499,4999,jewelry,earrings,4.6,207,Yes,No,No,"Silver, Gold",,/images/jewelry-12.jpg
+Gold Mangalsutra Black Beads,Traditional gold mangalsutra with black beads and vati pendant. Symbol of married life.,12999,16999,jewelry,necklace,4.5,298,Yes,Yes,No,Gold,,/images/jewelry-13.jpg
+Diamond Stud Earrings,Classic round diamond stud earrings in 18k gold setting. Everyday luxury.,24999,32999,jewelry,earrings,4.8,541,Yes,No,No,"White Gold, Yellow Gold",,/images/jewelry-14.jpg
+Ruby Gold Bangle Set,Set of 4 gold bangles with ruby accents. Traditional Indian bridal jewelry.,19999,25999,jewelry,bracelet,4.3,337,Yes,No,No,Gold,,/images/jewelry-15.jpg
+Silver Chain Link Necklace,Modern silver chain link necklace. Contemporary design for everyday wear.,4999,6999,jewelry,necklace,4.8,127,Yes,No,No,Silver,,/images/jewelry-16.jpg
+Pearl Drop Earrings,Elegant freshwater pearl drop earrings with gold hooks. Timeless sophistication.,3999,5499,jewelry,earrings,4.7,264,Yes,No,No,"Gold, Silver",,/images/jewelry-17.jpg
+Antique Gold Jhumka,Traditional South Indian jhumka earrings with pearl drops. Temple jewelry design.,8999,11999,jewelry,earrings,4.6,470,Yes,No,No,Gold,,/images/jewelry-18.jpg
+Diamond Tennis Bracelet,Exquisite diamond tennis bracelet in white gold. Continuous sparkle around your wrist.,89999,119999,jewelry,bracelet,4.5,65,Yes,Yes,No,White Gold,,/images/jewelry-19.jpg
+Kundan Maang Tikka,Traditional Indian kundan maang tikka with pearls. Bridal forehead ornament.,5999,7999,jewelry,hair-accessory,4.5,51,Yes,Yes,No,Gold,,/images/jewelry-20.jpg
+Rose Gold Hoop Earrings,Medium-sized rose gold hoop earrings with pavé diamonds. Modern elegance.,7999,9999,jewelry,earrings,4.5,474,Yes,No,No,Rose Gold,,/images/jewelry-21.jpg
+Temple Design Armlet,Antique gold armlet with temple motifs. Traditional South Indian vanki design.,14999,18999,jewelry,bracelet,4.8,270,Yes,No,No,Gold,,/images/jewelry-22.jpg
+Sapphire Diamond Pendant,Stunning sapphire pendant surrounded by diamonds in platinum setting.,49999,64999,jewelry,necklace,4.6,443,Yes,No,No,Platinum,,/images/jewelry-23.jpg
+Polki Diamond Nath,Traditional Indian bridal nose ring with polki diamonds and pearls. Rajputana style.,12999,16999,jewelry,nose-ring,4.5,214,Yes,Yes,Yes,Gold,,/images/jewelry-24.jpg
+Emerald Diamond Halo Earrings,Luxurious emerald drop earrings with diamond halo in gold setting.,34999,44999,jewelry,earrings,4.9,72,Yes,Yes,No,Gold,,/images/jewelry-25.jpg
+Gold Kada Bracelet,Heavy gold kada bracelet with elephant motifs. Statement piece for special occasions.,24999,31999,jewelry,bracelet,4.7,130,Yes,No,No,Gold,,/images/jewelry-26.jpg
+Pearl Strand Diamond Clasp,Classic white pearl strand necklace with diamond-studded clasp.,19999,25999,jewelry,necklace,4.6,96,Yes,No,No,"White, Cream",,/images/jewelry-27.jpg
+Ruby Gold Choker,Traditional Indian bridal choker with pigeon blood rubies and gold work.,59999,79999,jewelry,necklace,4.6,390,Yes,Yes,No,Gold,,/images/jewelry-28.jpg
+Amethyst Diamond Ring,Bold amethyst cocktail ring with diamond accents in white gold setting.,14999,19999,jewelry,ring,4.8,476,Yes,No,No,White Gold,"6, 7, 8, 9",/images/jewelry-29.jpg
+Gold Jhumka Pearls,Traditional bell-shaped gold jhumka earrings with pearl drops and filigree work.,7999,9999,jewelry,earrings,4.3,98,Yes,Yes,No,Gold,,/images/jewelry-30.jpg
+Diamond Solitaire Ring,Classic round brilliant cut diamond solitaire engagement ring in platinum.,99999,129999,jewelry,ring,4.7,86,Yes,Yes,Yes,Platinum,"5, 6, 7, 8, 9",/images/jewelry-31.jpg
+Meenakari Bangle Set,Set of colorful Meenakari enamel bangles with floral designs. Rajasthani craft.,6999,8999,jewelry,bracelet,4.4,65,Yes,No,No,Multicolor,,/images/jewelry-32.jpg
+Topaz Citrine Necklace,Warm golden topaz and citrine statement necklace in gold chain design.,24999,31999,jewelry,necklace,4.6,162,Yes,No,No,Gold,,/images/jewelry-33.jpg
+Oxidized Silver Anklet,Traditional Indian oxidized silver anklet with ghungroo bells. Ethnic charm.,1999,2999,jewelry,anklet,4.7,422,Yes,No,No,Silver,,/images/jewelry-34.jpg
+Diamond Cluster Studs,Floral pattern diamond cluster stud earrings in 18k white gold.,19999,25999,jewelry,earrings,4.7,162,Yes,Yes,No,White Gold,,/images/jewelry-35.jpg
+Gold Mangalsutra Diamond,Elegant gold mangalsutra with diamond pendant and black beads.,15999,19999,jewelry,necklace,4.5,71,Yes,Yes,No,Gold,,/images/jewelry-36.jpg
+Opal Diamond Pendant,Fiery Australian opal pendant with diamond halo in white gold chain.,12999,16999,jewelry,necklace,4.8,429,Yes,No,No,White Gold,,/images/jewelry-37.jpg
+Temple Waist Belt,Traditional Indian temple jewelry waist belt with gold coins. Bridal kamarbandh.,19999,24999,jewelry,accessory,4.3,293,Yes,No,No,Gold,,/images/jewelry-38.jpg
+Aquamarine Diamond Earrings,Light blue aquamarine drop earrings with diamond accents in white gold.,19999,25999,jewelry,earrings,4.8,168,Yes,Yes,No,White Gold,,/images/jewelry-39.jpg
+Gold Toe Rings,Pair of traditional Indian gold toe rings. Simple and elegant design.,2999,3999,jewelry,ring,4.3,483,Yes,No,No,Gold,"5, 6, 7, 8",/images/jewelry-40.jpg
+Garnet Tennis Bracelet,Deep red garnet tennis bracelet in gold setting. January birthstone jewelry.,14999,19999,jewelry,bracelet,4.7,57,Yes,Yes,No,Gold,,/images/jewelry-41.jpg
+Pachi Work Choker,Traditional Indian bridal choker with uncut diamonds and green enamel work.,79999,99999,jewelry,necklace,4.4,415,Yes,No,No,Gold,,/images/jewelry-42.jpg
+Silver Charm Bracelet,Sterling silver charm bracelet with various charms. Contemporary design.,4999,6999,jewelry,bracelet,4.7,490,Yes,No,No,Silver,,/images/jewelry-43.jpg
+Peridot Diamond Ring,Lime green peridot ring with diamond accents in yellow gold. August birthstone.,9999,12999,jewelry,ring,4.7,540,Yes,No,No,Yellow Gold,"6, 7, 8, 9",/images/jewelry-44.jpg
+Gold Hathphool,Traditional Indian hand jewelry connecting rings to bracelet with pearls. Bridal ornament.,8999,11999,jewelry,hand-jewelry,4.7,375,Yes,Yes,No,Gold,,/images/jewelry-45.jpg
+Tanzanite Pendant,Deep blue-purple tanzanite pendant in white gold setting. December birthstone.,19999,25999,jewelry,necklace,4.4,506,Yes,No,No,White Gold,,/images/jewelry-46.jpg
+Peacock Hair Pin,Antique gold hair accessory with peacock design and kundan stones.,5999,7999,jewelry,hair-accessory,4.7,433,Yes,No,No,Gold,,/images/jewelry-47.jpg
+Morganite Rose Gold Ring,Pink peach morganite ring in vintage rose gold setting. Feminine elegance.,12999,16999,jewelry,ring,4.5,544,Yes,No,No,Rose Gold,"5, 6, 7, 8, 9",/images/jewelry-48.jpg
+Diamond Bangle,Elegant diamond bangle bracelet in 18k gold with intricate design.,49999,64999,jewelry,bracelet,4.5,327,Yes,No,No,Gold,,/images/jewelry-49.jpg
+Citrine Stud Earrings,Golden yellow citrine stud earrings with diamond halo in yellow gold.,7999,9999,jewelry,earrings,4.4,292,Yes,No,No,Yellow Gold,,/images/jewelry-50.jpg
+Pro Electric Nail Drill,"Professional electric nail drill with 35,000 RPM and LED display. Perfect for salon-quality manicures at home.",4999,6999,beauty,nail-tools,4.8,532,Yes,No,No,"Rose Gold, White",,/images/beauty-1.jpg
+UV LED Nail Lamp 120W,High-power UV LED nail lamp for quick gel polish curing. 4 timer settings and automatic sensor.,2499,3499,beauty,nail-tools,4.8,140,Yes,No,No,"White, Pink",,/images/beauty-2.jpg
+Heated Eyelash Curler Pro,Electric heated eyelash curler with temperature control. USB rechargeable for perfect lashes anywhere.,1999,2999,beauty,eye-tools,4.4,422,Yes,No,No,"Rose Gold, White",,/images/beauty-3.jpg
+7-Color LED Face Mask,Professional LED light therapy mask with 7 colors for various skin concerns. Spa treatment at home.,8999,12999,beauty,skincare-devices,4.6,383,Yes,No,No,White,,/images/beauty-4.jpg
+Smart Pore Vacuum Cleaner,Electric blackhead remover with 5 suction levels and LCD display. Clear skin made easy.,2999,4499,beauty,skincare-devices,4.5,281,Yes,No,No,"White, Pink",,/images/beauty-5.jpg
+Sonic Facial Cleansing Brush,Waterproof sonic face cleanser with multiple brush heads. Deep clean for radiant skin.,3499,4999,beauty,skincare-devices,4.4,234,Yes,No,No,"Pink, White",,/images/beauty-6.jpg
+Professional Hair Steamer,Nano ionic hair steamer for deep conditioning treatments. Salon-quality results at home.,5999,7999,beauty,hair-tools,4.5,334,Yes,Yes,No,White,,/images/beauty-7.jpg
+Electric Callus Remover,Rechargeable electric foot file for removing hard skin and calluses. Painless pedicure at home.,1999,2999,beauty,foot-care,4.5,414,Yes,No,No,"White, Pink",,/images/beauty-8.jpg
+Microcurrent Face Device,Advanced microcurrent device for face lifting and skin tightening. Non-surgical facelift.,7999,9999,beauty,skincare-devices,4.6,325,Yes,No,No,"Gold, White",,/images/beauty-9.jpg
+Ionic Hair Straightener,"Professional ionic hair straightener with ceramic plates. Sleek, frizz-free hair every day.",4499,5999,beauty,hair-tools,4.5,174,Yes,No,No,"Black, White",,/images/beauty-10.jpg
+LED Makeup Mirror,Touch screen LED makeup mirror with 3 color modes. Perfect lighting for flawless makeup.,2499,3499,beauty,makeup-tools,4.4,57,Yes,No,No,"White, Pink",,/images/beauty-11.jpg
+Ultrasonic Skin Scrubber,Ultrasonic spatula for deep cleansing and blackhead removal. Gentle exfoliation.,2999,3999,beauty,skincare-devices,4.6,233,Yes,Yes,No,White,,/images/beauty-12.jpg
+Electric Makeup Brush Cleaner,Automatic electric makeup brush cleaner and dryer. Keeps brushes hygienic.,2999,3999,beauty,makeup-tools,4.8,161,Yes,Yes,No,"White, Pink",,/images/beauty-13.jpg
+Nano Ionic Hair Steamer,Professional nano ionic hair steamer for deep conditioning treatments at home.,3999,5499,beauty,hair-tools,4.3,99,Yes,No,No,White,,/images/beauty-14.jpg
+Electric Foot Callus Remover,Rechargeable electric foot file for removing hard skin and calluses.,1999,2999,beauty,foot-care,4.9,132,Yes,Yes,No,"White, Pink",,/images/beauty-15.jpg
+Heated Eyelash Curler Pro,Advanced heated eyelash curler with temperature display. Long-lasting curls.,2499,3499,beauty,eye-tools,4.8,276,Yes,Yes,No,Rose Gold,,/images/beauty-16.jpg
+RF Skin Tightening Device,Radio frequency skin tightening machine for anti-aging treatment at home.,8999,11999,beauty,skincare-devices,4.8,349,Yes,Yes,Yes,"White, Gold",,/images/beauty-17.jpg
+Professional Nail Dryer Lamp,High-power UV LED nail lamp for quick gel polish curing with 4 timer settings.,2499,3499,beauty,nail-tools,4.5,106,Yes,No,No,"White, Pink",,/images/beauty-18.jpg
+Sonic Face Cleansing Brush,Waterproof sonic face cleansing brush with multiple speed settings.,3499,4499,beauty,skincare-devices,4.9,257,Yes,No,No,"Pink, White",,/images/beauty-19.jpg
+Ionic Hair Dryer Pro,Professional ionic hair dryer with diffuser attachment for salon-quality results.,4999,6999,beauty,hair-tools,4.3,290,Yes,No,No,"Rose Gold, White",,/images/beauty-20.jpg
+Microcurrent Face Lifter,Microcurrent device for face lifting and skin tightening. Non-surgical facelift.,6999,8999,beauty,skincare-devices,4.3,506,Yes,No,No,"Gold, White",,/images/beauty-21.jpg
+Electric Eyebrow Trimmer,Precision electric eyebrow trimmer for painless hair removal.,1499,2499,beauty,hair-removal,4.3,340,Yes,No,No,"Rose Gold, White",,/images/beauty-22.jpg
+Facial Steamer Spa,Nano ionic facial steamer for deep pore cleansing and hydration.,2999,3999,beauty,skincare-devices,4.6,284,Yes,Yes,No,White,,/images/beauty-23.jpg
+IPL Hair Removal Device,At-home IPL permanent hair removal device for face and body.,8999,11999,beauty,hair-removal,4.7,247,Yes,No,No,"White, Rose Gold",,/images/beauty-24.jpg
+Scalp Massager Hair Growth,Electric scalp massager with red light therapy for hair growth stimulation.,3499,4499,beauty,hair-tools,4.7,317,Yes,Yes,No,White,,/images/beauty-25.jpg
+High Frequency Facial Machine,Professional high frequency facial device with multiple glass electrodes.,4999,6999,beauty,skincare-devices,4.4,359,Yes,No,No,White,,/images/beauty-26.jpg
+Electric Body Brush,Waterproof electric body brush with long handle for shower exfoliation.,2999,3999,beauty,body-care,4.9,494,Yes,No,No,"Blue, White",,/images/beauty-27.jpg
+Red Light Therapy Wand,Portable red light therapy wand for anti-aging and skin rejuvenation.,3999,5499,beauty,skincare-devices,4.7,323,Yes,No,No,"Gold, White",,/images/beauty-28.jpg
+Electric Manicure Set,Complete electric manicure and pedicure kit with nail dryer lamp.,4999,6999,beauty,nail-tools,4.3,85,Yes,Yes,No,"White, Pink",,/images/beauty-29.jpg
+Sonic Face Massager,Heated sonic face massager for anti-wrinkle treatment and better absorption.,4499,5999,beauty,skincare-devices,4.7,71,Yes,No,Yes,Rose Gold,,/images/beauty-30.jpg
+LED Makeup Mirror,Portable LED makeup mirror with touch screen and adjustable brightness.,1999,2999,beauty,makeup-tools,4.8,66,Yes,Yes,No,"White, Pink",,/images/beauty-31.jpg
+Pore Vacuum Cleaner Pro,Electric blackhead remover with 5 suction levels and hot compress function.,2999,3999,beauty,skincare-devices,4.5,86,Yes,Yes,No,"Blue, White",,/images/beauty-32.jpg
+Laser Hair Growth Helmet,Red light therapy helmet for hair loss treatment and regrowth.,14999,19999,beauty,hair-tools,4.6,497,Yes,Yes,No,White,,/images/beauty-33.jpg
+Auto-Rotating Curling Iron,Automatic rotating curling iron with ceramic barrel for perfect curls.,3999,5499,beauty,hair-tools,4.7,548,Yes,Yes,No,"Rose Gold, Black",,/images/beauty-34.jpg
+Cooling Eye Massager,Vibration eye massager with cooling function for dark circles and puffiness.,2499,3499,beauty,eye-tools,4.5,373,Yes,No,Yes,"Silver, White",,/images/beauty-35.jpg
+Makeup Airbrush Kit,Professional cordless airbrush makeup system with compressor and foundation set.,7999,9999,beauty,makeup-tools,4.5,552,Yes,No,Yes,White,,/images/beauty-36.jpg
+Facial Hair Remover,Painless electric facial hair remover for women with LED light.,1999,2999,beauty,hair-removal,4.8,82,Yes,No,No,"Rose Gold, White",,/images/beauty-37.jpg
+Ultrasonic Jewelry Cleaner,"Professional ultrasonic cleaner for jewelry, glasses, and accessories.",3999,4999,beauty,accessory,4.5,458,Yes,Yes,No,White,,/images/beauty-38.jpg
+Electric Foot Spa Massager,Heated foot spa bath massager with bubbles and massage rollers.,4999,6999,beauty,foot-care,4.3,518,Yes,No,No,"Blue, White",,/images/beauty-39.jpg
+Galvanic Spa Device,Professional galvanic spa device for face lifting and deep cleansing.,5999,7999,beauty,skincare-devices,4.5,555,Yes,No,No,"Gold, White",,/images/beauty-40.jpg
+7-in-1 Facial Care System,Complete facial care system with 7 interchangeable attachments.,6999,8999,beauty,skincare-devices,4.4,179,Yes,Yes,No,White,,/images/beauty-41.jpg
+LED Light Therapy Mask,Professional 7-color LED face mask for various skin concerns treatment.,8999,11999,beauty,skincare-devices,4.7,169,Yes,No,No,White,,/images/beauty-42.jpg
+Electric Nail Drill Machine,"Professional electric nail drill with 35,000 RPM for salon-quality manicures.",4999,6999,beauty,nail-tools,4.8,207,Yes,No,No,"Rose Gold, White",,/images/beauty-43.jpg
+Jade Roller Gua Sha Set,Natural jade face roller and gua sha scraping tool for facial massage.,1999,2999,beauty,skincare-tools,4.5,275,Yes,Yes,Yes,Green,,/images/beauty-44.jpg
+Hair Straightener Brush,Ionic hair straightening brush with LCD display and temperature control.,3999,4999,beauty,hair-tools,4.6,165,Yes,No,No,"Rose Gold, Black",,/images/beauty-45.jpg
+Ultrasonic Skin Scrubber,Ultrasonic spatula for deep cleansing and blackhead removal.,2999,3999,beauty,skincare-devices,4.9,343,Yes,No,No,White,,/images/beauty-46.jpg
+Silicone Face Cleanser,Waterproof silicone facial cleansing brush with multiple vibration modes.,2499,3499,beauty,skincare-devices,4.8,528,Yes,No,No,"Pink, Blue",,/images/beauty-47.jpg
+Ionic Hair Dryer,Professional salon-quality ionic hair dryer with multiple heat settings.,4999,6999,beauty,hair-tools,4.5,565,Yes,No,No,"Rose Gold, White",,/images/beauty-48.jpg
+Microcurrent Face Device,Advanced microcurrent device for non-invasive face lifting treatment.,6999,8999,beauty,skincare-devices,4.3,469,Yes,No,No,"Gold, White",,/images/beauty-49.jpg
+Heated Lash Curler,Electric heated eyelash curler with temperature control for long-lasting curls.,1999,2999,beauty,eye-tools,4.5,47,Yes,No,No,"Rose Gold, White",,/images/beauty-50.jpg
