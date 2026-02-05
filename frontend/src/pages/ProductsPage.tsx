@@ -193,10 +193,10 @@ export default function ProductsPage() {
       );
     }
 
-    // Category filter
-    if (filters.categories.length > 0) {
-      result = result.filter(p => filters.categories.some(c => c.toLowerCase() === p.category.toLowerCase()));
-    }
+    // Category filter - Removed to prevent conflict with server-side filtering
+    // if (filters.categories.length > 0) {
+    //   result = result.filter(p => filters.categories.some(c => c.toLowerCase() === p.category.toLowerCase()));
+    // }
 
     // Subcategory filter
     if (filters.subcategories.length > 0) {

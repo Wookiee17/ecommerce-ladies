@@ -1,284 +1,134 @@
-import { useState, useEffect } from 'react';
-import { Bell, X, ShoppingBag, Tag, Package } from 'lucide-react';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Bell, Trash2, Package, Tag, Info } from 'lucide-react';
+import { useState } from 'react';
 
-interface Notification {
-  _id: string;
-  type: string;
-  title: string;
-  message: string;
-  data: any;
-  read: boolean;
-  readAt?: string;
-  createdAt: string;
-  sentVia: string[];
-}
+// Mock notifications for now - in real app would come from context/API
+const MOCK_NOTIFICATIONS = [
+  {
+    id: '1',
+    type: 'order',
+    title: 'Order Confirmed',
+    message: 'Your order #1234 has been successfully placed.',
+    time: '2 mins ago',
+    read: false
+  },
+  {
+    id: '2',
+    type: 'promo',
+    title: 'Summer Sale',
+    message: 'Get 20% off on all summer collections!',
+    time: '1 hour ago',
+    read: false
+  },
+  {
+    id: '3',
+    type: 'system',
+    title: 'Account Update',
+    message: 'Your profile information has been updated.',
+    time: '1 day ago',
+    read: true
+  }
+];
 
-interface NotificationsProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+export default function Notifications() {
+  const [notifications, setNotifications] = useState(MOCK_NOTIFICATIONS);
 
-export default function Notifications({ isOpen, onClose }: NotificationsProps) {
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [unreadCount, setUnreadCount] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const unreadCount = notifications.filter(n => !n.read).length;
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchNotifications();
-      fetchUnreadCount();
-    }
-  }, [isOpen]);
-
-  const fetchNotifications = async () => {
-    setLoading(true);
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const response = await fetch('/api/notifications/user?page=1&limit=20', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setNotifications(data.data.notifications);
-      }
-    } catch (error) {
-      console.error('Failed to fetch notifications:', error);
-    } finally {
-      setLoading(false);
-    }
+  const markAllAsRead = () => {
+    setNotifications(notifications.map(n => ({ ...n, read: true })));
   };
 
-  const fetchUnreadCount = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const response = await fetch('/api/notifications/unread-count', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setUnreadCount(data.data.unreadCount);
-      }
-    } catch (error) {
-      console.error('Failed to fetch unread count:', error);
-    }
+  const deleteNotification = (id: string) => {
+    setNotifications(notifications.filter(n => n.id !== id));
   };
 
-  const markAsRead = async (notificationId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const response = await fetch(`/api/notifications/${notificationId}/read`, {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        setNotifications(prev => 
-          prev.map(n => 
-            n._id === notificationId 
-              ? { ...n, read: true, readAt: new Date().toISOString() }
-              : n
-          )
-        );
-        setUnreadCount(prev => Math.max(0, prev - 1));
-      }
-    } catch (error) {
-      console.error('Failed to mark notification as read:', error);
-    }
-  };
-
-  const markAllAsRead = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const response = await fetch('/api/notifications/read-all', {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        setNotifications(prev => 
-          prev.map(n => ({ ...n, read: true, readAt: new Date().toISOString() }))
-        );
-        setUnreadCount(0);
-      }
-    } catch (error) {
-      console.error('Failed to mark all notifications as read:', error);
-    }
-  };
-
-  const deleteNotification = async (notificationId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const response = await fetch(`/api/notifications/${notificationId}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        setNotifications(prev => prev.filter(n => n._id !== notificationId));
-        const deleted = notifications.find(n => n._id === notificationId);
-        if (deleted && !deleted.read) {
-          setUnreadCount(prev => Math.max(0, prev - 1));
-        }
-      }
-    } catch (error) {
-      console.error('Failed to delete notification:', error);
-    }
-  };
-
-  const getNotificationIcon = (type: string) => {
+  const getIcon = (type: string) => {
     switch (type) {
-      case 'order':
-        return <Package className="w-5 h-5 text-blue-600" />;
-      case 'promotion':
-        return <Tag className="w-5 h-5 text-green-600" />;
-      case 'cart':
-        return <ShoppingBag className="w-5 h-5 text-orange-600" />;
-      default:
-        return <Bell className="w-5 h-5 text-gray-600" />;
-    }
-  };
-
-  const formatTime = (dateString: string) => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffDays = Math.floor(diffHours / 24);
-
-    if (diffDays > 0) {
-      return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-    } else if (diffHours > 0) {
-      return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-    } else {
-      return 'Just now';
+      case 'order': return <Package className="w-4 h-4 text-blue-500" />;
+      case 'promo': return <Tag className="w-4 h-4 text-coral-500" />;
+      default: return <Info className="w-4 h-4 text-gray-500" />;
     }
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="w-full sm:max-w-md">
-        <SheetHeader className="border-b pb-4">
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="relative hover:bg-coral-50 transition-colors">
+          <Bell className="h-5 w-5 text-gray-700" />
+          {unreadCount > 0 && (
+            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500" />
+          )}
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="w-full sm:max-w-md flex flex-col bg-white">
+        <SheetHeader className="border-b border-gray-100 pb-4">
           <div className="flex items-center justify-between">
-            <SheetTitle className="flex items-center gap-2">
-              <Bell className="w-5 h-5" />
+            <SheetTitle className="font-display text-2xl font-bold flex items-center gap-2">
               Notifications
-              {unreadCount > 0 && (
-                <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                  {unreadCount}
-                </span>
-              )}
             </SheetTitle>
-            <div className="flex gap-2">
-              {unreadCount > 0 && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={markAllAsRead}
-                  className="text-xs"
-                >
-                  Mark all read
-                </Button>
-              )}
-            </div>
+            {unreadCount > 0 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={markAllAsRead}
+                className="text-xs text-coral-500 hover:text-coral-600 hover:bg-coral-50"
+              >
+                Mark all as read
+              </Button>
+            )}
           </div>
         </SheetHeader>
 
-        <div className="flex-1 overflow-y-auto">
-          {loading ? (
-            <div className="flex items-center justify-center p-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-            </div>
-          ) : notifications.length === 0 ? (
-            <div className="flex flex-col items-center justify-center p-8 text-center">
-              <Bell className="w-12 h-12 text-gray-300 mb-4" />
-              <h3 className="font-medium text-gray-900 mb-2">No notifications</h3>
-              <p className="text-sm text-gray-500">
-                You're all caught up! Check back later for updates.
-              </p>
+        <div className="flex-1 overflow-y-auto py-6 -mx-6 px-6">
+          {notifications.length === 0 ? (
+            <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center">
+                <Bell className="h-10 w-10 text-gray-300" />
+              </div>
+              <div>
+                <h3 className="font-display text-xl font-bold text-gray-900 mb-1">No notifications</h3>
+                <p className="text-gray-500">You're all caught up!</p>
+              </div>
             </div>
           ) : (
-            <div className="space-y-2 p-4">
+            <div className="space-y-4">
               {notifications.map((notification) => (
-                <Card
-                  key={notification._id}
-                  className={`cursor-pointer transition-colors ${
-                    !notification.read ? 'bg-blue-50 border-blue-200' : 'hover:bg-gray-50'
-                  }`}
-                  onClick={() => !notification.read && markAsRead(notification._id)}
+                <div
+                  key={notification.id}
+                  className={`relative p-4 rounded-xl border transition-all duration-200 ${notification.read
+                    ? 'bg-white border-gray-100'
+                    : 'bg-coral-50/30 border-coral-100'
+                    } group hover:shadow-sm`}
                 >
-                  <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 mt-1">
-                        {getNotificationIcon(notification.type)}
-                      </div>
-                      
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <h4 className={`font-medium text-sm ${
-                              !notification.read ? 'text-gray-900' : 'text-gray-600'
-                            }`}>
-                              {notification.title}
-                            </h4>
-                            <p className="text-sm text-gray-600 mt-1">
-                              {notification.message}
-                            </p>
-                            <p className="text-xs text-gray-400 mt-2">
-                              {formatTime(notification.createdAt)}
-                            </p>
-                          </div>
-                          
-                          <div className="flex items-center gap-1 ml-2">
-                            {!notification.read && (
-                              <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                            )}
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                deleteNotification(notification._id);
-                              }}
-                              className="h-6 w-6 p-0 text-gray-400 hover:text-red-500"
-                            >
-                              <X className="w-3 h-3" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
+                  <div className="flex gap-4">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${notification.read ? 'bg-gray-100' : 'bg-white shadow-sm'
+                      }`}>
+                      {getIcon(notification.type)}
                     </div>
-                  </CardContent>
-                </Card>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-start">
+                        <h4 className={`font-medium text-sm ${notification.read ? 'text-gray-900' : 'text-gray-900'
+                          }`}>
+                          {notification.title}
+                        </h4>
+                        <span className="text-xs text-gray-400 whitespace-nowrap ml-2">
+                          {notification.time}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+                        {notification.message}
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => deleteNotification(notification.id)}
+                    className="absolute top-2 right-2 p-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                </div>
               ))}
             </div>
           )}
