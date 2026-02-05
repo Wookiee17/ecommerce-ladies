@@ -6,92 +6,41 @@ const { optionalAuth } = require('../middleware/auth.middleware');
 
 // Get all products (public)
 // Get all products (public)
+// Get all products (public)
 router.post('/seed', async (req, res) => {
   try {
     const User = require('../models/user.model');
-    // Using inline data to ensure it works remotely without file path issues
-    const productsData = [
-      {
-        "name": "Champagne Satin Slip Dress",
-        "description": "Elegant champagne gold satin slip dress with cowl neckline. Perfect for evening events and special occasions.",
-        "price": 4999,
-        "originalPrice": 6999,
-        "category": "dress",
-        "subcategory": "evening",
-        "rating": 4.4,
-        "reviews": 47,
-        "inStock": true,
-        "isNew": true,
-        "image": "/images/dress-1.jpg",
-        "colors": ["Champagne", "Black"],
-        "sizes": ["XS", "S", "M", "L"]
-      },
-      {
-        "name": "Powder Pink Blazer Dress",
-        "description": "Trendy oversized blazer dress in powder pink with self-tie belt. Modern power dressing for the confident woman.",
-        "price": 3999,
-        "originalPrice": 5499,
-        "category": "dress",
-        "subcategory": "workwear",
-        "rating": 4.8,
-        "reviews": 510,
-        "inStock": true,
-        "isNew": false,
-        "image": "/images/dress-2.jpg",
-        "colors": ["Pink", "Navy"],
-        "sizes": ["S", "M", "L"]
-      },
-      {
-        "name": "Emerald Silk Wrap Dress",
-        "description": "Stunning emerald green silk wrap dress with flowing silhouette. Elegant cocktail attire that turns heads.",
-        "price": 5999,
-        "originalPrice": 7999,
-        "category": "dress",
-        "subcategory": "cocktail",
-        "rating": 4.7,
-        "reviews": 543,
-        "inStock": true,
-        "isNew": false,
-        "image": "/images/dress-3.jpg",
-        "colors": ["Emerald", "Ruby"],
-        "sizes": ["S", "M", "L"]
-      },
-      {
-        "name": "Dusty Rose Puff Sleeve Dress",
-        "description": "Romantic midi dress with puff sleeves in dusty rose. Feminine and flattering for any occasion.",
-        "price": 3499,
-        "originalPrice": 4499,
-        "category": "dress",
-        "subcategory": "casual",
-        "rating": 4.9,
-        "reviews": 107,
-        "inStock": true,
-        "isNew": false,
-        "image": "/images/dress-4.jpg",
-        "colors": ["Rose", "Lavender"],
-        "sizes": ["S", "M", "L"]
-      },
-      {
-        "name": "Classic Black Bodycon Dress",
-        "description": "Sleek black bodycon dress that hugs your curves perfectly. A wardrobe essential for every woman.",
-        "price": 2999,
-        "originalPrice": 3999,
-        "category": "dress",
-        "subcategory": "evening",
-        "rating": 4.7,
-        "reviews": 559,
-        "inStock": true,
-        "isNew": true,
-        "image": "/images/dress-5.jpg",
-        "colors": ["Black", "Red"],
-        "sizes": ["XS", "S", "M", "L"]
-      }
-    ];
+    const bcrypt = require('bcryptjs');
+
+    const CATEGORIES = ['dress', 'jewelry', 'beauty'];
+    const ADJECTIVES = ['Elegant', 'Modern', 'Classic', 'Vintage', 'Chic', 'Luxury', 'Minimalist', 'Bohemian', 'Urban', 'Sophisticated'];
+    const NOUNS = {
+      'dress': ['Evening Gown', 'Summer Dress', 'Cocktail Dress', 'Maxi Dress', 'Sundress', 'Party Dress', 'Wrap Dress'],
+      'jewelry': ['Necklace', 'Earrings', 'Bracelet', 'Ring', 'Pendant', 'Choker', 'Anklet'],
+      'beauty': ['Lipstick', 'Serum', 'Moisturizer', 'Foundation', 'Perfume', 'Eye Shadow', 'Mascara']
+    };
+
+    // Base images to rotate (using placeholders for missing cats to avoid broken links)
+    const IMAGES = {
+      'dress': ['/images/dress-1.jpg', '/images/dress-2.jpg', '/images/dress-3.jpg', '/images/dress-4.jpg', '/images/dress-5.jpg'],
+      'jewelry': [
+        'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?w=500&q=80',
+        'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80',
+        'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=500&q=80'
+      ],
+      'beauty': [
+        'https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80',
+        'https://images.unsplash.com/photo-1612817288484-9691c9519490?w=500&q=80',
+        'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80'
+      ]
+    };
+
+    const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
     // 1. Get or Create Seller
     let seller = await User.findOne({ role: 'seller' });
     if (!seller) {
-      const bcrypt = require('bcryptjs');
       const hashedPassword = await bcrypt.hash('seller123', 10);
       seller = await User.create({
         name: 'System Import Seller',
@@ -106,35 +55,60 @@ router.post('/seed', async (req, res) => {
     // 2. Clear existing
     await Product.deleteMany({});
 
-    // 3. Transform
-    const productsToImport = productsData.map(p => ({
-      name: p.name,
-      description: p.description,
-      shortDescription: p.description,
-      price: p.price,
-      originalPrice: p.originalPrice,
-      category: p.category,
-      subcategory: p.subcategory,
-      images: [{ url: p.image, alt: p.name, isPrimary: true }],
-      variants: {
-        colors: p.colors ? p.colors.map(c => ({ name: c })) : [],
-        sizes: p.sizes ? p.sizes.map(s => ({ name: s, inStock: true })) : []
-      },
-      rating: p.rating,
-      reviewCount: p.reviews,
-      isActive: true,
-      inStock: p.inStock,
-      isNew: p.isNew,
-      seller: seller._id,
-      stock: 50
-    }));
+    // 3. Generate Data
+    const productsToImport = [];
+
+    for (const category of CATEGORIES) {
+      for (let i = 0; i < 50; i++) {
+        const adjective = random(ADJECTIVES);
+        const noun = random(NOUNS[category]);
+        const name = `${adjective} ${noun} ${randomNum(1, 999)}`;
+
+        // Pick random image safely
+        const imagePool = IMAGES[category] && IMAGES[category].length > 0
+          ? IMAGES[category]
+          : ['https://placehold.co/400x600?text=Product'];
+
+        const product = {
+          name: name,
+          description: `This is a beautiful ${name.toLowerCase()}. Perfect for any occasion. Made with high-quality materials.`,
+          shortDescription: `A ${adjective.toLowerCase()} ${noun.toLowerCase()} for you.`,
+          price: randomNum(500, 15000),
+          originalPrice: randomNum(16000, 25000),
+          category: category,
+          subcategory: category === 'dress' ? (i % 2 === 0 ? 'casual' : 'formal') : 'general',
+          images: [{
+            url: random(imagePool),
+            alt: name,
+            isPrimary: true
+          }],
+          variants: {
+            colors: category === 'dress'
+              ? [{ name: random(['Red', 'Blue', 'Green', 'Black', 'White']) }, { name: random(['Gold', 'Silver']) }]
+              : [{ name: 'Standard' }],
+            sizes: category === 'dress'
+              ? [{ name: 'S', inStock: true }, { name: 'M', inStock: true }, { name: 'L', inStock: true }]
+              : [{ name: 'One Size', inStock: true }]
+          },
+          rating: (Math.random() * 2 + 3).toFixed(1), // 3.0 - 5.0
+          reviewCount: randomNum(0, 500),
+          isActive: true,
+          inStock: true,
+          stock: randomNum(10, 100),
+          isNew: Math.random() > 0.8,
+          isBestseller: Math.random() > 0.8,
+          seller: seller._id
+        };
+        productsToImport.push(product);
+      }
+    }
 
     await Product.insertMany(productsToImport);
 
     res.json({
       success: true,
-      message: `Successfully seeded ${productsToImport.length} products`,
-      data: productsToImport
+      message: `Successfully seeded ${productsToImport.length} products (50 per category: Dress, Jewelry, Beauty)`,
+      count: productsToImport.length
     });
 
   } catch (error) {
