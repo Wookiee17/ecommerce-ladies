@@ -14,7 +14,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import ProductCard from '@/components/ProductCard';
-import ProductDetail from '@/components/ProductDetail';
 import Footer from '@/sections/Footer';
 
 interface FilterState {
@@ -43,8 +42,7 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const navigate = useNavigate();
   const [localSearch, setLocalSearch] = useState(searchQuery);
 
   const [page, setPage] = useState(1);
@@ -330,8 +328,7 @@ export default function ProductsPage() {
   };
 
   const openProductDetail = (product: Product) => {
-    setSelectedProduct(product);
-    setIsDetailOpen(true);
+    navigate(`/product/${product.id}`);
   };
 
   const formatPrice = (price: number) => {
@@ -605,12 +602,6 @@ export default function ProductsPage() {
 
       <Footer />
 
-      {/* Product Detail Modal */}
-      <ProductDetail
-        product={selectedProduct}
-        isOpen={isDetailOpen}
-        onClose={() => setIsDetailOpen(false)}
-      />
     </div>
   );
 

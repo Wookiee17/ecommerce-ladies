@@ -1,42 +1,28 @@
+import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from '@/context/CartContext';
 import { WishlistProvider } from '@/context/WishlistContext';
-import { CategoryProvider, useCategory } from '@/context/CategoryContext';
+import { CategoryProvider } from '@/context/CategoryContext';
 import { AuthProvider } from '@/context/AuthContext';
-import { SearchProviderFixed } from '@/context/SearchContext';
+import { SearchProvider } from '@/context/SearchContext';
 import Navigation from '@/components/Navigation';
 import CartDrawer from '@/components/CartDrawer';
 import WishlistDrawer from '@/components/WishlistDrawer';
-import ProductDetail from '@/components/ProductDetail';
 import AuthModal from '@/components/AuthModal';
-import PromotionalModal from '@/components/PromotionalModal';
 import ImageSearch from '@/components/ImageSearch';
-import Hero from '@/sections/Hero';
-import Categories from '@/sections/Categories';
-import Products from '@/sections/Products';
-import Features from '@/sections/Features';
-import Newsletter from '@/sections/Newsletter';
-import Footer from '@/sections/Footer';
+import PromotionalModal from '@/components/PromotionalModal';
+import HomePage from '@/pages/HomePage';
 import ProductsPage from '@/pages/ProductsPage';
-import AdminDashboard from '@/pages/AdminDashboard';
-import SellerDashboard from '@/pages/SellerDashboard';
-import ProfilePage from '@/pages/ProfilePage';
+import ProductPage from '@/pages/ProductPage';
 import type { Product } from '@/data/products';
-import './App.css';
 
-// Home Page Component
-function HomePage() {
+function AppContent() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isImageSearchOpen, setIsImageSearchOpen] = useState(false);
   const [imageSearchResults, setImageSearchResults] = useState<Product[] | null>(null);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
-
-  const { getBackgroundClass } = useCategory();
 
   useEffect(() => {
     // Check if user is logged in
@@ -49,18 +35,13 @@ function HomePage() {
     }
   }, []);
 
-  const handleProductClick = (product: Product) => {
-    setSelectedProduct(product);
-    setIsProductDetailOpen(true);
-  };
-
   const handleImageSearchResults = (results: Product[]) => {
     setImageSearchResults(results);
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-500 ${getBackgroundClass()}`}>
+    <div className="min-h-screen">
       <Navigation
         onCartClick={() => setIsCartOpen(true)}
         onWishlistClick={() => setIsWishlistOpen(true)}
@@ -69,25 +50,23 @@ function HomePage() {
       />
 
       <main>
-        <Hero />
-        <Categories />
-        <Products
-          onProductClick={handleProductClick}
-          imageSearchResults={imageSearchResults}
-        />
-        <Features />
-        <Newsletter />
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <HomePage 
+                imageSearchResults={imageSearchResults}
+                onImageSearchResults={handleImageSearchResults}
+              />
+            } 
+          />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+        </Routes>
       </main>
-
-      <Footer />
 
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <WishlistDrawer isOpen={isWishlistOpen} onClose={() => setIsWishlistOpen(false)} />
-      <ProductDetail
-        product={selectedProduct}
-        isOpen={isProductDetailOpen}
-        onClose={() => setIsProductDetailOpen(false)}
-      />
       <AuthModal
         isOpen={isAuthOpen}
         onClose={() => setIsAuthOpen(false)}
@@ -100,38 +79,23 @@ function HomePage() {
       <PromotionalModal
         isOpen={isPromoModalOpen}
         onClose={() => setIsPromoModalOpen(false)}
-        onSignupSuccess={() => {
-          setIsPromoModalOpen(false);
-          setIsAuthOpen(false);
-        }}
       />
     </div>
   );
 }
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <SearchProviderFixed>
+    <AuthProvider>
+      <CategoryProvider>
+        <SearchProvider>
           <CartProvider>
             <WishlistProvider>
-              <CategoryProvider>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/products" element={<ProductsPage />} />
-                  <Route path="/admin" element={<AdminDashboard />} />
-                  <Route path="/seller" element={<SellerDashboard />} />
-                  <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-              </CategoryProvider>
+              <AppContent />
             </WishlistProvider>
           </CartProvider>
-        </SearchProviderFixed>
-      </AuthProvider>
-    </BrowserRouter>
+        </SearchProvider>
+      </CategoryProvider>
+    </AuthProvider>
   );
 }
-
-export default App;
