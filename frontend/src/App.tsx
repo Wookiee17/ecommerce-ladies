@@ -37,14 +37,10 @@ function HomePage() {
     // Check if user is logged in
     const token = localStorage.getItem('token');
     const dismissed = localStorage.getItem('promoModalDismissed');
-    
+
     // Show promo modal if user is not logged in and hasn't dismissed it recently
     if (!token && !dismissed) {
-      const timer = setTimeout(() => {
-        setIsPromoModalOpen(true);
-      }, 3000); // Show after 3 seconds
-      
-      return () => clearTimeout(timer);
+      setIsPromoModalOpen(true);
     }
   }, []);
 
@@ -70,8 +66,8 @@ function HomePage() {
       <main>
         <Hero />
         <Categories />
-        <Products 
-          onProductClick={handleProductClick} 
+        <Products
+          onProductClick={handleProductClick}
           imageSearchResults={imageSearchResults}
         />
         <Features />
