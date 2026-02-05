@@ -148,13 +148,15 @@ router.get('/', async (req, res) => {
     const sort = {};
     sort[sortBy] = sortOrder === 'asc' ? 1 : -1;
 
-    const products = await Product.find(query)
-      .populate('seller', 'name sellerInfo.businessName')
-      .skip((page - 1) * limit)
-      .limit(parseInt(limit))
-      .sort(sort);
-
-    const total = await Product.countDocuments(query);
+    const [products, total] = await Promise.all([
+      Product.find(query)
+        .populate('seller', 'name sellerInfo.businessName')
+        .skip((page - 1) * limit)
+        .limit(parseInt(limit))
+        .sort(sort)
+        .lean(), // Use lean() for faster read-only performance
+      Product.countDocuments(query)
+    ]);
 
     res.json({
       success: true,
