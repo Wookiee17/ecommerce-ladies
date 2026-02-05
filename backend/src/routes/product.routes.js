@@ -63,11 +63,15 @@ router.post('/seed', async (req, res) => {
         const adjective = random(ADJECTIVES);
         const noun = random(NOUNS[category]);
         const name = `${adjective} ${noun} ${randomNum(1, 999)}`;
+        const color = random(['Red', 'Blue', 'Green', 'Black', 'White', 'Gold', 'Silver', 'Navy', 'Pink', 'Purple']);
 
-        // Pick random image safely
-        const imagePool = IMAGES[category] && IMAGES[category].length > 0
-          ? IMAGES[category]
-          : ['https://placehold.co/400x600?text=Product'];
+        // Generate consistent seed for image stability
+        const seed = Math.floor(Math.random() * 1000000);
+
+        const generateImageUrl = (view) => {
+          const prompt = `professional product photography of a ${color} ${name} ${category}, ${view} view, white background, studio lighting, 4k, high quality, commercial e-commerce`;
+          return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?nologo=true&seed=${seed}&width=800&height=1000`;
+        };
 
         const product = {
           name: name,
@@ -77,15 +81,27 @@ router.post('/seed', async (req, res) => {
           originalPrice: randomNum(16000, 25000),
           category: category,
           subcategory: category === 'dress' ? (i % 2 === 0 ? 'casual' : 'formal') : 'general',
-          images: [{
-            url: random(imagePool),
-            alt: name,
-            isPrimary: true
-          }],
+          images: [
+            {
+              url: generateImageUrl('front'),
+              alt: `${name} - Front View`,
+              isPrimary: true
+            },
+            {
+              url: generateImageUrl('side profile'),
+              alt: `${name} - Side View`,
+              isPrimary: false
+            },
+            {
+              url: generateImageUrl('close up texture detail'),
+              alt: `${name} - Detail View`,
+              isPrimary: false
+            }
+          ],
           variants: {
             colors: category === 'dress'
-              ? [{ name: random(['Red', 'Blue', 'Green', 'Black', 'White']) }, { name: random(['Gold', 'Silver']) }]
-              : [{ name: 'Standard' }],
+              ? [{ name: color }, { name: 'Black' }] // Ensure the main color matches image
+              : [{ name: color }],
             sizes: category === 'dress'
               ? [{ name: 'S', inStock: true }, { name: 'M', inStock: true }, { name: 'L', inStock: true }]
               : [{ name: 'One Size', inStock: true }]
