@@ -9,7 +9,6 @@ import {
     Package,
     Settings,
     Search,
-    CheckCircle,
     XCircle,
     AlertCircle
 } from 'lucide-react';
@@ -118,7 +117,7 @@ export default function AdminDashboard() {
         }
     };
 
-    if (!user || user.role !== 'admin') {
+    if (!user || (user as any).role !== 'admin') {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="text-center p-8">
@@ -152,8 +151,8 @@ export default function AdminDashboard() {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id as any)}
                             className={`flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all relative ${activeTab === tab.id
-                                    ? 'text-coral-500 bg-coral-50/50 rounded-t-lg border-b-2 border-coral-500'
-                                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100/50 rounded-t-lg'
+                                ? 'text-coral-500 bg-coral-50/50 rounded-t-lg border-b-2 border-coral-500'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100/50 rounded-t-lg'
                                 }`}
                         >
                             <tab.icon className="w-4 h-4" />
@@ -209,7 +208,7 @@ export default function AdminDashboard() {
                                                     </defs>
                                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
                                                     <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#9ca3af' }} />
-                                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9ca3af' }} prefix="$" />
+                                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#9ca3af' }} tickFormatter={(value) => `$${value}`} />
                                                     <Tooltip
                                                         contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                                                     />
@@ -272,8 +271,8 @@ export default function AdminDashboard() {
                                                     <td className="px-6 py-4 text-gray-500">{user.email}</td>
                                                     <td className="px-6 py-4">
                                                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${user.role === 'admin'
-                                                                ? 'bg-purple-100 text-purple-800'
-                                                                : 'bg-blue-100 text-blue-800'
+                                                            ? 'bg-purple-100 text-purple-800'
+                                                            : 'bg-blue-100 text-blue-800'
                                                             }`}>
                                                             {user.role}
                                                         </span>

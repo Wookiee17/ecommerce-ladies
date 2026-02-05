@@ -7,8 +7,7 @@ import {
     PlusCircle,
     Package,
     UploadCloud,
-    Check,
-    AlertCircle
+    Check
 } from 'lucide-react';
 import {
     BarChart,
@@ -34,7 +33,7 @@ interface Product {
 export default function SellerDashboard() {
     const { user } = useAuth();
     const [activeTab, setActiveTab] = useState<'overview' | 'add-product' | 'my-products'>('overview');
-    const [loading, setLoading] = useState(false);
+
     const [myProducts, setMyProducts] = useState<Product[]>([]);
 
     // Form State
@@ -64,7 +63,6 @@ export default function SellerDashboard() {
     }, [activeTab]);
 
     const fetchMyProducts = async () => {
-        setLoading(true);
         try {
             // In real app: const { data } = await api.get('/seller/products');
             // Mocking for now as we might not have seller-token set up completely in this session
@@ -72,8 +70,6 @@ export default function SellerDashboard() {
             setMyProducts(data.data.slice(0, 5) || []);
         } catch (error) {
             console.error('Failed to fetch products', error);
-        } finally {
-            setLoading(false);
         }
     };
 
@@ -125,8 +121,8 @@ export default function SellerDashboard() {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id as any)}
                             className={`flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all relative ${activeTab === tab.id
-                                    ? 'text-coral-500 bg-coral-50/50 rounded-t-lg border-b-2 border-coral-500'
-                                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100/50 rounded-t-lg'
+                                ? 'text-coral-500 bg-coral-50/50 rounded-t-lg border-b-2 border-coral-500'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100/50 rounded-t-lg'
                                 }`}
                         >
                             <tab.icon className="w-4 h-4" />
