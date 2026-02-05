@@ -46,49 +46,64 @@ export default function ProductsPage() {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [localSearch, setLocalSearch] = useState(searchQuery);
 
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoadMore, setIsLoadMore] = useState(false);
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        // Ensure the API response structure matches expectations. 
-        // If backend returns { success: true, data: [...] }, adjust accordingly.
-        // Based on typical express controllers, it might return the array directly or wrapped.
-        const response = await api.get('/products');
-        // Handle response wrapping (response.data vs response directly)
-        const rawProducts = Array.isArray(response.data) ? response.data : (Array.isArray(response) ? response : []);
-
-        // Map backend data to frontend Product interface
-        const mappedProducts = rawProducts.map((p: any) => ({
-          id: p._id, // Map _id to id
-          name: p.name,
-          description: p.description,
-          price: Number(p.price),
-          originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
-          image: p.images?.[0]?.url || '', // Map first image to image property
-          category: p.category,
-          subcategory: p.subcategory,
-          rating: Number(p.rating) || 0,
-          reviews: Number(p.reviewCount) || 0,
-          inStock: (p.stock > 0) || (p.inStock === true), // Handle both stock count and boolean
-          isNew: p.isNew,
-          isBestseller: p.isBestseller,
-          colors: p.variants?.colors?.map((c: any) => c.name) || [], // Flatten colors
-          sizes: p.variants?.sizes?.map((s: any) => s.name) || [], // Flatten sizes
-        }));
-
-        console.log('API Response:', response);
-        console.log('Raw Products:', rawProducts);
-        console.log('Mapped Products:', mappedProducts);
-        console.log('🔄 Frontend Build: 1050');
-        setProducts(mappedProducts);
-      } catch (error) {
-        console.error('Failed to fetch products:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
+    fetchProducts(1, true);
   }, []);
+
+  const fetchProducts = async (pageNum: number, reset: boolean = false) => {
+    try {
+      if (reset) {
+        setLoading(true);
+      } else {
+        setIsLoadMore(true);
+      }
+
+      const response = await api.get(`/products?page=${pageNum}&limit=20`);
+      const rawProducts = Array.isArray(response.data.data) ? response.data.data : [];
+      const pagination = response.data.pagination;
+
+      const mappedProducts = rawProducts.map((p: any) => ({
+        id: p._id,
+        name: p.name,
+        description: p.description,
+        price: Number(p.price),
+        originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
+        image: p.images?.[0]?.url || '',
+        category: p.category,
+        subcategory: p.subcategory,
+        rating: Number(p.rating) || 0,
+        reviews: Number(p.reviewCount) || 0,
+        inStock: (p.stock > 0) || (p.inStock === true),
+        isNew: p.isNew,
+        isBestseller: p.isBestseller,
+        colors: p.variants?.colors?.map((c: any) => c.name) || [],
+        sizes: p.variants?.sizes?.map((s: any) => s.name) || [],
+      }));
+
+      if (reset) {
+        setProducts(mappedProducts);
+      } else {
+        setProducts(prev => [...prev, ...mappedProducts]);
+      }
+
+      setHasMore(pagination.page < pagination.pages);
+      setPage(pageNum);
+
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
+    } finally {
+      setLoading(false);
+      setIsLoadMore(false);
+    }
+  };
+
+  const handleLoadMore = () => {
+    fetchProducts(page + 1);
+  };
 
   // Filters
   const [filters, setFilters] = useState<FilterState>({
