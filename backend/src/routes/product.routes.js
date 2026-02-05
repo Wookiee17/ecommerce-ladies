@@ -133,8 +133,8 @@ router.get('/', async (req, res) => {
 
     const query = { isActive: true };
 
-    if (category) query.category = category;
-    if (subcategory) query.subcategory = subcategory;
+    if (category) query.category = { $regex: new RegExp(`^${category}$`, 'i') };
+    if (subcategory) query.subcategory = { $regex: new RegExp(`^${subcategory}$`, 'i') };
     if (search) {
       query.$or = [
         { name: { $regex: search, $options: 'i' } },
