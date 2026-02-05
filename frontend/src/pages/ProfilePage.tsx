@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { User, Package, MapPin, Settings, LogOut, Plus, Trash2, Edit2, Check } from 'lucide-react';
+import { User, Package, MapPin, Settings, LogOut, Plus, Trash2, Edit2 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useCategory } from '@/context/CategoryContext';
+import { api } from '@/lib/api';
 
 type TabType = 'profile' | 'orders' | 'addresses' | 'settings';
 
@@ -119,7 +120,7 @@ export default function ProfilePage() {
                             <div className="bg-white/50 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-sm min-h-[500px]">
                                 {activeTab === 'profile' && <ProfileTab user={user} updateProfile={updateProfile} />}
                                 {activeTab === 'orders' && <OrdersTab />}
-                                {activeTab === 'addresses' && <AddressesTab user={user} />}
+                                {activeTab === 'addresses' && <AddressesTab user={user} updateProfile={updateProfile} />}
                                 {activeTab === 'settings' && <SettingsTab />}
                             </div>
                         </div>
@@ -145,11 +146,17 @@ function ProfileTab({ user, updateProfile }: { user: any, updateProfile: any }) 
         e.preventDefault();
         setLoading(true);
         // Simulate API call
-        setTimeout(() => {
-            updateUser({ ...user, ...formData });
-            setIsEditing(false);
+        try {
+            const response = await api.put('/auth/profile', formData);
+            if (response.data.success) {
+                updateProfile(response.data.data);
+                setIsEditing(false);
+            }
+        } catch (error) {
+            console.error('Failed to update profile:', error);
+        } finally {
             setLoading(false);
-        }, 1000);
+        }
     };
 
     return (
@@ -257,8 +264,8 @@ function OrdersTab() {
                             <p className="text-sm text-gray-500">{new Date(order.createdAt).toLocaleDateString()}</p>
                         </div>
                         <span className={`px-3 py-1 rounded-full text-xs font-medium ${order.status === 'delivered' ? 'bg-green-100 text-green-700' :
-                                order.status === 'cancelled' ? 'bg-red-100 text-red-700' :
-                                    'bg-blue-100 text-blue-700'
+                            order.status === 'cancelled' ? 'bg-red-100 text-red-700' :
+                                'bg-blue-100 text-blue-700'
                             } capitalize`}>
                             {order.status}
                         </span>

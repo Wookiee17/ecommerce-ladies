@@ -1,147 +1,92 @@
-import { Heart, ShoppingBag, X, ArrowRight } from 'lucide-react';
 import { useWishlist } from '@/context/WishlistContext';
-import { useCart } from '@/context/CartContext';
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import { Heart, X, ShoppingBag, ArrowRight } from 'lucide-react';
 
-interface WishlistDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export default function WishlistDrawer({ isOpen, onClose }: WishlistDrawerProps) {
-  const { items, removeFromWishlist, clearWishlist } = useWishlist();
-  const { addToCart } = useCart();
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
-
-  const handleMoveToCart = (product: typeof items[0]) => {
-    addToCart(product);
-    removeFromWishlist(product.id);
-  };
+export default function WishlistDrawer() {
+  const { wishlist, removeFromWishlist, moveToCart } = useWishlist();
 
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="w-full sm:max-w-lg flex flex-col">
-        <SheetHeader className="border-b pb-4">
-          <div className="flex items-center justify-between">
-            <SheetTitle className="flex items-center gap-2">
-              <Heart className="w-5 h-5" />
-              My Wishlist ({items.length})
-            </SheetTitle>
-            {items.length > 0 && (
-              <button
-                onClick={clearWishlist}
-                className="text-sm text-gray-500 hover:text-red-500 transition-colors"
-              >
-                Clear All
-              </button>
-            )}
-          </div>
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="relative hover:bg-red-50 transition-colors">
+          <Heart className="h-5 w-5 text-gray-700" />
+          {wishlist.length > 0 && (
+            <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-red-500 text-[10px] font-bold text-white flex items-center justify-center">
+              {wishlist.length}
+            </span>
+          )}
+        </Button>
+      </SheetTrigger>
+      <SheetContent className="w-full sm:max-w-md flex flex-col bg-white">
+        <SheetHeader className="border-b border-gray-100 pb-4">
+          <SheetTitle className="font-display text-2xl font-bold flex items-center gap-2">
+            Your Wishlist <span className="text-gray-400 text-lg font-normal">({wishlist.length})</span>
+          </SheetTitle>
         </SheetHeader>
 
-        {items.length === 0 ? (
-          <div className="flex-1 flex flex-col items-center justify-center text-center p-8">
-            <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-              <Heart className="w-12 h-12 text-gray-400" />
+        <div className="flex-1 overflow-y-auto py-6 -mx-6 px-6">
+          {wishlist.length === 0 ? (
+            <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center">
+                <Heart className="h-10 w-10 text-gray-300" />
+              </div>
+              <div>
+                <h3 className="font-display text-xl font-bold text-gray-900 mb-1">Your wishlist is empty</h3>
+                <p className="text-gray-500">Save items you love to revisit later.</p>
+              </div>
+              <Button
+                onClick={() => document.querySelector('[data-radix-collection-item]')?.dispatchEvent(new Event('click'))}
+                className="mt-4 bg-coral-400 hover:bg-coral-500 text-white"
+              >
+                Start Exploring
+              </Button>
             </div>
-            <h3 className="font-display text-xl font-semibold text-gray-900 mb-2">
-              Your wishlist is empty
-            </h3>
-            <p className="text-gray-500 mb-6">
-              Save your favorite items to your wishlist and find them easily later.
-            </p>
-            <Button onClick={onClose} className="bg-coral-400 hover:bg-coral-500 text-white">
-              Explore Products
-            </Button>
-          </div>
-        ) : (
-          <>
-            {/* Wishlist Items */}
-            <div className="flex-1 overflow-y-auto py-4 space-y-4">
-              {items.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex gap-4 p-4 bg-gray-50 rounded-xl group"
-                >
-                  {/* Image */}
-                  <div className="w-24 h-32 rounded-lg overflow-hidden flex-shrink-0">
+          ) : (
+            <div className="grid grid-cols-1 gap-4">
+              {wishlist.map((item) => (
+                <div key={item._id} className="flex gap-4 p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow group">
+                  <div className="w-24 h-32 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0 relative">
                     <img
-                      src={item.image}
+                      src={item.image || "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800"}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                  </div>
-
-                  {/* Details */}
-                  <div className="flex-1 min-w-0 flex flex-col">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="text-xs text-gray-500 uppercase tracking-wide">
-                          {item.subcategory}
-                        </p>
-                        <h4 className="font-medium text-gray-900 mt-1 line-clamp-2">
-                          {item.name}
-                        </h4>
+                    {!item.inStock && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <span className="text-white text-xs font-bold px-2 py-1 bg-black/50 rounded-full backdrop-blur-sm">Sold Out</span>
                       </div>
-                      <button
-                        onClick={() => removeFromWishlist(item.id)}
-                        className="text-gray-400 hover:text-red-500 transition-colors p-1"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
+                    )}
+                  </div>
+                  <div className="flex-1 flex flex-col justify-between py-1">
+                    <div>
+                      <div className="flex justify-between items-start">
+                        <h4 className="font-medium text-gray-900 line-clamp-2">{item.name}</h4>
+                        <button
+                          onClick={() => removeFromWishlist(item._id)}
+                          className="text-gray-400 hover:text-red-500 transition-colors p-1 -mr-2"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <p className="font-bold text-gray-900 mt-1">₹{item.price.toFixed(2)}</p>
                     </div>
 
-                    <div className="flex items-center gap-2 mt-2">
-                      <span className="font-semibold text-gray-900">
-                        {formatPrice(item.price)}
-                      </span>
-                      {item.originalPrice && (
-                        <span className="text-sm text-gray-400 line-through">
-                          {formatPrice(item.originalPrice)}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Stock Status */}
-                    <p className={`text-sm mt-1 ${item.inStock ? 'text-green-600' : 'text-red-500'}`}>
-                      {item.inStock ? 'In Stock' : 'Out of Stock'}
-                    </p>
-
-                    {/* Move to Cart Button */}
                     <Button
-                      onClick={() => handleMoveToCart(item)}
+                      onClick={() => moveToCart(item)}
                       disabled={!item.inStock}
-                      className="mt-auto w-full bg-coral-400 hover:bg-coral-500 text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-gray-900 hover:bg-gray-800 text-white shadow-none mt-2 h-9 text-xs"
                       size="sm"
                     >
-                      <ShoppingBag className="w-4 h-4 mr-2" />
-                      Move to Cart
+                      <ShoppingBag className="w-3.5 h-3.5 mr-2" />
+                      Add to Cart
                     </Button>
                   </div>
                 </div>
               ))}
             </div>
-
-            {/* Footer */}
-            <div className="border-t pt-4">
-              <Button
-                onClick={onClose}
-                variant="outline"
-                className="w-full"
-              >
-                Continue Shopping
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-          </>
-        )}
+          )}
+        </div>
       </SheetContent>
     </Sheet>
   );
