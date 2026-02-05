@@ -246,19 +246,19 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                   <DropdownMenuContent align="end" className="w-56">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="cursor-pointer">
+                    <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/profile?tab=profile'}>
                       <User className="mr-2 h-4 w-4" />
                       <span>Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
+                    <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/profile?tab=orders'}>
                       <Package className="mr-2 h-4 w-4" />
                       <span>Orders</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
+                    <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/profile?tab=addresses'}>
                       <MapPin className="mr-2 h-4 w-4" />
                       <span>Saved Addresses</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
+                    <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/profile?tab=settings'}>
                       <Settings className="mr-2 h-4 w-4" />
                       <span>Settings</span>
                     </DropdownMenuItem>

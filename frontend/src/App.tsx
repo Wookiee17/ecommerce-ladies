@@ -21,6 +21,7 @@ import Footer from '@/sections/Footer';
 import ProductsPage from '@/pages/ProductsPage';
 import AdminDashboard from '@/pages/AdminDashboard';
 import SellerDashboard from '@/pages/SellerDashboard';
+import ProfilePage from '@/pages/ProfilePage';
 import type { Product } from '@/data/products';
 import './App.css';
 
@@ -121,6 +122,7 @@ function App() {
                   <Route path="/products" element={<ProductsPage />} />
                   <Route path="/admin" element={<AdminDashboard />} />
                   <Route path="/seller" element={<SellerDashboard />} />
+                  <Route path="/profile" element={<ProfilePage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
               </CategoryProvider>
