@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Skeleton } from '@/components/ui/skeleton';
 import ProductCard from '@/components/ProductCard';
 import ProductDetail from '@/components/ProductDetail';
 import Footer from '@/sections/Footer';
@@ -528,8 +529,19 @@ export default function ProductsPage() {
             {/* Product Grid */}
             <main className="flex-1">
               {loading ? (
-                <div className="flex justify-center items-center h-64">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-coral-400"></div>
+                <div className={viewMode === 'grid'
+                  ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+                  : "flex flex-col gap-4"
+                }>
+                  {Array.from({ length: 9 }).map((_, i) => (
+                    <div key={i} className="flex flex-col gap-3">
+                      <Skeleton className={`w-full ${viewMode === 'grid' ? 'aspect-[4/5]' : 'h-48'} rounded-xl`} />
+                      <div className="space-y-2">
+                        <Skeleton className="h-4 w-2/3" />
+                        <Skeleton className="h-4 w-1/2" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               ) : filteredProducts.length === 0 ? (
                 <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
