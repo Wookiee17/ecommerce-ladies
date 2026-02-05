@@ -31,7 +31,12 @@ const MOCK_NOTIFICATIONS = [
   }
 ];
 
-export default function Notifications() {
+interface NotificationsProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function Notifications({ isOpen, onClose }: NotificationsProps) {
   const [notifications, setNotifications] = useState(MOCK_NOTIFICATIONS);
 
   const unreadCount = notifications.filter(n => !n.read).length;
@@ -53,15 +58,7 @@ export default function Notifications() {
   };
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-coral-50 transition-colors">
-          <Bell className="h-5 w-5 text-gray-700" />
-          {unreadCount > 0 && (
-            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500" />
-          )}
-        </Button>
-      </SheetTrigger>
+    <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-md flex flex-col bg-white">
         <SheetHeader className="border-b border-gray-100 pb-4">
           <div className="flex items-center justify-between">

@@ -30,7 +30,7 @@ export default function ProductsPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { getCartCount } = useCart();
-  const { items: wishlistItems } = useWishlist();
+  const { wishlist: wishlistItems } = useWishlist();
   const { setActiveCategory, getBackgroundClass } = useCategory();
 
   // URL params
@@ -42,7 +42,6 @@ export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const navigate = useNavigate();
   const [localSearch, setLocalSearch] = useState(searchQuery);
 
   const [page, setPage] = useState(1);
@@ -144,6 +143,12 @@ export default function ProductsPage() {
           colors: p.variants?.colors?.map((c: any) => c.name) || [],
           sizes: p.variants?.sizes?.map((s: any) => s.name) || [],
         };
+      });
+
+      console.log('Fetched Products:', {
+        url: `/products?${params.toString()}`,
+        rawCount: rawProducts.length,
+        mappedCount: mappedProducts.length
       });
 
       if (reset) {
@@ -268,6 +273,19 @@ export default function ProductsPage() {
         // Featured - default order
         break;
     }
+
+    // Debug logging
+    console.log('Filtered Products Calc:', {
+      total: products.length,
+      filters,
+      categoryParam,
+      searchQuery,
+      searchFilter: searchQuery ? 'active' : 'inactive',
+      subcategoryFilter: filters.subcategories.length,
+      priceFilter: filters.priceRange,
+      stockFilter: filters.inStock,
+      resultCount: result.length
+    });
 
     return result;
   }, [products, filters, searchQuery, sortParam]);

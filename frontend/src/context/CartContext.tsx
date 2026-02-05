@@ -10,6 +10,12 @@ export interface CartItem {
   selectedSize?: string;
 }
 
+interface Coupon {
+  code: string;
+  discountType: 'percentage' | 'fixed';
+  discountValue: number;
+}
+
 interface CartContextType {
   items: CartItem[];
   addToCart: (product: Product, quantity?: number, selectedColor?: string, selectedSize?: string) => void;
@@ -19,12 +25,18 @@ interface CartContextType {
   getCartTotal: () => number;
   getCartCount: () => number;
   isInCart: (productId: string) => boolean;
+  coupon: Coupon | null;
+  subtotal: number;
+  total: number;
+  applyCoupon: (code: string) => Promise<void>;
+  removeCoupon: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [coupon, setCoupon] = useState<Coupon | null>(null);
 
   const { isAuthenticated } = useAuth();
 
@@ -126,6 +138,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return items.some(item => item.product.id === productId);
   }, [items]);
 
+  const subtotal = getCartTotal();
+  const total = coupon
+    ? coupon.discountType === 'percentage'
+      ? subtotal * (1 - coupon.discountValue / 100)
+      : Math.max(0, subtotal - coupon.discountValue)
+    : subtotal;
+
+  const applyCoupon = async (code: string) => {
+    // Mock coupon logic for now
+    if (code === 'SAVE10') {
+      setCoupon({ code, discountType: 'percentage', discountValue: 10 });
+    } else {
+      throw new Error('Invalid coupon');
+    }
+  };
+
+  const removeCoupon = () => {
+    setCoupon(null);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -137,6 +169,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
         getCartTotal,
         getCartCount,
         isInCart,
+        coupon,
+        subtotal,
+        total,
+        applyCoupon,
+        removeCoupon
       }}
     >
       {children}

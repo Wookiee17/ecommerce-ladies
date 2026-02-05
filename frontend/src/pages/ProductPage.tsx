@@ -103,7 +103,7 @@ export default function ProductPage() {
     );
   }
 
-  const discountPercentage = product.originalPrice 
+  const discountPercentage = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
@@ -139,9 +139,8 @@ export default function ProductPage() {
                 <button
                   key={index}
                   onClick={() => setActiveImage(index)}
-                  className={`aspect-square bg-muted rounded-lg overflow-hidden border-2 ${
-                    activeImage === index ? 'border-primary' : 'border-transparent'
-                  }`}
+                  className={`aspect-square bg-muted rounded-lg overflow-hidden border-2 ${activeImage === index ? 'border-primary' : 'border-transparent'
+                    }`}
                 >
                   <img src={image} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
                 </button>
@@ -158,9 +157,8 @@ export default function ProductPage() {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`h-5 w-5 ${
-                        i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                      }`}
+                      className={`h-5 w-5 ${i < Math.floor(product.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                        }`}
                     />
                   ))}
                   <span className="text-sm text-muted-foreground ml-2">({product.reviews} reviews)</span>
@@ -191,11 +189,10 @@ export default function ProductPage() {
                     <button
                       key={color}
                       onClick={() => setSelectedColor(color)}
-                      className={`px-4 py-2 rounded-md border-2 text-sm font-medium ${
-                        selectedColor === color
+                      className={`px-4 py-2 rounded-md border-2 text-sm font-medium ${selectedColor === color
                           ? 'border-primary bg-primary text-primary-foreground'
                           : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'
-                      }`}
+                        }`}
                     >
                       {color}
                     </button>
@@ -213,11 +210,10 @@ export default function ProductPage() {
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 rounded-md border-2 text-sm font-medium ${
-                        selectedSize === size
+                      className={`px-4 py-2 rounded-md border-2 text-sm font-medium ${selectedSize === size
                           ? 'border-primary bg-primary text-primary-foreground'
                           : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'
-                      }`}
+                        }`}
                     >
                       {size}
                     </button>
@@ -346,7 +342,7 @@ export default function ProductPage() {
         </div>
 
         {/* Product Suggestions */}
-        <ProductSuggestions 
+        <ProductSuggestions
           currentProduct={product}
           category={product.category}
         />
@@ -357,7 +353,9 @@ export default function ProductPage() {
         <ReviewShareModal
           isOpen={showReviewShare}
           onClose={() => setShowReviewShare(false)}
-          product={product}
+          productId={product.id}
+          productName={product.name}
+          productImage={product.images[0]}
         />
       )}
     </div>

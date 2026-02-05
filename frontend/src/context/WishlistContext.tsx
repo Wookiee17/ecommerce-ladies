@@ -2,21 +2,24 @@ import { createContext, useContext, useState, useEffect, useCallback, type React
 import type { Product } from '@/data/products';
 import { useAuth } from '@/context/AuthContext';
 import { api } from '@/lib/api';
+import { useCart } from '@/context/CartContext';
 
 interface WishlistContextType {
-  items: Product[];
+  wishlist: Product[];
   addToWishlist: (product: Product) => void;
   removeFromWishlist: (productId: string) => void;
   toggleWishlist: (product: Product) => void;
   isInWishlist: (productId: string) => boolean;
   clearWishlist: () => void;
+  moveToCart: (product: Product) => void;
 }
 
 const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
 
 export function WishlistProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<Product[]>([]);
+  const [wishlist, setWishlist] = useState<Product[]>([]);
   const { isAuthenticated } = useAuth();
+  const { addToCart } = useCart();
 
   // Fetch wishlist on login
   useEffect(() => {
@@ -25,7 +28,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
         try {
           const response = await api.get('/wishlist');
           if (response.data && Array.isArray(response.data)) {
-            setItems(response.data.map((item: any) => ({
+            setWishlist(response.data.map((item: any) => ({
               ...item,
               id: item._id, // Map _id
               image: item.images?.[0]?.url || item.image
@@ -37,12 +40,12 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       };
       fetchWishlist();
     } else {
-      setItems([]);
+      setWishlist([]);
     }
   }, [isAuthenticated]);
 
   const addToWishlist = useCallback((product: Product) => {
-    setItems(prevItems => {
+    setWishlist(prevItems => {
       if (prevItems.some(item => item.id === product.id)) {
         return prevItems;
       }
@@ -51,13 +54,13 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const removeFromWishlist = useCallback((productId: string) => {
-    setItems(prevItems => prevItems.filter(item => item.id !== productId));
+    setWishlist(prevItems => prevItems.filter(item => item.id !== productId));
   }, []);
 
   const toggleWishlist = useCallback(async (product: Product) => {
-    const isAdding = !items.some(item => item.id === product.id);
+    const isAdding = !wishlist.some(item => item.id === product.id);
 
-    setItems(prevItems => {
+    setWishlist(prevItems => {
       const exists = prevItems.some(item => item.id === product.id);
       if (exists) {
         return prevItems.filter(item => item.id !== product.id);
@@ -76,25 +79,31 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
         console.error("Failed to update wishlist backend:", error);
       }
     }
-  }, [isAuthenticated, items]);
+  }, [isAuthenticated, wishlist]);
 
   const isInWishlist = useCallback((productId: string) => {
-    return items.some(item => item.id === productId);
-  }, [items]);
+    return wishlist.some(item => item.id === productId);
+  }, [wishlist]);
 
   const clearWishlist = useCallback(() => {
-    setItems([]);
+    setWishlist([]);
   }, []);
+
+  const moveToCart = useCallback((product: Product) => {
+    addToCart(product);
+    removeFromWishlist(product.id);
+  }, [addToCart, removeFromWishlist]);
 
   return (
     <WishlistContext.Provider
       value={{
-        items,
+        wishlist,
         addToWishlist,
         removeFromWishlist,
         toggleWishlist,
         isInWishlist,
         clearWishlist,
+        moveToCart,
       }}
     >
       {children}

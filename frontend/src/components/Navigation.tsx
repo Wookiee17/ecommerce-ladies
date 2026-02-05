@@ -35,7 +35,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { getCartCount } = useCart();
-  const { items: wishlistItems } = useWishlist();
+  const { wishlist: wishlistItems } = useWishlist();
   const { activeCategory, setActiveCategory } = useCategory();
   const { isAuthenticated, user } = useAuth();
   const { recentSearches, trendingSearches, getSuggestions, addToHistory } = useSearch();

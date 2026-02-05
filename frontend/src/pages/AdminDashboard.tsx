@@ -64,7 +64,8 @@ export default function AdminDashboard() {
     const [realTimeStats, setRealTimeStats] = useState<any>(null);
 
     // Mock Chart Data (Visuals)
-    const revenueData = [
+    // Chart Data States
+    const [revenueData, setRevenueData] = useState<any[]>([
         { name: 'Mon', value: 4000 },
         { name: 'Tue', value: 3000 },
         { name: 'Wed', value: 2000 },
@@ -72,16 +73,16 @@ export default function AdminDashboard() {
         { name: 'Fri', value: 1890 },
         { name: 'Sat', value: 2390 },
         { name: 'Sun', value: 3490 },
-    ];
+    ]);
 
-    const userGrowthData = [
+    const [userGrowthData, setUserGrowthData] = useState<any[]>([
         { name: 'Jan', value: 100 },
         { name: 'Feb', value: 120 },
         { name: 'Mar', value: 150 },
         { name: 'Apr', value: 180 },
         { name: 'May', value: 220 },
         { name: 'Jun', value: 300 },
-    ];
+    ]);
 
     useEffect(() => {
         fetchDashboardData();
@@ -230,7 +231,7 @@ export default function AdminDashboard() {
                                                 <div className="text-sm text-gray-500">Recent Orders</div>
                                             </div>
                                         </div>
-                                        
+
                                         {/* Anonymous User Tracking */}
                                         {analyticsData?.last30Days && (
                                             <div className="mt-6 pt-6 border-t border-gray-100">
@@ -245,7 +246,7 @@ export default function AdminDashboard() {
                                                         <div className="text-sm text-gray-500">Total Page Visits</div>
                                                     </div>
                                                 </div>
-                                                
+
                                                 {/* Device Breakdown */}
                                                 {analyticsData.deviceBreakdown && (
                                                     <div className="mt-4">

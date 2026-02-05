@@ -3,21 +3,16 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Button } from '@/components/ui/button';
 import { Heart, X, ShoppingBag, ArrowRight } from 'lucide-react';
 
-export default function WishlistDrawer() {
+interface WishlistDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function WishlistDrawer({ isOpen, onClose }: WishlistDrawerProps) {
   const { wishlist, removeFromWishlist, moveToCart } = useWishlist();
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-red-50 transition-colors">
-          <Heart className="h-5 w-5 text-gray-700" />
-          {wishlist.length > 0 && (
-            <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-red-500 text-[10px] font-bold text-white flex items-center justify-center">
-              {wishlist.length}
-            </span>
-          )}
-        </Button>
-      </SheetTrigger>
+    <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-md flex flex-col bg-white">
         <SheetHeader className="border-b border-gray-100 pb-4">
           <SheetTitle className="font-display text-2xl font-bold flex items-center gap-2">
@@ -45,7 +40,7 @@ export default function WishlistDrawer() {
           ) : (
             <div className="grid grid-cols-1 gap-4">
               {wishlist.map((item) => (
-                <div key={item._id} className="flex gap-4 p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow group">
+                <div key={item.id} className="flex gap-4 p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow group">
                   <div className="w-24 h-32 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0 relative">
                     <img
                       src={item.image || "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800"}
@@ -63,7 +58,7 @@ export default function WishlistDrawer() {
                       <div className="flex justify-between items-start">
                         <h4 className="font-medium text-gray-900 line-clamp-2">{item.name}</h4>
                         <button
-                          onClick={() => removeFromWishlist(item._id)}
+                          onClick={() => removeFromWishlist(item.id)}
                           className="text-gray-400 hover:text-red-500 transition-colors p-1 -mr-2"
                         >
                           <X className="h-4 w-4" />

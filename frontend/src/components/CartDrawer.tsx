@@ -6,7 +6,12 @@ import { ShoppingBag, X, Plus, Minus, ArrowRight, Truck } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function CartDrawer() {
+interface CartDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, removeFromCart, updateQuantity, subtotal, total, coupon, applyCoupon, removeCoupon } = useCart();
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setCouponError] = useState('');
@@ -28,17 +33,7 @@ export default function CartDrawer() {
   };
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-coral-50 transition-colors">
-          <ShoppingBag className="h-5 w-5 text-gray-700" />
-          {items.length > 0 && (
-            <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-coral-500 text-[10px] font-bold text-white flex items-center justify-center">
-              {items.length}
-            </span>
-          )}
-        </Button>
-      </SheetTrigger>
+    <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-md flex flex-col bg-white">
         <SheetHeader className="border-b border-gray-100 pb-4">
           <SheetTitle className="font-display text-2xl font-bold flex items-center gap-2">
@@ -86,20 +81,20 @@ export default function CartDrawer() {
               {/* Items List */}
               <div className="space-y-4">
                 {items.map((item) => (
-                  <div key={`${item._id}-${item.selectedSize}-${item.selectedColor}`} className="flex gap-4 group">
+                  <div key={`${item.product.id}-${item.selectedSize}-${item.selectedColor}`} className="flex gap-4 group">
                     <div className="w-24 h-32 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                       <img
-                        src={item.image || "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800"}
-                        alt={item.name}
+                        src={item.product.image || "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800"}
+                        alt={item.product.name}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
                     <div className="flex-1 flex flex-col justify-between py-1">
                       <div>
                         <div className="flex justify-between items-start">
-                          <h4 className="font-medium text-gray-900 line-clamp-1">{item.name}</h4>
+                          <h4 className="font-medium text-gray-900 line-clamp-1">{item.product.name}</h4>
                           <button
-                            onClick={() => removeFromCart(item._id)}
+                            onClick={() => removeFromCart(item.product.id)}
                             className="text-gray-400 hover:text-red-500 transition-colors"
                           >
                             <X className="h-4 w-4" />
@@ -112,7 +107,7 @@ export default function CartDrawer() {
                       <div className="flex justify-between items-end">
                         <div className="flex items-center gap-3 bg-gray-50 rounded-lg p-1">
                           <button
-                            onClick={() => updateQuantity(item._id, Math.max(0, item.quantity - 1))}
+                            onClick={() => updateQuantity(item.product.id, Math.max(1, item.quantity - 1))}
                             className="w-6 h-6 flex items-center justify-center rounded-md bg-white shadow-sm hover:text-coral-500 transition-colors disabled:opacity-50"
                             disabled={item.quantity <= 1}
                           >
@@ -120,13 +115,13 @@ export default function CartDrawer() {
                           </button>
                           <span className="text-sm font-medium w-4 text-center">{item.quantity}</span>
                           <button
-                            onClick={() => updateQuantity(item._id, item.quantity + 1)}
+                            onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                             className="w-6 h-6 flex items-center justify-center rounded-md bg-white shadow-sm hover:text-coral-500 transition-colors"
                           >
                             <Plus className="h-3 w-3" />
                           </button>
                         </div>
-                        <p className="font-medium text-gray-900">₹{(item.price * item.quantity).toFixed(2)}</p>
+                        <p className="font-medium text-gray-900">₹{(item.product.price * item.quantity).toFixed(2)}</p>
                       </div>
                     </div>
                   </div>

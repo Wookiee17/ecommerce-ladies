@@ -18,9 +18,9 @@ const SearchContext = createContext<SearchContextType | undefined>(undefined);
 const MAX_HISTORY_ITEMS = 10;
 const STORAGE_KEY = 'evara_search_history';
 
-export function SearchProviderFixed({ children }: { children: ReactNode }) {
+export function SearchProvider({ children }: { children: ReactNode }) {
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
-  
+
   const trendingSearches = [
     'satin slip dress',
     'diamond bracelet',
@@ -50,7 +50,7 @@ export function SearchProviderFixed({ children }: { children: ReactNode }) {
   const addToHistory = useCallback((query: string) => {
     if (!query.trim()) return;
     const trimmedQuery = query.trim().toLowerCase();
-    
+
     setSearchHistory(prev => {
       const filtered = prev.filter(item => item.toLowerCase() !== trimmedQuery);
       return [trimmedQuery, ...filtered].slice(0, MAX_HISTORY_ITEMS);
@@ -70,15 +70,15 @@ export function SearchProviderFixed({ children }: { children: ReactNode }) {
     if (!query.trim()) {
       return trendingSearches.slice(0, 6);
     }
-    
+
     const lowercaseQuery = query.toLowerCase();
     const allSuggestions = [...new Set([...searchHistory, ...defaultSuggestions])];
-    
+
     const matching = allSuggestions.filter(suggestion =>
       suggestion.toLowerCase().includes(lowercaseQuery) &&
       suggestion.toLowerCase() !== lowercaseQuery
     );
-    
+
     return matching.slice(0, 8);
   }, [searchHistory, trendingSearches]);
 

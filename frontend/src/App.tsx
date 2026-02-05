@@ -53,14 +53,14 @@ function AppContent() {
 
       <main>
         <Routes>
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
-              <HomePage 
+              <HomePage
                 imageSearchResults={imageSearchResults}
                 onImageSearchResults={handleImageSearchResults}
               />
-            } 
+            }
           />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
@@ -83,6 +83,7 @@ function AppContent() {
       <PromotionalModal
         isOpen={isPromoModalOpen}
         onClose={() => setIsPromoModalOpen(false)}
+        onSignupSuccess={() => setIsAuthOpen(true)}
       />
     </div>
   );
