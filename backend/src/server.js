@@ -19,6 +19,7 @@ const reviewRoutes = require('./routes/review.routes');
 const paymentRoutes = require('./routes/payment.routes');
 const couponRoutes = require('./routes/coupon.routes');
 const notificationRoutes = require('./routes/notification.routes');
+const inventoryRoutes = require('./routes/inventory.routes');
 const { trackActivity } = require('./middleware/analytics.middleware');
 const { errorHandler } = require('./middleware/error.middleware');
 
@@ -117,6 +118,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/coupons', couponRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
