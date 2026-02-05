@@ -549,7 +549,7 @@ export default function ProductsPage() {
                   : "flex flex-col gap-4"
                 }>
                   {filteredProducts.map((product, index) => {
-                    if (products.length === index + 1) {
+                    if (filteredProducts.length === index + 1) {
                       return (
                         <div ref={lastProductElementRef} key={product.id}>
                           <ProductCard
