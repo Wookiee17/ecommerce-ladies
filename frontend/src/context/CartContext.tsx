@@ -1,5 +1,7 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import type { Product } from '@/data/products';
+import { useAuth } from '@/context/AuthContext';
+import { api } from '@/lib/api';
 
 export interface CartItem {
   product: Product;
@@ -24,27 +26,73 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  const addToCart = useCallback((product: Product, quantity = 1, selectedColor?: string, selectedSize?: string) => {
+  const { isAuthenticated } = useAuth();
+
+  // Fetch cart from backend on login
+  useEffect(() => {
+    if (isAuthenticated) {
+      const fetchCart = async () => {
+        try {
+          const response = await api.get('/cart');
+          if (response.data && Array.isArray(response.data.items)) {
+            // Transform backend cart items to frontend format if needed
+            setItems(response.data.items.map((item: any) => ({
+              product: {
+                ...item.product,
+                id: item.product._id, // Map _id to id
+                image: item.product.images?.[0]?.url || item.product.image
+              },
+              quantity: item.quantity,
+              selectedColor: item.selectedColor,
+              selectedSize: item.selectedSize
+            })));
+          }
+        } catch (error) {
+          console.error('Failed to fetch cart:', error);
+        }
+      };
+      fetchCart();
+    } else {
+      // Optionally clear or keep local cart
+      setItems([]);
+    }
+  }, [isAuthenticated]);
+
+  const addToCart = useCallback(async (product: Product, quantity = 1, selectedColor?: string, selectedSize?: string) => {
+    // Optimistic update
     setItems(prevItems => {
-      const existingItem = prevItems.find(item => 
-        item.product.id === product.id && 
-        item.selectedColor === selectedColor && 
+      const existingItem = prevItems.find(item =>
+        item.product.id === product.id &&
+        item.selectedColor === selectedColor &&
         item.selectedSize === selectedSize
       );
 
       if (existingItem) {
         return prevItems.map(item =>
-          item.product.id === product.id && 
-          item.selectedColor === selectedColor && 
-          item.selectedSize === selectedSize
+          item.product.id === product.id &&
+            item.selectedColor === selectedColor &&
+            item.selectedSize === selectedSize
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-
       return [...prevItems, { product, quantity, selectedColor, selectedSize }];
     });
-  }, []);
+
+    if (isAuthenticated) {
+      try {
+        await api.post('/cart/add', {
+          productId: product.id, // Ensure using 'id' which maps to _id
+          quantity,
+          selectedColor,
+          selectedSize
+        });
+      } catch (error) {
+        console.error('Failed to add to cart backend:', error);
+        // Revert on failure? For now, just log.
+      }
+    }
+  }, [isAuthenticated]);
 
   const removeFromCart = useCallback((productId: string) => {
     setItems(prevItems => prevItems.filter(item => item.product.id !== productId));

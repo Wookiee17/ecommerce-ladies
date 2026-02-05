@@ -1,5 +1,7 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import type { Product } from '@/data/products';
+import { useAuth } from '@/context/AuthContext';
+import { api } from '@/lib/api';
 
 interface WishlistContextType {
   items: Product[];
@@ -14,6 +16,30 @@ const WishlistContext = createContext<WishlistContextType | undefined>(undefined
 
 export function WishlistProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<Product[]>([]);
+  const { isAuthenticated } = useAuth();
+
+  // Fetch wishlist on login
+  useEffect(() => {
+    if (isAuthenticated) {
+      const fetchWishlist = async () => {
+        try {
+          const response = await api.get('/wishlist');
+          if (response.data && Array.isArray(response.data)) {
+            setItems(response.data.map((item: any) => ({
+              ...item,
+              id: item._id, // Map _id
+              image: item.images?.[0]?.url || item.image
+            })));
+          }
+        } catch (error) {
+          console.error("Failed to fetch wishlist:", error);
+        }
+      };
+      fetchWishlist();
+    } else {
+      setItems([]);
+    }
+  }, [isAuthenticated]);
 
   const addToWishlist = useCallback((product: Product) => {
     setItems(prevItems => {
@@ -28,7 +54,9 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     setItems(prevItems => prevItems.filter(item => item.id !== productId));
   }, []);
 
-  const toggleWishlist = useCallback((product: Product) => {
+  const toggleWishlist = useCallback(async (product: Product) => {
+    const isAdding = !items.some(item => item.id === product.id);
+
     setItems(prevItems => {
       const exists = prevItems.some(item => item.id === product.id);
       if (exists) {
@@ -36,7 +64,19 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       }
       return [...prevItems, product];
     });
-  }, []);
+
+    if (isAuthenticated) {
+      try {
+        if (isAdding) {
+          await api.post('/wishlist/add', { productId: product.id });
+        } else {
+          await api.delete(`/wishlist/${product.id}`);
+        }
+      } catch (error) {
+        console.error("Failed to update wishlist backend:", error);
+      }
+    }
+  }, [isAuthenticated, items]);
 
   const isInWishlist = useCallback((productId: string) => {
     return items.some(item => item.id === productId);

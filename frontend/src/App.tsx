@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { CartProvider } from '@/context/CartContext';
 import { WishlistProvider } from '@/context/WishlistContext';
-import { CategoryProvider } from '@/context/CategoryContext';
+import { CategoryProvider, useCategory } from '@/context/CategoryContext';
 import { AuthProvider } from '@/context/AuthContext';
 import { SearchProviderFixed } from '@/context/SearchContext';
 import Navigation from '@/components/Navigation';
@@ -33,6 +33,8 @@ function HomePage() {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [isPromoModalOpen, setIsPromoModalOpen] = useState(false);
 
+  const { getBackgroundClass } = useCategory();
+
   useEffect(() => {
     // Check if user is logged in
     const token = localStorage.getItem('token');
@@ -55,7 +57,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className={`min-h-screen transition-colors duration-500 ${getBackgroundClass()}`}>
       <Navigation
         onCartClick={() => setIsCartOpen(true)}
         onWishlistClick={() => setIsWishlistOpen(true)}

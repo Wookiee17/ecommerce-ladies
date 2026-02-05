@@ -1,5 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
-import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera, Bell } from 'lucide-react';
+import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera, Bell, LogOut, Package, Settings, MapPin } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
@@ -25,7 +33,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const [unreadCount, setUnreadCount] = useState(0);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  
+
   const { getCartCount } = useCart();
   const { items: wishlistItems } = useWishlist();
   const { activeCategory, setActiveCategory } = useCategory();
@@ -124,11 +132,10 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-white/90 backdrop-blur-lg shadow-soft py-3'
-            : 'bg-transparent py-5'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+          ? 'bg-white/90 backdrop-blur-lg shadow-soft py-3'
+          : 'bg-transparent py-5'
+          }`}
       >
         <div className="section-padding">
           <div className="flex items-center justify-between">
@@ -149,19 +156,17 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
             <div className="hidden lg:flex items-center gap-8">
               <button
                 onClick={() => handleCategoryClick('all')}
-                className={`text-sm font-medium transition-colors ${
-                  activeCategory === 'all' ? 'text-coral-400' : 'text-gray-700 hover:text-coral-400'
-                }`}
+                className={`text-sm font-medium transition-colors ${activeCategory === 'all' ? 'text-coral-400' : 'text-gray-700 hover:text-coral-400'
+                  }`}
               >
                 Home
               </button>
-              {categories.map((cat: {id: string; name: string}) => (
+              {categories.map((cat: { id: string; name: string }) => (
                 <button
                   key={cat.id}
                   onClick={() => handleCategoryClick(cat.id)}
-                  className={`text-sm font-medium transition-colors ${
-                    activeCategory === cat.id ? 'text-coral-400' : 'text-gray-700 hover:text-coral-400'
-                  }`}
+                  className={`text-sm font-medium transition-colors ${activeCategory === cat.id ? 'text-coral-400' : 'text-gray-700 hover:text-coral-400'
+                    }`}
                 >
                   {cat.name}
                 </button>
@@ -223,15 +228,67 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               )}
 
               {/* User */}
-              <button 
-                onClick={onAuthClick}
-                className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors items-center gap-2"
-              >
-                <User className="w-5 h-5 text-gray-700" />
-                {isAuthenticated && user && (
-                  <span className="text-sm text-gray-700 hidden xl:inline">{user.name.split(' ')[0]}</span>
-                )}
-              </button>
+
+
+              // ... existing imports ...
+
+              // Inside Navigation component return
+              {/* User Dropdown */}
+              {isAuthenticated && user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors items-center gap-2 outline-none">
+                      <div className="w-8 h-8 rounded-full bg-coral-100 flex items-center justify-center text-coral-600 font-medium border border-coral-200">
+                        {user.name.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="text-sm font-medium text-gray-700 hidden xl:inline">
+                        {user.name.split(' ')[0]}
+                      </span>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="cursor-pointer">
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <Package className="mr-2 h-4 w-4" />
+                      <span>Orders</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <MapPin className="mr-2 h-4 w-4" />
+                      <span>Saved Addresses</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer">
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Settings</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                      className="cursor-pointer text-red-600 focus:text-red-600 focus:bg-red-50"
+                      onClick={() => {
+                        // Assuming logout function exists in context, otherwise handle manually
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('evara_user');
+                        window.location.reload();
+                      }}
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <button
+                  onClick={onAuthClick}
+                  className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors items-center gap-2"
+                >
+                  <User className="w-5 h-5 text-gray-700" />
+                  <span className="text-sm text-gray-700 hidden xl:inline">Sign In</span>
+                </button>
+              )}
 
               {/* Mobile Menu Toggle */}
               <button
@@ -250,9 +307,8 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
 
         {/* Search Bar with Suggestions */}
         <div
-          className={`overflow-hidden transition-all duration-300 ${
-            isSearchOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-          }`}
+          className={`overflow-hidden transition-all duration-300 ${isSearchOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+            }`}
         >
           <div className="section-padding py-4 bg-white/95 backdrop-blur-lg border-t">
             <div ref={searchRef} className="relative max-w-2xl mx-auto">
@@ -361,9 +417,8 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
+          className={`lg:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}
         >
           <div className="section-padding py-4 bg-white/95 backdrop-blur-lg border-t space-y-2">
             <button
@@ -372,7 +427,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
             >
               Home
             </button>
-            {categories.map((cat: {id: string; name: string}) => (
+            {categories.map((cat: { id: string; name: string }) => (
               <button
                 key={cat.id}
                 onClick={() => handleCategoryClick(cat.id)}
