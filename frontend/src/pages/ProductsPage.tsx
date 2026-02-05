@@ -352,8 +352,8 @@ export default function ProductsPage() {
                     key={cat.id}
                     onClick={() => handleCategoryChange(cat.id)}
                     className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${(cat.id === 'all' && categoryParam === 'all') || categoryParam === cat.id
-                        ? 'bg-coral-400 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-coral-400 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                   >
                     {cat.label}
@@ -443,7 +443,11 @@ export default function ProductsPage() {
 
             {/* Product Grid */}
             <main className="flex-1">
-              {filteredProducts.length === 0 ? (
+              {loading ? (
+                <div className="flex justify-center items-center h-64">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-coral-400"></div>
+                </div>
+              ) : filteredProducts.length === 0 ? (
                 <div className="bg-white rounded-2xl shadow-sm p-12 text-center">
                   <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Search className="w-10 h-10 text-gray-400" />
@@ -555,8 +559,8 @@ export default function ProductsPage() {
                 key={color}
                 onClick={() => toggleFilter('colors', color)}
                 className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${filters.colors.includes(color)
-                    ? 'border-coral-400 bg-coral-50 text-coral-400'
-                    : 'border-gray-200 text-gray-700 hover:border-coral-400'
+                  ? 'border-coral-400 bg-coral-50 text-coral-400'
+                  : 'border-gray-200 text-gray-700 hover:border-coral-400'
                   }`}
               >
                 {color}
