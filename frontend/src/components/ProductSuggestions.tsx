@@ -23,8 +23,8 @@ export default function ProductSuggestions({ currentProduct, category }: Product
   const fetchSuggestions = async () => {
     try {
       setLoading(true);
-      // Fetch products from the same category, excluding the current product
-      const response = await api.get(`/products?category=${category}&limit=8`);
+      // Fetch random suggestions from new API
+      const response = await api.get('/products/suggestions/list');
       // Handle both direct data and wrapped response formats
       const allProducts = response.data || response || [];
 
@@ -43,8 +43,9 @@ export default function ProductSuggestions({ currentProduct, category }: Product
         };
       });
 
+      // Filter out current product just in case random includes it
       const filteredProducts = mappedProducts.filter((p: Product) => p.id !== currentProduct.id);
-      setSuggestions(filteredProducts.slice(0, 6));
+      setSuggestions(filteredProducts);
     } catch (error) {
       console.error('Failed to fetch suggestions:', error);
       setSuggestions([]);

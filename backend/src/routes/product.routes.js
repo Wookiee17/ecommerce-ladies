@@ -302,4 +302,23 @@ router.get('/categories/list', async (req, res) => {
   }
 });
 
+// Get random suggestions
+router.get('/suggestions/list', async (req, res) => {
+  try {
+    const products = await Product.aggregate([
+      { $match: { isActive: true } },
+      { $sample: { size: 10 } }
+    ]);
+
+    res.json({
+      success: true,
+      data: products
+    });
+
+  } catch (error) {
+    console.error('Get suggestions error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = router;
