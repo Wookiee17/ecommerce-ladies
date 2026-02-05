@@ -20,6 +20,64 @@ const dailyNotificationJob = cron.schedule('0 10 * * *', async () => {
   scheduled: false // Don't start immediately
 });
 
+// Low stock alert job - runs every day at 9 AM
+const lowStockAlertJob = cron.schedule('0 9 * * *', async () => {
+  console.log('📦 Starting low stock alert job...');
+
+  try {
+    // Find products below their low stock threshold
+    const lowStockProducts = await Product.find({
+      stock: { $lte: 0 }
+    }).limit(100);
+
+    // Also include products where overall stock is below custom threshold
+    const nearLowStockProducts = await Product.find({
+      stock: { $gt: 0 },
+      $expr: { $lte: ['$stock', '$lowStockThreshold'] }
+    }).limit(200);
+
+    const productsToAlert = [...lowStockProducts, ...nearLowStockProducts];
+
+    console.log(`Found ${productsToAlert.length} products needing low stock alerts`);
+
+    for (const product of productsToAlert) {
+      try {
+        if (!product.seller) continue;
+
+        const seller = await User.findById(product.seller);
+        if (!seller) continue;
+
+        const message = product.stock <= 0
+          ? `Your product "${product.name}" is out of stock. Consider restocking soon.`
+          : `Your product "${product.name}" is running low on stock (${product.stock} units left).`;
+
+        await Notification.create({
+          user: seller._id,
+          type: 'product',
+          title: 'Low Stock Alert',
+          message,
+          data: {
+            productId: product._id,
+            stock: product.stock,
+            lowStockThreshold: product.lowStockThreshold
+          },
+          sentVia: ['in_app']
+        });
+
+        console.log(`✅ Low stock notification created for seller ${seller.email} - product ${product.name}`);
+      } catch (error) {
+        console.error('❌ Failed to create low stock notification:', error);
+      }
+    }
+
+    console.log('✅ Low stock alert job completed successfully');
+  } catch (error) {
+    console.error('❌ Error in low stock alert job:', error);
+  }
+}, {
+  scheduled: false // Start from server-startup
+});
+
 // Send cart reminder emails
 const sendCartReminders = async () => {
   try {
@@ -141,5 +199,6 @@ module.exports = {
   dailyNotificationJob,
   sendCartReminders,
   sendProductSuggestions,
-  triggerDailyNotifications
+  triggerDailyNotifications,
+  lowStockAlertJob
 };

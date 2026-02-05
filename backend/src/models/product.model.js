@@ -72,6 +72,26 @@ const productSchema = new mongoose.Schema({
     default: 0,
     min: 0
   },
+  lowStockThreshold: {
+    type: Number,
+    default: 5,
+    min: 0
+  },
+  warehouses: [{
+    code: String,
+    name: String,
+    location: String,
+    stock: {
+      type: Number,
+      default: 0,
+      min: 0
+    },
+    reserved: {
+      type: Number,
+      default: 0,
+      min: 0
+    }
+  }],
   sku: {
     type: String,
     unique: true,
