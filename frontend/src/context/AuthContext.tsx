@@ -41,7 +41,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (email: string, password: string): Promise<boolean> => {
     try {
-      const data = await api.post('/auth/login', { email, password });
+      const response = await api.post('/auth/login', { email, password });
+      const data = response.data; // Access nested data object
 
       const userData = {
         id: data.user.id || data.user._id,
@@ -62,7 +63,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signup = useCallback(async (name: string, email: string, password: string): Promise<boolean> => {
     try {
-      const data = await api.post('/auth/register', { name, email, password });
+      const response = await api.post('/auth/register', { name, email, password });
+      const data = response.data; // Access nested data object
 
       const userData = {
         id: data.user.id || data.user._id,
