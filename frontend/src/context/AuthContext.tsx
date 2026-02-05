@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const login = useCallback(async (email: string, password: string): Promise<boolean> => {
     try {
       const response = await api.post('/auth/login', { email, password });
-      const data = response.data; // Access nested data object
+      const data = response.data; // Access nested data object (api returns the whole response body)
 
       const userData = {
         id: data.user.id || data.user._id,
@@ -53,7 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setUser(userData);
       localStorage.setItem('evara_user', JSON.stringify(userData));
-      localStorage.setItem('evara_token', data.token);
+      localStorage.setItem('evara_token', data.token); // Token is inside nested data
       return true;
     } catch (error) {
       console.error('Login failed:', error);
@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signup = useCallback(async (name: string, email: string, password: string): Promise<boolean> => {
     try {
       const response = await api.post('/auth/register', { name, email, password });
-      const data = response.data; // Access nested data object
+      const data = response.data; // Access nested data object (api returns whole response body)
 
       const userData = {
         id: data.user.id || data.user._id,
@@ -75,7 +75,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setUser(userData);
       localStorage.setItem('evara_user', JSON.stringify(userData));
-      localStorage.setItem('evara_token', data.token);
+      localStorage.setItem('evara_token', data.token); // Token is inside nested data
       return true;
     } catch (error) {
       console.error('Signup failed:', error);
