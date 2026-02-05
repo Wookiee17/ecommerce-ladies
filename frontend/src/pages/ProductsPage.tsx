@@ -58,7 +58,6 @@ export default function ProductsPage() {
         const rawProducts = Array.isArray(response.data) ? response.data : (Array.isArray(response) ? response : []);
 
         // Map backend data to frontend Product interface
-        // Map backend data to frontend Product interface
         const mappedProducts = rawProducts.map((p: any) => ({
           id: p._id, // Map _id to id
           name: p.name,
@@ -76,6 +75,10 @@ export default function ProductsPage() {
           colors: p.variants?.colors?.map((c: any) => c.name) || [], // Flatten colors
           sizes: p.variants?.sizes?.map((s: any) => s.name) || [], // Flatten sizes
         }));
+
+        console.log('API Response:', response);
+        console.log('Raw Products:', rawProducts);
+        console.log('Mapped Products:', mappedProducts);
 
         setProducts(mappedProducts);
       } catch (error) {

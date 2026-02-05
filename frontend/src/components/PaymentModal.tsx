@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import { api } from '@/lib/api';
 
 interface PaymentModalProps {
   isOpen: boolean;
@@ -39,82 +40,75 @@ export default function PaymentModal({ isOpen, onClose, orderDetails, onPaymentS
 
     try {
       if (paymentMethod === 'cod') {
-        // COD - just confirm
+        // COD - just confirm for now; backend order creation is handled separately
         toast.success('Order placed! Pay ₹' + orderDetails.amount + ' on delivery.');
         onPaymentSuccess();
         onClose();
         return;
       }
 
-      // For online payments
-      const response = await fetch('/api/payment/create-order', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('evara_token')}`
-        },
-        body: JSON.stringify({
-          orderId: orderDetails.orderId,
-          paymentMethod
-        })
+      // For online payments (Razorpay / Stripe-ready)
+      const data = await api.post('/payments/create-order', {
+        orderId: orderDetails.orderId,
+        paymentMethod,
+        amount: orderDetails.amount
       });
-
-      const data = await response.json();
 
       if (!data.success) {
         throw new Error(data.message);
       }
 
-      // Initialize Razorpay
-      const options = {
-        key: data.data.keyId,
-        amount: data.data.amount * 100,
-        currency: 'INR',
-        name: 'Evara',
-        description: `Order #${orderDetails.orderNumber}`,
-        order_id: data.data.razorpayOrderId,
-        handler: async (response: any) => {
-          // Verify payment
-          const verifyRes = await fetch('/api/payment/verify', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('evara_token')}`
-            },
-            body: JSON.stringify({
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature
-            })
-          });
+      if (data.data.provider === 'razorpay') {
+        // Initialize Razorpay
+        const options = {
+          key: data.data.keyId,
+          amount: data.data.amount * 100,
+          currency: data.data.currency || 'INR',
+          name: 'Evara',
+          description: `Order #${orderDetails.orderNumber}`,
+          order_id: data.data.razorpayOrderId,
+          handler: async (response: any) => {
+            try {
+              // Verify payment
+              const verifyData = await api.post('/payments/verify', {
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                orderId: orderDetails.orderId
+              });
 
-          const verifyData = await verifyRes.json();
-
-          if (verifyData.success) {
-            toast.success('Payment successful!');
-            onPaymentSuccess();
-            onClose();
-          } else {
-            toast.error('Payment verification failed');
+              if (verifyData.success) {
+                toast.success('Payment successful!');
+                onPaymentSuccess();
+                onClose();
+              } else {
+                toast.error(verifyData.message || 'Payment verification failed');
+              }
+            } catch (err: any) {
+              toast.error(err.message || 'Payment verification failed');
+            }
+          },
+          prefill: {
+            name: data.data.prefill?.name,
+            email: data.data.prefill?.email,
+            contact: data.data.prefill?.contact
+          },
+          theme: {
+            color: '#ff6c79'
+          },
+          modal: {
+            ondismiss: () => {
+              setLoading(false);
+            }
           }
-        },
-        prefill: {
-          name: data.data.prefill?.name,
-          email: data.data.prefill?.email,
-          contact: data.data.prefill?.contact
-        },
-        theme: {
-          color: '#ff6c79'
-        },
-        modal: {
-          ondismiss: () => {
-            setLoading(false);
-          }
-        }
-      };
+        };
 
-      const razorpay = new (window as any).Razorpay(options);
-      razorpay.open();
+        const razorpay = new (window as any).Razorpay(options);
+        razorpay.open();
+      } else if (data.data.provider === 'stripe') {
+        // Stripe card flow can be integrated here using clientSecret (future enhancement)
+        toast.error('Stripe payments are not yet wired to the UI.');
+      }
 
     } catch (error: any) {
       toast.error(error.message || 'Payment failed');
