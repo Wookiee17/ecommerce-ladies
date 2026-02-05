@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Search, Filter, X, ChevronDown, Grid3X3, List, SlidersHorizontal, Star, ShoppingBag, Heart, User } from 'lucide-react';
 import { type Product } from '@/data/products';
@@ -52,7 +52,8 @@ export default function ProductsPage() {
 
   useEffect(() => {
     fetchProducts(1, true);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryParam, searchQuery, sortParam, filters]); // Reset when filters change
 
   const fetchProducts = async (pageNum: number, reset: boolean = false) => {
     try {
@@ -101,9 +102,25 @@ export default function ProductsPage() {
     }
   };
 
-  const handleLoadMore = () => {
-    fetchProducts(page + 1);
-  };
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastProductElementRef = useCallback((node: HTMLDivElement) => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage(prevPage => prevPage + 1);
+      }
+    });
+
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore]);
+
+  useEffect(() => {
+    if (page > 1) {
+      fetchProducts(page);
+    }
+  }, [page]);
 
   // Filters
   const [filters, setFilters] = useState<FilterState>({
@@ -505,14 +522,28 @@ export default function ProductsPage() {
                   ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
                   : "flex flex-col gap-4"
                 }>
-                  {filteredProducts.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onClick={() => openProductDetail(product)}
-                      viewMode={viewMode}
-                    />
-                  ))}
+                  {filteredProducts.map((product, index) => {
+                    if (products.length === index + 1) {
+                      return (
+                        <div ref={lastProductElementRef} key={product.id}>
+                          <ProductCard
+                            product={product}
+                            onClick={() => openProductDetail(product)}
+                            viewMode={viewMode}
+                          />
+                        </div>
+                      );
+                    } else {
+                      return (
+                        <ProductCard
+                          key={product.id}
+                          product={product}
+                          onClick={() => openProductDetail(product)}
+                          viewMode={viewMode}
+                        />
+                      );
+                    }
+                  })}
                 </div>
               )}
             </main>
