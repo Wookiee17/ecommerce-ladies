@@ -79,7 +79,7 @@ export default function ProductsPage() {
         console.log('API Response:', response);
         console.log('Raw Products:', rawProducts);
         console.log('Mapped Products:', mappedProducts);
-
+        console.log('🔄 Frontend Build: 1050');
         setProducts(mappedProducts);
       } catch (error) {
         console.error('Failed to fetch products:', error);
