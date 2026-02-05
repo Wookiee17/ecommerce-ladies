@@ -53,8 +53,21 @@ export default function ProductsPage() {
         // Ensure the API response structure matches expectations. 
         // If backend returns { success: true, data: [...] }, adjust accordingly.
         // Based on typical express controllers, it might return the array directly or wrapped.
-        const data = await api.get('/products');
-        setProducts(Array.isArray(data.data) ? data.data : (Array.isArray(data) ? data : []));
+        const response = await api.get('/products');
+        // Handle response wrapping (response.data vs response directly)
+        const rawProducts = Array.isArray(response.data) ? response.data : (Array.isArray(response) ? response : []);
+
+        // Map backend data to frontend Product interface
+        const mappedProducts = rawProducts.map((p: any) => ({
+          ...p,
+          id: p._id, // Map _id to id
+          image: p.images?.[0]?.url || '', // Map first image to image property
+          colors: p.variants?.colors?.map((c: any) => c.name) || [], // Flatten colors
+          sizes: p.variants?.sizes?.map((s: any) => s.name) || [], // Flatten sizes
+          reviews: p.reviewCount || 0 // Map reviewCount to reviews
+        }));
+
+        setProducts(mappedProducts);
       } catch (error) {
         console.error('Failed to fetch products:', error);
       } finally {
