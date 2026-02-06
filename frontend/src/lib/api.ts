@@ -24,7 +24,8 @@ async function request(endpoint: string, options: RequestOptions = {}) {
     const response = await fetch(`${API_URL}${endpoint}`, config);
     const data = await response.json();
 
-    if (!response.ok) {
+    // Handle 304 Not Modified as success - browser returns cached response
+    if (!response.ok && response.status !== 304) {
         throw new Error(data.message || 'API request failed');
     }
 

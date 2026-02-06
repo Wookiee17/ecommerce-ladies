@@ -15,7 +15,6 @@ import { useAuth } from '@/context/AuthContext';
 import { useSearch } from '@/context/SearchContext';
 import { useTryOn } from '@/context/TryOnContext';
 import { categories } from '@/data/products';
-import { Shirt } from 'lucide-react'; // Assuming Shirt exists, if not use User for now
 import Notifications from '@/components/Notifications';
 
 interface NavigationProps {
@@ -192,7 +191,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                     }
                   }}
                 />
-                <Shirt className={`w-5 h-5 ${userImage ? 'text-coral-600' : 'text-gray-700'}`} />
+                <Camera className={`w-5 h-5 ${userImage ? 'text-coral-600' : 'text-gray-700'}`} />
                 <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-coral-400 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
                   {userImage ? '✓' : '+'}
                 </span>

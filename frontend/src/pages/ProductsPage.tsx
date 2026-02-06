@@ -40,7 +40,8 @@ export default function ProductsPage() {
 
   // State
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Initial load
+  const [isFetching, setIsFetching] = useState(false); // Pagination load
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [localSearch, setLocalSearch] = useState(searchQuery);
 
@@ -77,6 +78,8 @@ export default function ProductsPage() {
     try {
       if (reset) {
         setLoading(true);
+      } else {
+        setIsFetching(true);
       }
 
       // Build query parameters
@@ -96,7 +99,7 @@ export default function ProductsPage() {
       // Search Query
       if (searchQuery) params.append('search', searchQuery);
 
-      // Price Range
+      // Price Range - Ensure we send params compatible with backend
       if (filters.priceRange[0] > 0 || filters.priceRange[1] < 200000) {
         params.append('minPrice', filters.priceRange[0].toString());
         params.append('maxPrice', filters.priceRange[1].toString());
@@ -106,9 +109,19 @@ export default function ProductsPage() {
       if (sortParam) params.append('sortBy', sortParam);
 
       const response = await api.get(`/products?${params.toString()}`);
+      
+      // Debug the actual response structure
+      console.log('Raw API Response:', response);
+      
       // Handle both direct data and wrapped response formats
+      // For 304 cached responses, the browser returns the cached body
       const responseData = response.data || response;
+      
+      console.log('Response Data:', responseData);
+      
       const rawProducts = Array.isArray(responseData) ? responseData : (responseData.data || []);
+      
+      console.log('Raw Products:', rawProducts);
       const pagination = response.pagination || responseData.pagination || { page: 1, pages: 1, total: rawProducts.length };
 
       const mappedProducts = rawProducts.map((p: any) => {
@@ -157,7 +170,12 @@ export default function ProductsPage() {
       if (reset) {
         setProducts(mappedProducts);
       } else {
-        setProducts(prev => [...prev, ...mappedProducts]);
+        setProducts(prev => {
+          // Prevent duplicates
+          const existingIds = new Set(prev.map(p => p.id));
+          const uniqueNew = mappedProducts.filter((p: any) => !existingIds.has(p.id));
+          return [...prev, ...uniqueNew];
+        });
       }
 
       setHasMore(pagination.page < pagination.pages);
@@ -167,22 +185,26 @@ export default function ProductsPage() {
       console.error('Failed to fetch products:', error);
     } finally {
       setLoading(false);
+      setIsFetching(false);
     }
   };
 
   const observer = useRef<IntersectionObserver | null>(null);
   const lastProductElementRef = useCallback((node: HTMLDivElement) => {
-    if (loading) return;
+    if (loading || isFetching) return; // Don't trigger if already loading/fetching
     if (observer.current) observer.current.disconnect();
 
     observer.current = new IntersectionObserver(entries => {
+      // Add a small threshold or margin if needed
       if (entries[0].isIntersecting && hasMore) {
         setPage(prevPage => prevPage + 1);
       }
+    }, {
+      rootMargin: '100px', // Trigger before hitting rock bottom
     });
 
     if (node) observer.current.observe(node);
-  }, [loading, hasMore]);
+  }, [loading, isFetching, hasMore]);
 
   useEffect(() => {
     if (page > 1) {
@@ -616,6 +638,11 @@ export default function ProductsPage() {
                       );
                     }
                   })}
+                  {isFetching && (
+                    <div className="col-span-full py-4 flex justify-center w-full">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-coral-400"></div>
+                    </div>
+                  )}
                 </div>
               )}
             </main>
