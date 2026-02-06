@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/product.model');
+const Image = require('../../models/image.model');
 const { trackUserActivity } = require('../middleware/analytics.middleware');
 const { optionalAuth } = require('../middleware/auth.middleware');
 
@@ -20,32 +21,32 @@ router.post('/seed', async (req, res) => {
       'beauty': ['Lipstick', 'Serum', 'Moisturizer', 'Foundation', 'Perfume', 'Eye Shadow', 'Mascara']
     };
 
-    // Base images - jewelry and beauty use local images, dresses use working external URLs
-    const getLocalImage = (category, index) => {
-      const num = (index % 50) + 1; // Cycle through 1-50
-      const cacheBust = Date.now(); // Force cache refresh
+    // Get images from database
+    const getDbImages = async (category, index) => {
+      const num = (index % 150) + 1; // Cycle through 1-150
+      const imageNum = num;
       
-      // Dress images currently contain shoes (wrong content), use picsum.photos with seeds
-      if (category === 'dress') {
-        // Using fashion/dress related images from pexels
-        const dressImages = [
-          `https://images.pexels.com/photos/1624051/pexels-photo-1624051.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1144834/pexels-photo-1144834.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1078958/pexels-photo-1078958.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1381556/pexels-photo-1381556.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1557843/pexels-photo-1557843.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1082528/pexels-photo-1082528.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
-          `https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`
-        ];
-        return dressImages[index % dressImages.length];
+      // Find images by category and filename
+      const images = await Image.find({ 
+        category: category,
+        filename: { $regex: new RegExp(`${category}-${imageNum}\\.jpg$`, 'i') }
+      }).limit(3);
+
+      if (images.length > 0) {
+        return images.map((img, i) => ({
+          url: `/api/images/${img._id}`,
+          alt: `${category} view`,
+          isPrimary: i === 0
+        }));
       }
       
-      // Jewelry and beauty use local images
+      // Fallback to file-based images if not in database
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      return `${frontendUrl}/images/${category}-${num}.jpg?cb=${cacheBust}`;
+      return [
+        { url: `${frontendUrl}/evara_images/${category}-${imageNum}.jpg`, alt: `${category} - Front View`, isPrimary: true },
+        { url: `${frontendUrl}/evara_images/${category}-${imageNum + 1}.jpg`, alt: `${category} - Side View`, isPrimary: false },
+        { url: `${frontendUrl}/evara_images/${category}-${imageNum + 2}.jpg`, alt: `${category} - Detail View`, isPrimary: false }
+      ];
     };
 
     const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -78,6 +79,9 @@ router.post('/seed', async (req, res) => {
         const name = `${adjective} ${noun} ${randomNum(1, 999)}`;
         const color = random(['Red', 'Blue', 'Green', 'Black', 'White', 'Gold', 'Silver', 'Navy', 'Pink', 'Purple']);
 
+        // Get images from database
+        const images = await getDbImages(category, i);
+
         const product = {
           name: name,
           description: `This is a beautiful ${name.toLowerCase()}. Perfect for any occasion. Made with high-quality materials.`,
@@ -86,23 +90,7 @@ router.post('/seed', async (req, res) => {
           originalPrice: randomNum(16000, 25000),
           category: category,
           subcategory: category === 'dress' ? (i % 2 === 0 ? 'casual' : 'formal') : 'general',
-          images: [
-            {
-              url: getLocalImage(category, i),
-              alt: `${name} - Front View`,
-              isPrimary: true
-            },
-            {
-              url: getLocalImage(category, i + 1),
-              alt: `${name} - Side View`,
-              isPrimary: false
-            },
-            {
-              url: getLocalImage(category, i + 2),
-              alt: `${name} - Detail View`,
-              isPrimary: false
-            }
-          ],
+          images: images,
           variants: {
             colors: category === 'dress'
               ? [{ name: color }, { name: 'Black' }] // Ensure the main color matches image
