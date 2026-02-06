@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Loader2, Upload } from 'lucide-react';
-import { api } from '@/lib/api';
 
 interface VirtualTryOnModalProps {
   isOpen: boolean;
@@ -48,15 +47,27 @@ export default function VirtualTryOnModal({ isOpen, onClose, product }: VirtualT
       formData.append('prompt', constructPrompt(product.category));
       formData.append('temperature', '0.4');
 
-      const response = await api.post('/try-on/virtual-try-on', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        responseType: 'arraybuffer',
+      const token = localStorage.getItem('evara_token');
+      // Import API_URL if not available, or standard hardcode fallback for now to avoid import diagnosis issues if not exported
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+      const response = await fetch(`${API_URL}/try-on/virtual-try-on`, {
+        method: 'POST',
+        headers: {
+          ...(token && { Authorization: `Bearer ${token}` }),
+          // Content-Type must strictly NOT be set when sending FormData, browser sets it with boundary
+        },
+        body: formData,
       });
 
-      const imageBlob = new Blob([response.data], { type: 'image/png' });
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || 'Failed to generate image');
+      }
+
+      const imageBlob = await response.blob();
       const imageUrl = URL.createObjectURL(imageBlob);
       setGeneratedImage(imageUrl);
-
 
     } catch (err) {
       setError('Failed to generate virtual try-on image. Please try again.');

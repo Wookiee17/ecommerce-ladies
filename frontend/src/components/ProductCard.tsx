@@ -20,6 +20,9 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
   const displayImage = tryOnImage || product.image;
 
   const isGenerating = loading && !tryOnImage && userImage; // Simplify loading logic scope if needed
+   */
+
+  // Cleaned up unused variable
 
   const handleTryOnClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
