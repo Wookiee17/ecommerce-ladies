@@ -20,19 +20,11 @@ router.post('/seed', async (req, res) => {
       'beauty': ['Lipstick', 'Serum', 'Moisturizer', 'Foundation', 'Perfume', 'Eye Shadow', 'Mascara']
     };
 
-    // Base images to rotate (using placeholders for missing cats to avoid broken links)
-    const IMAGES = {
-      'dress': ['/images/dress-1.jpg', '/images/dress-2.jpg', '/images/dress-3.jpg', '/images/dress-4.jpg', '/images/dress-5.jpg'],
-      'jewelry': [
-        'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?w=500&q=80',
-        'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80',
-        'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=500&q=80'
-      ],
-      'beauty': [
-        'https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=500&q=80',
-        'https://images.unsplash.com/photo-1612817288484-9691c9519490?w=500&q=80',
-        'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&q=80'
-      ]
+    // Base images - using local images from frontend/public/images
+    const getLocalImage = (category, index) => {
+      const num = (index % 50) + 1; // Cycle through 1-50
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+      return `${frontendUrl}/images/${category}-${num}.jpg`;
     };
 
     const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -65,14 +57,6 @@ router.post('/seed', async (req, res) => {
         const name = `${adjective} ${noun} ${randomNum(1, 999)}`;
         const color = random(['Red', 'Blue', 'Green', 'Black', 'White', 'Gold', 'Silver', 'Navy', 'Pink', 'Purple']);
 
-        // Generate consistent seed for image stability
-        const seed = Math.floor(Math.random() * 1000000);
-
-        const generateImageUrl = (view) => {
-          const prompt = `professional product photography of a ${color} ${name} ${category}, ${view} view, white background, studio lighting, 4k, high quality, commercial e-commerce`;
-          return `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?nologo=true&seed=${seed}&width=800&height=1000`;
-        };
-
         const product = {
           name: name,
           description: `This is a beautiful ${name.toLowerCase()}. Perfect for any occasion. Made with high-quality materials.`,
@@ -83,17 +67,17 @@ router.post('/seed', async (req, res) => {
           subcategory: category === 'dress' ? (i % 2 === 0 ? 'casual' : 'formal') : 'general',
           images: [
             {
-              url: generateImageUrl('front'),
+              url: getLocalImage(category, i),
               alt: `${name} - Front View`,
               isPrimary: true
             },
             {
-              url: generateImageUrl('side profile'),
+              url: getLocalImage(category, i + 1),
               alt: `${name} - Side View`,
               isPrimary: false
             },
             {
-              url: generateImageUrl('close up texture detail'),
+              url: getLocalImage(category, i + 2),
               alt: `${name} - Detail View`,
               isPrimary: false
             }
