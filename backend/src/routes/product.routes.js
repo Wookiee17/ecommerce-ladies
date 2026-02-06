@@ -40,13 +40,8 @@ router.post('/seed', async (req, res) => {
         }));
       }
       
-      // Fallback to file-based images if not in database
-      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      return [
-        { url: `${frontendUrl}/evara_images/${category}-${imageNum}.jpg`, alt: `${category} - Front View`, isPrimary: true },
-        { url: `${frontendUrl}/evara_images/${category}-${imageNum + 1}.jpg`, alt: `${category} - Side View`, isPrimary: false },
-        { url: `${frontendUrl}/evara_images/${category}-${imageNum + 2}.jpg`, alt: `${category} - Detail View`, isPrimary: false }
-      ];
+      // No fallback needed - all images should be in database
+      return [];
     };
 
     const random = (arr) => arr[Math.floor(Math.random() * arr.length)];
