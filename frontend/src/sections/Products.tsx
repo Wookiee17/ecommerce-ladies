@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { Heart, ShoppingBag, Star, Eye, Search, AlertCircle } from 'lucide-react';
-import { products, type Product } from '@/data/products';
+import { Heart, ShoppingBag, Star, Eye, Search, AlertCircle, Loader2 } from 'lucide-react';
+import { type Product } from '@/data/products';
+import { api } from '@/lib/api';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
@@ -22,6 +23,8 @@ interface ProductsProps {
 }
 
 export default function Products({ onProductClick, imageSearchResults }: ProductsProps) {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>('');
@@ -33,6 +36,54 @@ export default function Products({ onProductClick, imageSearchResults }: Product
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { activeCategory, getBackgroundClass } = useCategory();
   const { getSearchResults, addToHistory } = useSearch();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get('/products?limit=20'); // Fetch enough for home display
+        const responseData = response.data || response;
+        const rawProducts = Array.isArray(responseData) ? responseData : (responseData.data || []);
+
+        // Map backend data to frontend model if needed (reusing logic from ProductsPage)
+        const mappedProducts = rawProducts.map((p: any) => {
+          const primaryImage = p.images?.find((img: any) => img.isPrimary)?.url || p.images?.[0]?.url || '';
+          const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+          const baseUrl = backendUrl.replace('/api', '');
+          const imageUrl = primaryImage.startsWith('http') ? primaryImage : `${baseUrl}${primaryImage}`;
+
+          return {
+            id: p._id,
+            name: p.name,
+            description: p.description,
+            price: Number(p.price),
+            originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
+            image: imageUrl,
+            images: p.images?.map((img: any) => {
+              const url = img.url;
+              return url.startsWith('http') ? url : `${baseUrl}${url}`;
+            }) || [],
+            category: p.category,
+            subcategory: p.subcategory,
+            rating: Number(p.rating) || 0,
+            reviews: Number(p.reviewCount) || 0,
+            inStock: (p.stock > 0) || (p.inStock === true),
+            isNew: p.isNew,
+            isBestseller: p.isBestseller,
+            colors: p.variants?.colors?.map((c: any) => c.name) || [],
+            sizes: p.variants?.sizes?.map((s: any) => s.name) || [],
+          };
+        });
+
+        setProducts(mappedProducts);
+      } catch (error) {
+        console.error('Failed to fetch home products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -121,9 +172,8 @@ export default function Products({ onProductClick, imageSearchResults }: Product
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div
-          className={`text-center mb-12 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`text-center mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <p className="text-coral-400 text-sm font-medium tracking-widest uppercase mb-3">
             Our Products
@@ -138,9 +188,8 @@ export default function Products({ onProductClick, imageSearchResults }: Product
 
         {/* Search Bar */}
         <div
-          className={`max-w-md mx-auto mb-8 transition-all duration-700 delay-100 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`max-w-md mx-auto mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <form onSubmit={handleSearch} className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -182,19 +231,17 @@ export default function Products({ onProductClick, imageSearchResults }: Product
 
         {/* Tabs */}
         <div
-          className={`flex flex-wrap justify-center gap-2 md:gap-4 mb-12 transition-all duration-700 delay-100 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`flex flex-wrap justify-center gap-2 md:gap-4 mb-12 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-sm font-medium transition-all ${
-                activeTab === tab.id
-                  ? 'bg-coral-400 text-white shadow-glow'
-                  : 'bg-white text-gray-700 hover:bg-gray-100'
-              }`}
+              className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-sm font-medium transition-all ${activeTab === tab.id
+                ? 'bg-coral-400 text-white shadow-glow'
+                : 'bg-white text-gray-700 hover:bg-gray-100'
+                }`}
             >
               {tab.label}
             </button>
@@ -202,15 +249,18 @@ export default function Products({ onProductClick, imageSearchResults }: Product
         </div>
 
         {/* Products Grid */}
-        {filteredProducts.length > 0 ? (
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="w-10 h-10 text-coral-400 animate-spin" />
+          </div>
+        ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((product, index) => (
               <div
                 key={product.id}
                 onClick={() => onProductClick(product)}
-                className={`group bg-white rounded-2xl overflow-hidden shadow-soft card-hover cursor-pointer transition-all duration-700 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
+                className={`group bg-white rounded-2xl overflow-hidden shadow-soft card-hover cursor-pointer transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
                 style={{ transitionDelay: `${(index % 8) * 75 + 200}ms` }}
               >
                 {/* Image Container */}
@@ -244,11 +294,10 @@ export default function Products({ onProductClick, imageSearchResults }: Product
                         e.stopPropagation();
                         toggleWishlist(product);
                       }}
-                      className={`p-2 rounded-full shadow-soft transition-colors ${
-                        isInWishlist(product.id)
-                          ? 'bg-coral-400 text-white'
-                          : 'bg-white text-gray-700 hover:bg-coral-400 hover:text-white'
-                      }`}
+                      className={`p-2 rounded-full shadow-soft transition-colors ${isInWishlist(product.id)
+                        ? 'bg-coral-400 text-white'
+                        : 'bg-white text-gray-700 hover:bg-coral-400 hover:text-white'
+                        }`}
                     >
                       <Heart className="w-4 h-4" fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
                     </button>
@@ -306,9 +355,8 @@ export default function Products({ onProductClick, imageSearchResults }: Product
         ) : (
           /* Empty State - Product Not Found */
           <div
-            className={`text-center py-16 transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
+            className={`text-center py-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
           >
             <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
               <AlertCircle className="w-12 h-12 text-gray-400" />
@@ -317,7 +365,7 @@ export default function Products({ onProductClick, imageSearchResults }: Product
               No products found
             </h3>
             <p className="text-gray-500 mb-6 max-w-md mx-auto">
-              {searchInput 
+              {searchInput
                 ? `We couldn't find any products matching "${searchInput}". Try a different search term or browse our categories.`
                 : 'No products available in this category. Try selecting a different category or tab.'}
             </p>
@@ -340,7 +388,7 @@ export default function Products({ onProductClick, imageSearchResults }: Product
                 View All Products
               </button>
             </div>
-            
+
             {/* Suggestions */}
             <div className="mt-8">
               <p className="text-sm text-gray-500 mb-3">Popular searches:</p>
@@ -416,11 +464,10 @@ export default function Products({ onProductClick, imageSearchResults }: Product
                           <button
                             key={color}
                             onClick={() => setSelectedColor(color)}
-                            className={`px-3 py-1 rounded-full text-sm border transition-colors ${
-                              selectedColor === color
-                                ? 'border-coral-400 bg-coral-50 text-coral-400'
-                                : 'border-gray-200 hover:border-coral-400'
-                            }`}
+                            className={`px-3 py-1 rounded-full text-sm border transition-colors ${selectedColor === color
+                              ? 'border-coral-400 bg-coral-50 text-coral-400'
+                              : 'border-gray-200 hover:border-coral-400'
+                              }`}
                           >
                             {color}
                           </button>
@@ -438,11 +485,10 @@ export default function Products({ onProductClick, imageSearchResults }: Product
                           <button
                             key={size}
                             onClick={() => setSelectedSize(size)}
-                            className={`w-10 h-10 rounded-lg text-sm border transition-colors ${
-                              selectedSize === size
-                                ? 'border-coral-400 bg-coral-50 text-coral-400'
-                                : 'border-gray-200 hover:border-coral-400'
-                            }`}
+                            className={`w-10 h-10 rounded-lg text-sm border transition-colors ${selectedSize === size
+                              ? 'border-coral-400 bg-coral-50 text-coral-400'
+                              : 'border-gray-200 hover:border-coral-400'
+                              }`}
                           >
                             {size}
                           </button>

@@ -115,31 +115,34 @@ export default function ProductsPage() {
         const primaryImage = p.images?.find((img: any) => img.isPrimary)?.url || p.images?.[0]?.url || '';
         const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
         // Remove /api from standard URL if present for image serving, or adjust based on backend logic
-        // Assuming backend serves images at root /images
         const baseUrl = backendUrl.replace('/api', '');
 
         const imageUrl = primaryImage.startsWith('http')
           ? primaryImage
           : `${baseUrl}${primaryImage}`;
 
+        // Robust price parsing
+        const price = typeof p.price === 'string' ? parseFloat(p.price) : Number(p.price);
+        const originalPrice = p.originalPrice ? (typeof p.originalPrice === 'string' ? parseFloat(p.originalPrice) : Number(p.originalPrice)) : undefined;
+
         return {
-          id: p._id,
-          name: p.name,
-          description: p.description,
-          price: Number(p.price),
-          originalPrice: p.originalPrice ? Number(p.originalPrice) : undefined,
+          id: p._id || p.id, // Handle both _id (mongo) and id
+          name: p.name || 'Untitled Product',
+          description: p.description || '',
+          price: isNaN(price) ? 0 : price,
+          originalPrice: isNaN(originalPrice!) ? undefined : originalPrice,
           image: imageUrl,
           images: p.images?.map((img: any) => {
             const url = img.url;
             return url.startsWith('http') ? url : `${baseUrl}${url}`;
           }) || [],
-          category: p.category,
-          subcategory: p.subcategory,
+          category: p.category || 'Uncategorized',
+          subcategory: p.subcategory || 'General',
           rating: Number(p.rating) || 0,
           reviews: Number(p.reviewCount) || 0,
-          inStock: (p.stock > 0) || (p.inStock === true) || p.variants?.sizes?.some((s: any) => s.inStock),
-          isNew: p.isNew,
-          isBestseller: p.isBestseller,
+          inStock: (p.stock > 0) || (p.inStock === true) || (String(p.inStock) === 'true') || p.variants?.sizes?.some((s: any) => s.inStock),
+          isNew: !!p.isNew,
+          isBestseller: !!p.isBestseller,
           colors: p.variants?.colors?.map((c: any) => c.name) || [],
           sizes: p.variants?.sizes?.map((s: any) => s.name) || [],
         };
