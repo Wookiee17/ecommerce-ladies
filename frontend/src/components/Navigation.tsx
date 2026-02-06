@@ -149,7 +149,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               }}
               className="flex items-center gap-2 group"
             >
-              <span className="font-display text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-coral-400 transition-colors">
+              <span className={`font-display text-2xl md:text-3xl font-bold transition-colors ${isScrolled ? 'text-gray-900 group-hover:text-coral-400' : 'text-white group-hover:text-coral-200'}`}>
                 Evara
               </span>
             </button>
@@ -158,8 +158,10 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
             <div className="hidden lg:flex items-center gap-8">
               <button
                 onClick={() => handleCategoryClick('all')}
-                className={`text-sm font-medium transition-colors ${activeCategory === 'all' ? 'text-coral-400' : 'text-gray-700 hover:text-coral-400'
-                  }`}
+                className={`text-sm font-medium transition-colors ${activeCategory === 'all' 
+                  ? (isScrolled ? 'text-coral-400' : 'text-coral-200')
+                  : (isScrolled ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
+                }`}
               >
                 Home
               </button>
@@ -167,8 +169,10 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                 <button
                   key={cat.id}
                   onClick={() => handleCategoryClick(cat.id)}
-                  className={`text-sm font-medium transition-colors ${activeCategory === cat.id ? 'text-coral-400' : 'text-gray-700 hover:text-coral-400'
-                    }`}
+                  className={`text-sm font-medium transition-colors ${activeCategory === cat.id 
+                    ? (isScrolled ? 'text-coral-400' : 'text-coral-200')
+                    : (isScrolled ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
+                  }`}
                 >
                   {cat.name}
                 </button>
@@ -178,7 +182,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
             {/* Right Actions */}
             <div className="flex items-center gap-3 md:gap-4">
               {/* Virtual Try-On Upload */}
-              <label className={`p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer relative ${userImage ? 'bg-coral-100 ring-2 ring-coral-400/20' : ''}`} title="Upload Photo for Virtual Try-On">
+              <label className={`p-2 rounded-full hover:bg-white/20 transition-colors cursor-pointer relative ${userImage ? 'bg-coral-100 ring-2 ring-coral-400/20' : ''}`} title="Upload Photo for Virtual Try-On">
                 <input
                   type="file"
                   accept="image/*"
@@ -191,7 +195,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                     }
                   }}
                 />
-                <Camera className={`w-5 h-5 ${userImage ? 'text-coral-600' : 'text-gray-700'}`} />
+                <Camera className={`w-5 h-5 ${userImage ? 'text-coral-600' : (isScrolled ? 'text-gray-700' : 'text-white')}`} />
                 <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-coral-400 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
                   {userImage ? '✓' : '+'}
                 </span>
@@ -203,17 +207,17 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                   setIsSearchOpen(!isSearchOpen);
                   setShowSuggestions(true);
                 }}
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                className={`p-2 rounded-full transition-colors ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
               >
-                <Search className="w-5 h-5 text-gray-700" />
+                <Search className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
               </button>
 
               {/* Wishlist */}
               <button
                 onClick={onWishlistClick}
-                className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors relative"
+                className={`hidden sm:flex p-2 rounded-full transition-colors relative ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
               >
-                <Heart className="w-5 h-5 text-gray-700" />
+                <Heart className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
                 {wishlistItems.length > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-coral-400 text-white text-xs rounded-full flex items-center justify-center">
                     {wishlistItems.length}
@@ -224,9 +228,9 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               {/* Cart */}
               <button
                 onClick={onCartClick}
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors relative"
+                className={`p-2 rounded-full transition-colors relative ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
               >
-                <ShoppingBag className="w-5 h-5 text-gray-700" />
+                <ShoppingBag className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
                 {getCartCount() > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-coral-400 text-white text-xs rounded-full flex items-center justify-center">
                     {getCartCount()}
@@ -238,9 +242,9 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               {isAuthenticated && (
                 <button
                   onClick={() => setIsNotificationsOpen(true)}
-                  className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors relative"
+                  className={`hidden sm:flex p-2 rounded-full transition-colors relative ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
                 >
-                  <Bell className="w-5 h-5 text-gray-700" />
+                  <Bell className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
                   {unreadCount > 0 && (
                     <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                       {unreadCount > 9 ? '9+' : unreadCount}
@@ -256,11 +260,11 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               {isAuthenticated && user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors items-center gap-2 outline-none">
+                    <button className={`hidden sm:flex p-2 rounded-full transition-colors items-center gap-2 outline-none ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}>
                       <div className="w-8 h-8 rounded-full bg-coral-100 flex items-center justify-center text-coral-600 font-medium border border-coral-200">
                         {user.name.charAt(0).toUpperCase()}
                       </div>
-                      <span className="text-sm font-medium text-gray-700 hidden xl:inline">
+                      <span className={`text-sm font-medium hidden xl:inline ${isScrolled ? 'text-gray-700' : 'text-white'}`}>
                         {user.name.split(' ')[0]}
                       </span>
                     </button>
@@ -302,22 +306,22 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               ) : (
                 <button
                   onClick={onAuthClick}
-                  className="hidden sm:flex p-2 rounded-full hover:bg-gray-100 transition-colors items-center gap-2"
+                  className={`hidden sm:flex p-2 rounded-full transition-colors items-center gap-2 ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
                 >
-                  <User className="w-5 h-5 text-gray-700" />
-                  <span className="text-sm text-gray-700 hidden xl:inline">Sign In</span>
+                  <User className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
+                  <span className={`text-sm hidden xl:inline ${isScrolled ? 'text-gray-700' : 'text-white'}`}>Sign In</span>
                 </button>
               )}
 
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-full hover:bg-gray-100 transition-colors"
+                className={`lg:hidden p-2 rounded-full transition-colors ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-5 h-5 text-gray-700" />
+                  <X className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
                 ) : (
-                  <Menu className="w-5 h-5 text-gray-700" />
+                  <Menu className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
                 )}
               </button>
             </div>
