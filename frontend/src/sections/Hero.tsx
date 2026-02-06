@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useCategory } from '@/context/CategoryContext';
+
 
 const slides = [
   {
@@ -24,7 +24,6 @@ const slides = [
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const { setActiveCategory } = useCategory();
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const nextSlide = () => {
@@ -59,11 +58,10 @@ export default function Hero() {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-all duration-1000 ease-out ${
-            index === currentSlide
-              ? 'opacity-100 scale-100'
-              : 'opacity-0 scale-105'
-          }`}
+          className={`absolute inset-0 transition-all duration-1000 ease-out ${index === currentSlide
+            ? 'opacity-100 scale-100'
+            : 'opacity-0 scale-105'
+            }`}
         >
           <img
             src={slide.image}
@@ -85,33 +83,30 @@ export default function Hero() {
             >
               {/* Subtitle */}
               <p
-                className={`text-gold-400 text-sm md:text-base font-medium tracking-widest uppercase mb-4 transition-all duration-700 delay-100 ${
-                  index === currentSlide
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-4'
-                }`}
+                className={`text-gold-400 text-sm md:text-base font-medium tracking-widest uppercase mb-4 transition-all duration-700 delay-100 ${index === currentSlide
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4'
+                  }`}
               >
                 {slide.subtitle}
               </p>
 
               {/* Title */}
               <h1
-                className={`font-display text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-6 transition-all duration-700 delay-200 ${
-                  index === currentSlide
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-8'
-                }`}
+                className={`font-display text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-6 transition-all duration-700 delay-200 ${index === currentSlide
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
+                  }`}
               >
                 {slide.title}
               </h1>
 
               {/* Description */}
               <p
-                className={`text-white/80 text-lg md:text-xl max-w-lg mb-8 transition-all duration-700 delay-300 ${
-                  index === currentSlide
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-4'
-                }`}
+                className={`text-white/80 text-lg md:text-xl max-w-lg mb-8 transition-all duration-700 delay-300 ${index === currentSlide
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4'
+                  }`}
               >
                 {slide.description}
               </p>
@@ -119,11 +114,10 @@ export default function Hero() {
               {/* CTA Button */}
               <button
                 onClick={handleCTAClick}
-                className={`group flex items-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-full font-medium transition-all duration-700 delay-400 hover:bg-coral-400 hover:text-white ${
-                  index === currentSlide
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-4'
-                }`}
+                className={`group flex items-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-full font-medium transition-all duration-700 delay-400 hover:bg-coral-400 hover:text-white ${index === currentSlide
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-4'
+                  }`}
               >
                 {slide.cta}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -153,11 +147,10 @@ export default function Hero() {
                   setTimeout(() => setIsAnimating(false), 800);
                 }
               }}
-              className={`w-12 h-1 rounded-full transition-all duration-300 ${
-                index === currentSlide
-                  ? 'bg-white'
-                  : 'bg-white/40 hover:bg-white/60'
-              }`}
+              className={`w-12 h-1 rounded-full transition-all duration-300 ${index === currentSlide
+                ? 'bg-white'
+                : 'bg-white/40 hover:bg-white/60'
+                }`}
             />
           ))}
         </div>

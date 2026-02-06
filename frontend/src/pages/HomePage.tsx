@@ -11,7 +11,7 @@ interface HomePageProps {
   onImageSearchResults: (results: Product[]) => void;
 }
 
-export default function HomePage({ imageSearchResults, onImageSearchResults }: HomePageProps) {
+export default function HomePage({ imageSearchResults }: HomePageProps) {
   const navigate = useNavigate();
 
   const handleProductClick = (product: Product) => {

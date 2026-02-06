@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Minus, Plus, MessageSquare, ChevronLeft, Camera } from 'lucide-react';
+import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Minus, Plus, MessageSquare, Camera } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
@@ -131,13 +131,13 @@ export default function ProductPage() {
           <div className="space-y-4">
             <div className="aspect-square bg-muted rounded-lg overflow-hidden">
               <img
-                src={product.images[activeImage]}
+                src={product.images?.[activeImage]}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="grid grid-cols-4 gap-2">
-              {product.images.map((image, index) => (
+              {product.images?.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveImage(index)}
@@ -192,8 +192,8 @@ export default function ProductPage() {
                       key={color}
                       onClick={() => setSelectedColor(color)}
                       className={`px-4 py-2 rounded-md border-2 text-sm font-medium ${selectedColor === color
-                          ? 'border-primary bg-primary text-primary-foreground'
-                          : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'
+                        ? 'border-primary bg-primary text-primary-foreground'
+                        : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'
                         }`}
                     >
                       {color}
@@ -213,8 +213,8 @@ export default function ProductPage() {
                       key={size}
                       onClick={() => setSelectedSize(size)}
                       className={`px-4 py-2 rounded-md border-2 text-sm font-medium ${selectedSize === size
-                          ? 'border-primary bg-primary text-primary-foreground'
-                          : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'
+                        ? 'border-primary bg-primary text-primary-foreground'
+                        : 'border-input bg-background hover:bg-accent hover:text-accent-foreground'
                         }`}
                     >
                       {size}
@@ -366,7 +366,7 @@ export default function ProductPage() {
           onClose={() => setShowReviewShare(false)}
           productId={product.id}
           productName={product.name}
-          productImage={product.images[0]}
+          productImage={product.images?.[0] || ''}
         />
       )}
 

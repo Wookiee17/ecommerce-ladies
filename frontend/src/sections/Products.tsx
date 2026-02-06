@@ -34,7 +34,7 @@ export default function Products({ onProductClick, imageSearchResults }: Product
   const sectionRef = useRef<HTMLElement>(null);
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
-  const { activeCategory, getBackgroundClass } = useCategory();
+  const { getBackgroundClass } = useCategory();
   const { getSearchResults, addToHistory } = useSearch();
 
   useEffect(() => {

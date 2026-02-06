@@ -47,10 +47,9 @@ export default function SellerDashboard() {
         image: ''
     });
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-    
+
     // Seller Stats
     const [sellerStats, setSellerStats] = useState<any>(null);
-    const [sellerInfo, setSellerInfo] = useState<any>(null);
 
     const salesData = [
         { name: 'Mon', sales: 12 },
@@ -86,7 +85,6 @@ export default function SellerDashboard() {
             // Fetch seller dashboard data
             const { data } = await api.get('/seller/dashboard');
             setSellerStats(data.data.stats);
-            setSellerInfo(data.data.sellerInfo);
         } catch (error) {
             console.error('Failed to fetch seller dashboard', error);
             // Fallback to mock data
@@ -189,38 +187,38 @@ export default function SellerDashboard() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {/* Stats */}
                             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-3 bg-green-100 rounded-xl text-green-600">
-                                                <DollarSign className="w-6 h-6" />
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-gray-500">Total Earnings</p>
-                                                <p className="text-2xl font-bold text-gray-900">${sellerStats?.totalEarnings?.toLocaleString() || '0'}</p>
-                                            </div>
-                                        </div>
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-3 bg-green-100 rounded-xl text-green-600">
+                                        <DollarSign className="w-6 h-6" />
                                     </div>
-                                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-3 bg-purple-100 rounded-xl text-purple-600">
-                                                <ShoppingBag className="w-6 h-6" />
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-gray-500">Total Sales</p>
-                                                <p className="text-2xl font-bold text-gray-900">{sellerStats?.totalSales || '0'}</p>
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <p className="text-sm text-gray-500">Total Earnings</p>
+                                        <p className="text-2xl font-bold text-gray-900">${sellerStats?.totalEarnings?.toLocaleString() || '0'}</p>
                                     </div>
-                                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="p-3 bg-blue-100 rounded-xl text-blue-600">
-                                                <Package className="w-6 h-6" />
-                                            </div>
-                                            <div>
-                                                <p className="text-sm text-gray-500">Active Products</p>
-                                                <p className="text-2xl font-bold text-gray-900">{sellerStats?.activeProducts || '0'}</p>
-                                            </div>
-                                        </div>
+                                </div>
+                            </div>
+                            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-3 bg-purple-100 rounded-xl text-purple-600">
+                                        <ShoppingBag className="w-6 h-6" />
                                     </div>
+                                    <div>
+                                        <p className="text-sm text-gray-500">Total Sales</p>
+                                        <p className="text-2xl font-bold text-gray-900">{sellerStats?.totalSales || '0'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="p-3 bg-blue-100 rounded-xl text-blue-600">
+                                        <Package className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-gray-500">Active Products</p>
+                                        <p className="text-2xl font-bold text-gray-900">{sellerStats?.activeProducts || '0'}</p>
+                                    </div>
+                                </div>
+                            </div>
 
                             {/* Chart */}
                             <div className="md:col-span-2 lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">

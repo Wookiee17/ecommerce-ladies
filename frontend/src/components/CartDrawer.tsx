@@ -1,10 +1,9 @@
 import { useCart } from '@/context/CartContext';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ShoppingBag, X, Plus, Minus, ArrowRight, Truck } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -15,7 +14,6 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, removeFromCart, updateQuantity, subtotal, total, coupon, applyCoupon, removeCoupon } = useCart();
   const [couponCode, setCouponCode] = useState('');
   const [couponError, setCouponError] = useState('');
-  const navigate = useNavigate();
 
   const FREE_SHIPPING_THRESHOLD = 5000;
   const progress = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);

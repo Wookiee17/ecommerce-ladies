@@ -1,7 +1,7 @@
 import { useWishlist } from '@/context/WishlistContext';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { Heart, X, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Heart, X, ShoppingBag } from 'lucide-react';
 
 interface WishlistDrawerProps {
   isOpen: boolean;

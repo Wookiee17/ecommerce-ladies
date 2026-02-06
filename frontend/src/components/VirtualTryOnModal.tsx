@@ -10,7 +10,7 @@ interface VirtualTryOnModalProps {
   product: {
     id: string;
     name: string;
-    images: string[];
+    images?: string[];
     category: string;
   };
 }
@@ -42,19 +42,20 @@ export default function VirtualTryOnModal({ isOpen, onClose, product }: VirtualT
     try {
       const formData = new FormData();
       formData.append('userImage', userImage);
-      formData.append('productImage', product.images[0]);
+      if (product.images && product.images[0]) {
+        formData.append('productImage', product.images[0]);
+      }
       formData.append('prompt', constructPrompt(product.category));
       formData.append('temperature', '0.4');
 
-      // This is a placeholder for the actual API call
-      // const response = await api.post('/virtual-try-on', formData, {
-      //   headers: { 'Content-Type': 'multipart/form-data' },
-      // });
-      // setGeneratedImage(response.data.imageUrl);
+      const response = await api.post('/try-on/virtual-try-on', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+        responseType: 'arraybuffer',
+      });
 
-      // Simulate API call with a timeout
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setGeneratedImage('https://via.placeholder.com/512x512.png?text=Generated+Image');
+      const imageBlob = new Blob([response.data], { type: 'image/png' });
+      const imageUrl = URL.createObjectURL(imageBlob);
+      setGeneratedImage(imageUrl);
 
 
     } catch (err) {

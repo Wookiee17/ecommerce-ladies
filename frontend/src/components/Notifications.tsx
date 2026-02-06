@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Bell, Trash2, Package, Tag, Info } from 'lucide-react';
 import { useState } from 'react';
