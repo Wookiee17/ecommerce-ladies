@@ -20,6 +20,19 @@ This project uses Google's Gemini models ("Nano Banana") for Virtual Try-On feat
       ```
     - Restart your backend server (`npm run dev`).
 
+## Deployment (Live Server)
+
+Since `.env` files are ignored by git (for security), you must manually add your secrets to your hosting dashboard.
+
+### If using Render (as configured):
+1.  Go to your **Render Dashboard**.
+2.  Select your backend service (`evara-backend`).
+3.  Click on **Environment**.
+4.  Click **Add Environment Variable**.
+5.  Key: `GOOGLE_API_KEY`
+6.  Value: `AIza...` (your copied key).
+7.  Save changes. Render will automatically redeploy your app.
+
 ## Troubleshooting
 - **Limit Exceeded**: If the feature stops working, check your quote usage in the Google Cloud Console.
 - **Image Generation**: If you only get text descriptions, ensure your project has access to `imagen` models or wait for wider rollout of multimodal generation in `gemini-flash`.
