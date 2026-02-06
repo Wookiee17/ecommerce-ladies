@@ -23,27 +23,29 @@ router.post('/seed', async (req, res) => {
     // Base images - jewelry and beauty use local images, dresses use working external URLs
     const getLocalImage = (category, index) => {
       const num = (index % 50) + 1; // Cycle through 1-50
+      const cacheBust = Date.now(); // Force cache refresh
       
-      // Dress images currently contain shoes (wrong content), use working Unsplash URLs instead
+      // Dress images currently contain shoes (wrong content), use picsum.photos with seeds
       if (category === 'dress') {
+        // Using fashion/dress related images from pexels
         const dressImages = [
-          'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&q=80',
-          'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&q=80',
-          'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&q=80',
-          'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=80',
-          'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&q=80',
-          'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=80',
-          'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&q=80',
-          'https://images.unsplash.com/photo-1572804013389-4ed247350cb5?w=500&q=80',
-          'https://images.unsplash.com/photo-1550614000-4b9519e02d48?w=500&q=80',
-          'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500&q=80'
+          `https://images.pexels.com/photos/1624051/pexels-photo-1624051.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1144834/pexels-photo-1144834.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/985635/pexels-photo-985635.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1078958/pexels-photo-1078958.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1381556/pexels-photo-1381556.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1036622/pexels-photo-1036622.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1557843/pexels-photo-1557843.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1082528/pexels-photo-1082528.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`,
+          `https://images.pexels.com/photos/1163194/pexels-photo-1163194.jpeg?auto=compress&cs=tinysrgb&w=500&cb=${cacheBust}`
         ];
         return dressImages[index % dressImages.length];
       }
       
       // Jewelry and beauty use local images
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
-      return `${frontendUrl}/images/${category}-${num}.jpg`;
+      return `${frontendUrl}/images/${category}-${num}.jpg?cb=${cacheBust}`;
     };
 
     const random = (arr) => arr[Math.floor(Math.random() * arr.length)];

@@ -37,19 +37,26 @@ export const TryOnProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         setError(null);
 
         try {
-            // 1. Fetch product image as blob (proxy through frontend if needed to avoid CORS, or trust backend handles URL)
-            // Actually, our backend endpoint expects a FILE upload for product image too.
-            // So we need to fetch the product image URL and convert to Blob.
-
-            const productResponse = await fetch(productImageUrl);
-            const productBlob = await productResponse.blob();
+            console.log("Generating Try-On for:", { productId, productImageUrl });
 
             const formData = new FormData();
             formData.append('userImage', userImage);
-            formData.append('productImage', productBlob, 'product.jpg');
+
+            // Backend now supports URL string for productImage. 
+            // Sending URL is more robust and faster than frontend fetch-and-upload.
+            if (typeof productImageUrl === 'string') {
+                formData.append('productImage', productImageUrl);
+            } else {
+                console.error("Invalid productImageUrl type:", typeof productImageUrl, productImageUrl);
+                setError("Invalid product image data.");
+                setLoading(false);
+                return;
+            }
+
             formData.append('prompt', "Generate a realistic virtual try-on image.");
 
-            const response = await axios.post('http://localhost:5000/api/try-on/virtual-try-on', formData, {
+            const apiBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+            const response = await axios.post(`${apiBaseUrl}/try-on/virtual-try-on`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
