@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "echo \"Error: Use 'npm run server' for backend and 'npm run client' for frontend\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.2.3",

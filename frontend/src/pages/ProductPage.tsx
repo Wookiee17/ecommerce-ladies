@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Minus, Plus, MessageSquare, ChevronLeft } from 'lucide-react';
+import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Minus, Plus, MessageSquare, ChevronLeft, Camera } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ReviewShareModal from '@/components/ReviewShareModal';
 import ProductSuggestions from '@/components/ProductSuggestions';
+import VirtualTryOnModal from '@/components/VirtualTryOnModal';
 import { api } from '@/lib/api';
 import type { Product } from '@/data/products';
 
@@ -23,6 +24,7 @@ export default function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [showReviewShare, setShowReviewShare] = useState(false);
+  const [showVirtualTryOn, setShowVirtualTryOn] = useState(false);
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { setActiveCategory } = useCategory();
@@ -246,13 +248,22 @@ export default function ProductPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4">
-              <Button onClick={handleAddToCart} size="lg" className="flex-1">
+            <div className="flex flex-wrap gap-4">
+              <Button onClick={handleAddToCart} size="lg" className="flex-1 min-w-[150px]">
                 <ShoppingBag className="mr-2 h-5 w-5" />
                 Add to Cart
               </Button>
-              <Button onClick={handleBuyNow} size="lg" variant="outline" className="flex-1">
+              <Button onClick={handleBuyNow} size="lg" variant="outline" className="flex-1 min-w-[150px]">
                 Buy Now
+              </Button>
+              <Button
+                onClick={() => setShowVirtualTryOn(true)}
+                size="lg"
+                variant="outline"
+                className="flex-1 min-w-[150px]"
+              >
+                <Camera className="mr-2 h-5 w-5" />
+                Virtual Try-On
               </Button>
               <Button
                 onClick={() => toggleWishlist(product)}
@@ -356,6 +367,14 @@ export default function ProductPage() {
           productId={product.id}
           productName={product.name}
           productImage={product.images[0]}
+        />
+      )}
+
+      {showVirtualTryOn && (
+        <VirtualTryOnModal
+          isOpen={showVirtualTryOn}
+          onClose={() => setShowVirtualTryOn(false)}
+          product={product}
         />
       )}
     </div>
