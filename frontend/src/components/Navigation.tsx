@@ -13,7 +13,9 @@ import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
 import { useAuth } from '@/context/AuthContext';
 import { useSearch } from '@/context/SearchContext';
+import { useTryOn } from '@/context/TryOnContext';
 import { categories } from '@/data/products';
+import { Shirt } from 'lucide-react'; // Assuming Shirt exists, if not use User for now
 import Notifications from '@/components/Notifications';
 
 interface NavigationProps {
@@ -39,6 +41,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const { activeCategory, setActiveCategory } = useCategory();
   const { isAuthenticated, user } = useAuth();
   const { recentSearches, trendingSearches, getSuggestions, addToHistory } = useSearch();
+  const { uploadUserImage, userImage } = useTryOn();
 
   // Fetch unread count periodically
   useEffect(() => {
@@ -175,6 +178,26 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
 
             {/* Right Actions */}
             <div className="flex items-center gap-3 md:gap-4">
+              {/* Virtual Try-On Upload */}
+              <label className={`p-2 rounded-full hover:bg-gray-100 transition-colors cursor-pointer relative ${userImage ? 'bg-coral-100 ring-2 ring-coral-400/20' : ''}`} title="Upload Photo for Virtual Try-On">
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      uploadUserImage(file);
+                      alert("Profile photo uploaded! Now click 'Try On' on any product.");
+                    }
+                  }}
+                />
+                <Shirt className={`w-5 h-5 ${userImage ? 'text-coral-600' : 'text-gray-700'}`} />
+                <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-coral-400 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
+                  {userImage ? '✓' : '+'}
+                </span>
+              </label>
+
               {/* Search */}
               <button
                 onClick={() => {

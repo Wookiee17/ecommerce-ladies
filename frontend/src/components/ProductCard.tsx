@@ -2,6 +2,8 @@ import { Heart, ShoppingCart, Star } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/data/products';
+import { useTryOn } from '@/context/TryOnContext';
+import { Loader2 } from 'lucide-react'; // For loading state
 
 interface ProductCardProps {
   product: Product;
@@ -10,6 +12,24 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onClick, viewMode = 'grid' }: ProductCardProps) {
+  const { userImage, generatedImages, generateTryOn, loading } = useTryOn();
+
+  // Check if we have a generated image for this product
+  const productId = (product as any)._id || product.id;
+  const tryOnImage = generatedImages.get(productId);
+  const displayImage = tryOnImage || product.image;
+
+  const isGenerating = loading && !tryOnImage && userImage; // Simplify loading logic scope if needed
+
+  const handleTryOnClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (userImage) {
+      await generateTryOn((product as any)._id || product.id, product.image);
+    } else {
+      alert("Please upload your photo in the header first!");
+    }
+  };
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-IN', {
       style: 'currency',
@@ -20,7 +40,7 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
 
   if (viewMode === 'list') {
     return (
-      <div 
+      <div
         onClick={onClick}
         className="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
       >
@@ -65,11 +85,10 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < Math.floor(product.rating)
-                          ? 'fill-yellow-400 text-yellow-400'
-                          : 'text-gray-300'
-                      }`}
+                      className={`w-4 h-4 ${i < Math.floor(product.rating)
+                        ? 'fill-yellow-400 text-yellow-400'
+                        : 'text-gray-300'
+                        }`}
                     />
                   ))}
                 </div>
@@ -129,14 +148,14 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
 
   // Grid view
   return (
-    <div 
+    <div
       onClick={onClick}
       className="group bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
     >
       {/* Image Container */}
       <div className="relative aspect-[3/4] overflow-hidden">
         <img
-          src={product.image}
+          src={displayImage}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
@@ -153,6 +172,22 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
             <Badge className="bg-red-500 text-white">
               {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
             </Badge>
+          )}
+
+          {/* Virtual Try-On Badge/Button */}
+          {((product.category as string) === 'women' || (product.category as string) === 'jewelry') && ( // Simple category check
+            <Button
+              variant="secondary"
+              size="sm"
+              className={`text-xs h-7 shadow-sm backdrop-blur-md ${tryOnImage ? 'bg-green-100 text-green-700' : 'bg-white/80'}`}
+              onClick={handleTryOnClick}
+            >
+              {/* Show different states */}
+              {/* 1. If loading globally, and we don't know specifically which ID is loading, we might show generic. But let's assume global loading for now. Ideal: track loading ID. */}
+              {/* Simplification: If global loading is true, we show spinner here if we don't have an image yet? No, that's messy. Global loading blocks everything in current context. */}
+              {loading && !tryOnImage ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : null}
+              {tryOnImage ? 'View Original' : userImage ? 'Try On Me' : 'Virtual Try-On'}
+            </Button>
           )}
         </div>
 
@@ -182,11 +217,10 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className={`w-3 h-3 ${
-                  i < Math.floor(product.rating)
-                    ? 'fill-yellow-400 text-yellow-400'
-                    : 'text-gray-300'
-                }`}
+                className={`w-3 h-3 ${i < Math.floor(product.rating)
+                  ? 'fill-yellow-400 text-yellow-400'
+                  : 'text-gray-300'
+                  }`}
               />
             ))}
           </div>
@@ -212,8 +246,8 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
               <span
                 key={color}
                 className="w-5 h-5 rounded-full border border-gray-200"
-                style={{ 
-                  backgroundColor: color.toLowerCase() === 'white' ? '#f9fafb' : 
+                style={{
+                  backgroundColor: color.toLowerCase() === 'white' ? '#f9fafb' :
                     color.toLowerCase() === 'black' ? '#1f2937' : color.toLowerCase()
                 }}
                 title={color}

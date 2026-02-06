@@ -64,6 +64,14 @@ export default defineConfig({
     host: true,
     // Enable HMR
     hmr: true,
+    // Proxy for local development
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   // Preview server configuration
   preview: {
