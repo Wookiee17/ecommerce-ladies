@@ -2,9 +2,37 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 exports.generate = async (req, res) => {
   try {
-    const { prompt } = req.body; // temperature is less relevant for image gen via flash, but we could use it if supported
+    const { prompt } = req.body;
+
+    // Validate User Image (Must be a file for now)
+    if (!req.files || !req.files.userImage) {
+      return res.status(400).json({ message: 'User image is required (file upload).' });
+    }
     const userImage = req.files.userImage[0];
-    const productImage = req.files.productImage[0];
+
+    // Handle Product Image (File OR URL)
+    let productImageBuffer;
+    let productImageMimeType;
+
+    if (req.files && req.files.productImage) {
+      // Case 1: File Upload
+      const img = req.files.productImage[0];
+      productImageBuffer = img.buffer;
+      productImageMimeType = img.mimetype;
+    } else if (req.body.productImage && typeof req.body.productImage === 'string') {
+      // Case 2: URL String
+      try {
+        const response = await fetch(req.body.productImage);
+        if (!response.ok) throw new Error('Failed to fetch product image from URL');
+        const arrayBuffer = await response.arrayBuffer();
+        productImageBuffer = Buffer.from(arrayBuffer);
+        productImageMimeType = response.headers.get('content-type') || 'image/jpeg';
+      } catch (err) {
+        return res.status(400).json({ message: 'Failed to process product image URL.', error: err.message });
+      }
+    } else {
+      return res.status(400).json({ message: 'Product image is required (file upload or URL).' });
+    }
 
     const googleApiKey = process.env.GOOGLE_API_KEY;
     if (!googleApiKey) {
@@ -12,8 +40,6 @@ exports.generate = async (req, res) => {
     }
 
     const genAI = new GoogleGenerativeAI(googleApiKey);
-    // Attempting to use the experimental Gemini 2.0 Flash model (aligned with "Nano Banana")
-    // which has enhanced multimodal capabilities.
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
     const userImagePart = {
@@ -25,8 +51,8 @@ exports.generate = async (req, res) => {
 
     const productImagePart = {
       inlineData: {
-        data: productImage.buffer.toString("base64"),
-        mimeType: productImage.mimetype,
+        data: productImageBuffer.toString("base64"),
+        mimeType: productImageMimeType,
       },
     };
 

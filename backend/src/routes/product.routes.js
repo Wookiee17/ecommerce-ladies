@@ -20,9 +20,28 @@ router.post('/seed', async (req, res) => {
       'beauty': ['Lipstick', 'Serum', 'Moisturizer', 'Foundation', 'Perfume', 'Eye Shadow', 'Mascara']
     };
 
-    // Base images - using local images from frontend/public/images
+    // Base images - jewelry and beauty use local images, dresses use working external URLs
     const getLocalImage = (category, index) => {
       const num = (index % 50) + 1; // Cycle through 1-50
+      
+      // Dress images currently contain shoes (wrong content), use working Unsplash URLs instead
+      if (category === 'dress') {
+        const dressImages = [
+          'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&q=80',
+          'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&q=80',
+          'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500&q=80',
+          'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=80',
+          'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&q=80',
+          'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=80',
+          'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&q=80',
+          'https://images.unsplash.com/photo-1572804013389-4ed247350cb5?w=500&q=80',
+          'https://images.unsplash.com/photo-1550614000-4b9519e02d48?w=500&q=80',
+          'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=500&q=80'
+        ];
+        return dressImages[index % dressImages.length];
+      }
+      
+      // Jewelry and beauty use local images
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
       return `${frontendUrl}/images/${category}-${num}.jpg`;
     };
