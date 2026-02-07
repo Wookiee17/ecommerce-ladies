@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { CartProvider } from '@/context/CartContext';
 import { WishlistProvider } from '@/context/WishlistContext';
 import { CategoryProvider } from '@/context/CategoryContext';
-import { AuthProvider } from '@/context/AuthContext';
 import { SearchProvider } from '@/context/SearchContext';
 import Navigation from '@/components/Navigation';
 import CartDrawer from '@/components/CartDrawer';
@@ -102,16 +101,14 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <CategoryProvider>
-        <SearchProvider>
-          <CartProvider>
-            <WishlistProvider>
-              <AppContent />
-            </WishlistProvider>
-          </CartProvider>
-        </SearchProvider>
-      </CategoryProvider>
-    </AuthProvider>
+    <CategoryProvider>
+      <SearchProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <AppContent />
+          </WishlistProvider>
+        </CartProvider>
+      </SearchProvider>
+    </CategoryProvider>
   );
 }
