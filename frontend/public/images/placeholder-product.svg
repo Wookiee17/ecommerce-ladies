@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <rect width="400" height="500" fill="#f3f4f6"/>
+  <text x="200" y="250" font-family="Arial, sans-serif" font-size="24" fill="#9ca3af" text-anchor="middle">
+    Product Image
+  </text>
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="16" fill="#d1d5db" text-anchor="middle">
+    No image available
+  </text>
+</svg>

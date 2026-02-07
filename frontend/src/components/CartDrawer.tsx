@@ -82,7 +82,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   <div key={`${item.product.id}-${item.selectedSize}-${item.selectedColor}`} className="flex gap-4 group">
                     <div className="w-24 h-32 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                       <img
-                        src={item.product.image || "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800"}
+                        src={item.product.image || "/images/placeholder-product.jpg"}
                         alt={item.product.name}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />

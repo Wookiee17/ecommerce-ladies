@@ -52,7 +52,7 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
               alt={product.name}
               className="w-full h-full object-cover"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=500&q=80';
+                (e.target as HTMLImageElement).src = '/images/placeholder-product.svg';
               }}
             />
           </div>
@@ -162,7 +162,7 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           onError={(e) => {
-            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=500&q=80';
+            (e.target as HTMLImageElement).src = '/images/placeholder-product.svg';
           }}
         />
 
