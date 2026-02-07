@@ -9,7 +9,7 @@ interface VirtualTryOnModalProps {
   product: {
     id: string;
     name: string;
-    images?: string[];
+    images?: (string | { url?: string; isPrimary?: boolean })[];
     category: string;
   };
 }
@@ -42,7 +42,10 @@ export default function VirtualTryOnModal({ isOpen, onClose, product }: VirtualT
       const formData = new FormData();
       formData.append('userImage', userImage);
       if (product.images && product.images[0]) {
-        formData.append('productImage', product.images[0]);
+        // Handle both object format {url, isPrimary} and string format
+        const firstImage = product.images[0];
+        const imageUrl = typeof firstImage === 'string' ? firstImage : firstImage?.url || '';
+        formData.append('productImage', imageUrl);
       }
       formData.append('prompt', constructPrompt(product.category));
       formData.append('temperature', '0.4');
