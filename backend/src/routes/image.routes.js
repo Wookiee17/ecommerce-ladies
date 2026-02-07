@@ -109,25 +109,20 @@ router.get('/:imageId', optionalAuth, async (req, res) => {
 
     // Convert MongoDB Binary to Buffer
     let imageData = image.data;
-    if (imageData && typeof imageData === 'object' && !Buffer.isBuffer(imageData)) {
-      console.log('Converting from MongoDB Binary...');
+    if (imageData && typeof imageData === 'object') {
       if (imageData.buffer) {
+        // MongoDB Binary type with buffer property
         imageData = Buffer.from(imageData.buffer);
-        console.log('Converted via buffer property, length:', imageData.length);
       } else if (imageData._bsontype === 'Binary') {
+        // Legacy MongoDB Binary
         imageData = Buffer.from(imageData.read(0, imageData.length()));
-        console.log('Converted via _bsontype, length:', imageData.length);
+      } else if (Buffer.isBuffer(imageData)) {
+        // Already a buffer but might be Mongoose buffer - clone it
+        imageData = Buffer.from(imageData);
       } else {
+        // Try generic conversion
         imageData = Buffer.from(imageData);
       }
-    } else if (Buffer.isBuffer(imageData)) {
-      console.log('Already Buffer, length:', imageData.length);
-    } else if (imageData) {
-      imageData = Buffer.from(imageData);
-      console.log('Converted to Buffer, length:', imageData.length);
-    } else {
-      console.log('No image data!');
-      return res.status(500).json({ success: false, message: 'Image data corrupted' });
     }
 
     res.set('Content-Type', image.mimeType);
