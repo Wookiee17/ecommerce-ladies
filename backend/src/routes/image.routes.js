@@ -14,13 +14,17 @@ router.get('/test', (req, res) => {
 router.get('/check-db', async (req, res) => {
   try {
     const count = await Image.countDocuments();
+    // Try to find first image
+    const firstImage = await Image.findOne().lean();
     res.json({ 
       message: 'DB check',
       imageCount: count,
+      firstImageId: firstImage ? firstImage._id.toString() : null,
+      firstImageFilename: firstImage ? firstImage.filename : null,
       mongooseConnected: mongoose.connection.readyState === 1
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message, stack: error.stack });
   }
 });
 
