@@ -16,6 +16,7 @@ import ProductsPage from '@/pages/ProductsPage';
 import ProductPage from '@/pages/ProductPage';
 import AdminDashboard from '@/pages/AdminDashboard';
 import SellerDashboard from '@/pages/SellerDashboard';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
 import type { Product } from '@/data/products';
 
 function AppContent() {
@@ -64,8 +65,16 @@ function AppContent() {
           />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/seller/dashboard" element={<SellerDashboard />} />
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/seller/dashboard" element={
+            <ProtectedRoute allowedRoles={['seller']}>
+              <SellerDashboard />
+            </ProtectedRoute>
+          } />
         </Routes>
       </main>
 

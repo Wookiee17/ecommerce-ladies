@@ -446,39 +446,51 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          className={`lg:hidden absolute top-full left-0 right-0 z-50 overflow-hidden transition-all duration-300 shadow-xl ${isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
             }`}
         >
-          <div className="section-padding py-4 bg-white/95 backdrop-blur-lg border-t space-y-2">
+          <div className="px-4 py-4 bg-white border-t space-y-1">
             <button
-              onClick={() => handleCategoryClick('all')}
-              className="block w-full text-left py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors font-medium"
+              onClick={() => {
+                handleCategoryClick('all');
+                setIsMobileMenuOpen(false);
+              }}
+              className="block w-full text-left py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors font-medium text-gray-800"
             >
               Home
             </button>
             {categories.map((cat: { id: string; name: string }) => (
               <button
                 key={cat.id}
-                onClick={() => handleCategoryClick(cat.id)}
-                className="block w-full text-left py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors font-medium"
+                onClick={() => {
+                  handleCategoryClick(cat.id);
+                  setIsMobileMenuOpen(false);
+                }}
+                className="block w-full text-left py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors font-medium text-gray-800"
               >
                 {cat.name}
               </button>
             ))}
-            <div className="pt-4 border-t flex gap-4">
+            <div className="pt-3 mt-2 border-t border-gray-200 space-y-1">
               <button
-                onClick={onWishlistClick}
-                className="flex items-center gap-2 py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
+                onClick={() => {
+                  onWishlistClick();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex items-center gap-3 w-full py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors text-gray-800"
               >
-                <Heart className="w-5 h-5" />
-                <span>Wishlist ({wishlistItems.length})</span>
+                <Heart className="w-5 h-5 text-gray-600" />
+                <span className="font-medium">Wishlist ({wishlistItems.length})</span>
               </button>
               <button
-                onClick={onAuthClick}
-                className="flex items-center gap-2 py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
+                onClick={() => {
+                  onAuthClick();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex items-center gap-3 w-full py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors text-gray-800"
               >
-                <User className="w-5 h-5" />
-                <span>{isAuthenticated ? 'Profile' : 'Sign In'}</span>
+                <User className="w-5 h-5 text-gray-600" />
+                <span className="font-medium">{isAuthenticated ? 'Profile' : 'Sign In'}</span>
               </button>
             </div>
           </div>

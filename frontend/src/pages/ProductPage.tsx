@@ -109,12 +109,13 @@ export default function ProductPage() {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
-  // Construct full image URLs
+  // Construct full image URLs - handle both object format {url, isPrimary} and string format
   const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
   const baseUrl = backendUrl.replace('/api', '');
-  const fullImageUrls = product.images?.map((img: string) =>
-    img.startsWith('http') ? img : `${baseUrl}${img}`
-  ) || [];
+  const fullImageUrls = product.images?.map((img: any) => {
+    const url = typeof img === 'string' ? img : img?.url || '';
+    return url.startsWith('http') ? url : `${baseUrl}${url}`;
+  }) || [];
 
   return (
     <div className="min-h-screen bg-background">

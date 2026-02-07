@@ -2249,7 +2249,7 @@ export const categories = [
     id: 'dress',
     name: 'Dresses',
     description: 'Elegant dresses for every occasion',
-    image: '/images/dress-1.jpg',
+    image: '/images/category-dress.jpg',
     itemCount: 50,
     color: 'from-rose-500/20 to-pink-500/20'
   },
@@ -2257,7 +2257,7 @@ export const categories = [
     id: 'jewelry',
     name: 'Jewelry',
     description: 'Exquisite jewelry collection',
-    image: '/images/jewelry-1.jpg',
+    image: '/images/category-jewelry.jpg',
     itemCount: 50,
     color: 'from-amber-500/20 to-yellow-500/20'
   },
@@ -2265,7 +2265,7 @@ export const categories = [
     id: 'beauty',
     name: 'Beauty Electronics',
     description: 'Premium beauty devices',
-    image: '/images/beauty-1.jpg',
+    image: '/images/category-beauty.jpg',
     itemCount: 50,
     color: 'from-purple-500/20 to-violet-500/20'
   }
