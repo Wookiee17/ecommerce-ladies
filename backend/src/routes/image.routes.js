@@ -21,7 +21,9 @@ router.get('/check-db', async (req, res) => {
       imageCount: count,
       firstImageId: firstImage ? firstImage._id.toString() : null,
       firstImageFilename: firstImage ? firstImage.filename : null,
-      mongooseConnected: mongoose.connection.readyState === 1
+      mongooseConnected: mongoose.connection.readyState === 1,
+      databaseName: mongoose.connection.db ? mongoose.connection.db.databaseName : 'unknown',
+      connectionHost: mongoose.connection.host
     });
   } catch (error) {
     res.status(500).json({ error: error.message, stack: error.stack });
