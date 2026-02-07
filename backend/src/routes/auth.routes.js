@@ -199,6 +199,119 @@ router.put('/password', authenticate, async (req, res) => {
   }
 });
 
+// Get all addresses
+router.get('/addresses', authenticate, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('addresses');
+    res.json({
+      success: true,
+      data: user.addresses || []
+    });
+  } catch (error) {
+    console.error('Get addresses error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Add new address
+router.post('/addresses', authenticate, async (req, res) => {
+  try {
+    const { type, street, city, state, zipCode, country, isDefault } = req.body;
+    
+    const user = await User.findById(req.user._id);
+    
+    // If this is set as default, unset other defaults
+    if (isDefault) {
+      user.addresses.forEach(addr => addr.isDefault = false);
+    }
+    
+    user.addresses.push({
+      type: type || 'home',
+      street,
+      city,
+      state,
+      zipCode,
+      country: country || 'India',
+      isDefault: isDefault || false
+    });
+    
+    await user.save();
+    
+    res.json({
+      success: true,
+      message: 'Address added successfully',
+      data: user.addresses
+    });
+  } catch (error) {
+    console.error('Add address error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Update address
+router.put('/addresses/:addressId', authenticate, async (req, res) => {
+  try {
+    const { addressId } = req.params;
+    const updates = req.body;
+    
+    const user = await User.findById(req.user._id);
+    const address = user.addresses.id(addressId);
+    
+    if (!address) {
+      return res.status(404).json({ success: false, message: 'Address not found' });
+    }
+    
+    // If setting as default, unset others
+    if (updates.isDefault) {
+      user.addresses.forEach(addr => {
+        if (addr._id.toString() !== addressId) addr.isDefault = false;
+      });
+    }
+    
+    // Update fields
+    Object.keys(updates).forEach(key => {
+      if (key !== '_id') address[key] = updates[key];
+    });
+    
+    await user.save();
+    
+    res.json({
+      success: true,
+      message: 'Address updated successfully',
+      data: user.addresses
+    });
+  } catch (error) {
+    console.error('Update address error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Delete address
+router.delete('/addresses/:addressId', authenticate, async (req, res) => {
+  try {
+    const { addressId } = req.params;
+    
+    const user = await User.findById(req.user._id);
+    const address = user.addresses.id(addressId);
+    
+    if (!address) {
+      return res.status(404).json({ success: false, message: 'Address not found' });
+    }
+    
+    user.addresses.pull(addressId);
+    await user.save();
+    
+    res.json({
+      success: true,
+      message: 'Address deleted successfully',
+      data: user.addresses
+    });
+  } catch (error) {
+    console.error('Delete address error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 // Register as seller
 router.post('/register-seller', authenticate, async (req, res) => {
   try {

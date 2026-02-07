@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const mongoose = require('mongoose');
-const Image = require('../../models/image.model');
+const Image = require('../models/image.model');
 const { authenticate, optionalAuth } = require('../middleware/auth.middleware');
 
 // Test route to verify router is loaded
@@ -15,7 +15,7 @@ router.get('/check-db', async (req, res) => {
   try {
     const count = await Image.countDocuments();
     const firstImage = await Image.findOne().lean();
-    res.json({ 
+    res.json({
       message: 'DB check',
       imageCount: count,
       firstImageId: firstImage ? firstImage._id.toString() : null,
@@ -125,7 +125,7 @@ router.get('/:imageId', optionalAuth, async (req, res) => {
   try {
     console.log('DEBUG - Looking for image:', req.params.imageId);
     const image = await Image.findById(req.params.imageId).lean();
-    
+
     if (!image) {
       console.log('DEBUG - Image not found in DB');
       return res.status(404).json({ success: false, message: 'Image not found' });
@@ -139,12 +139,12 @@ router.get('/:imageId', optionalAuth, async (req, res) => {
 
     // Handle MongoDB Binary data
     let imageData = image.data;
-    
+
     // If it's a Mongoose Binary/BSON type, extract the buffer
     if (imageData && typeof imageData === 'object' && imageData._bsontype === 'Binary') {
       imageData = imageData.buffer || imageData.read(0, imageData.length());
     }
-    
+
     // Ensure it's a proper Buffer
     if (!Buffer.isBuffer(imageData)) {
       imageData = Buffer.from(imageData);
@@ -169,7 +169,7 @@ router.get('/:imageId', optionalAuth, async (req, res) => {
 router.get('/list/:category', optionalAuth, async (req, res) => {
   try {
     const { page = 1, limit = 20 } = req.query;
-    
+
     const query = { category: req.params.category };
     if (req.params.category === 'product' && req.query.productId) {
       query.productId = req.query.productId;
@@ -216,7 +216,7 @@ router.delete('/:imageId', authenticate, async (req, res) => {
   try {
     console.log('DEBUG - Deleting image:', req.params.imageId);
     const image = await Image.findByIdAndDelete(req.params.imageId);
-    
+
     if (!image) {
       console.log('DEBUG - Image not found');
       return res.status(404).json({ success: false, message: 'Image not found' });

@@ -42,7 +42,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const { activeCategory, setActiveCategory } = useCategory();
   const { isAuthenticated, user } = useAuth();
   const { recentSearches, trendingSearches, getSuggestions, addToHistory } = useSearch();
-  const { uploadUserPhoto, hasPhoto, userPhotoUrl, rateLimit } = useTryOn();
+  const { uploadUserPhoto, hasPhoto, rateLimit } = useTryOn();
 
   // Check if we are on the homepage
   const isHome = location.pathname === '/';

@@ -24,6 +24,14 @@ async function request(endpoint: string, options: RequestOptions = {}) {
     const response = await fetch(`${API_URL}${endpoint}`, config);
     const data = await response.json();
 
+    // Handle 401 Unauthorized - token expired or invalid
+    if (response.status === 401) {
+        localStorage.removeItem('evara_token');
+        localStorage.removeItem('evara_user');
+        window.location.href = '/?login=required';
+        throw new Error('Session expired. Please sign in again.');
+    }
+
     // Handle 304 Not Modified as success - browser returns cached response
     if (!response.ok && response.status !== 304) {
         throw new Error(data.message || 'API request failed');
