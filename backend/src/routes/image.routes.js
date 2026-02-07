@@ -1,12 +1,29 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const mongoose = require('mongoose');
 const Image = require('../../models/image.model');
 const { authenticate, optionalAuth } = require('../middleware/auth.middleware');
 
 // Test route to verify router is loaded
 router.get('/test', (req, res) => {
   res.json({ message: 'Image routes working', timestamp: new Date().toISOString() });
+});
+
+// Check DB connection and image count
+router.get('/check-db', async (req, res) => {
+  try {
+    const count = await Image.countDocuments();
+    const sample = await Image.findOne().select('_id filename').lean();
+    res.json({ 
+      message: 'DB check', 
+      imageCount: count,
+      sampleImage: sample,
+      mongooseConnected: mongoose.connection.readyState === 1
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Configure multer for memory storage
