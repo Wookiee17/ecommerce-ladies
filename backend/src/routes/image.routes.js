@@ -96,39 +96,41 @@ router.post('/upload-multiple', authenticate, upload.array('images', 10), async 
 // Get image by ID
 router.get('/:imageId', optionalAuth, async (req, res) => {
   try {
-    const image = await Image.findById(req.params.imageId);
+    const image = await Image.findById(req.params.imageId).lean();
     
     if (!image) {
-      console.log('Image not found:', req.params.imageId);
       return res.status(404).json({ success: false, message: 'Image not found' });
     }
 
-    console.log('Serving image:', image.filename, 'ID:', req.params.imageId);
-    console.log('Data type:', typeof image.data, 'Is Buffer:', Buffer.isBuffer(image.data));
-    console.log('Data keys:', image.data ? Object.keys(image.data) : 'no data');
+    // Debug logging
+    console.log('DEBUG - Image found:', image.filename);
+    console.log('DEBUG - Data type:', typeof image.data);
+    console.log('DEBUG - Is Buffer:', Buffer.isBuffer(image.data));
+    console.log('DEBUG - Data keys:', image.data ? Object.keys(image.data) : 'none');
+    console.log('DEBUG - _bsontype:', image.data?._bsontype);
 
-    // Convert MongoDB Binary to Buffer
+    // Handle MongoDB Binary data
     let imageData = image.data;
-    if (imageData && typeof imageData === 'object') {
-      if (imageData.buffer) {
-        // MongoDB Binary type with buffer property
-        imageData = Buffer.from(imageData.buffer);
-      } else if (imageData._bsontype === 'Binary') {
-        // Legacy MongoDB Binary
-        imageData = Buffer.from(imageData.read(0, imageData.length()));
-      } else if (Buffer.isBuffer(imageData)) {
-        // Already a buffer but might be Mongoose buffer - clone it
-        imageData = Buffer.from(imageData);
-      } else {
-        // Try generic conversion
-        imageData = Buffer.from(imageData);
-      }
+    
+    // If it's a Mongoose Binary/BSON type, extract the buffer
+    if (imageData && typeof imageData === 'object' && imageData._bsontype === 'Binary') {
+      imageData = imageData.buffer || imageData.read(0, imageData.length());
+    }
+    
+    // Ensure it's a proper Buffer
+    if (!Buffer.isBuffer(imageData)) {
+      imageData = Buffer.from(imageData);
     }
 
-    res.set('Content-Type', image.mimeType);
+    console.log('DEBUG - Final data length:', imageData.length);
+    console.log('DEBUG - First 4 bytes:', imageData.slice(0, 4).toString('hex'));
+
+    res.set('Content-Type', image.mimeType || 'image/jpeg');
     res.set('Content-Length', imageData.length);
     res.set('Cache-Control', 'public, max-age=31536000');
-    res.send(imageData);
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET');
+    res.end(imageData);
   } catch (error) {
     console.error('Get image error:', error);
     res.status(500).json({ success: false, message: 'Image not found' });

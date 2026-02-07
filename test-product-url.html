@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Product Image URL</title>
+</head>
+<body>
+    <h1>Testing Product Image URL Construction</h1>
+    
+    <h2>Direct API URL:</h2>
+    <img src="http://localhost:5000/api/images/6987282a43fae7e6e296d705" 
+         alt="Direct API" style="max-width: 200px; border: 2px solid blue;">
+    
+    <h2>Via Frontend URL (baseUrl + /api/images):</h2>
+    <img id="frontendUrl" alt="Frontend URL" style="max-width: 200px; border: 2px solid red;">
+    
+    <script>
+        // Simulate what ProductsPage.tsx does
+        const backendUrl = 'http://localhost:5000/api';
+        const baseUrl = backendUrl.replace('/api', '');
+        const primaryImage = '/api/images/6987282a43fae7e6e296d705';
+        const imageUrl = primaryImage.startsWith('http') 
+            ? primaryImage 
+            : `${baseUrl}${primaryImage}`;
+        
+        console.log('backendUrl:', backendUrl);
+        console.log('baseUrl:', baseUrl);
+        console.log('primaryImage:', primaryImage);
+        console.log('Final imageUrl:', imageUrl);
+        
+        document.getElementById('frontendUrl').src = imageUrl;
+    </script>
+</body>
+</html>
