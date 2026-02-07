@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera, Bell, LogOut, Package, Settings, MapPin } from 'lucide-react';
+import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera, Bell, LogOut, Package, Settings, MapPin, LayoutDashboard } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,7 +42,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const { activeCategory, setActiveCategory } = useCategory();
   const { isAuthenticated, user } = useAuth();
   const { recentSearches, trendingSearches, getSuggestions, addToHistory } = useSearch();
-  const { uploadUserImage, userImage } = useTryOn();
+  const { uploadUserPhoto, hasPhoto, userPhotoUrl, rateLimit } = useTryOn();
 
   // Check if we are on the homepage
   const isHome = location.pathname === '/';
@@ -143,8 +143,8 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${showScrolledStyle
-            ? 'bg-white/90 backdrop-blur-lg shadow-soft py-3'
-            : 'bg-transparent py-5'
+          ? 'bg-white/90 backdrop-blur-lg shadow-soft py-3'
+          : 'bg-transparent py-5'
           }`}
       >
         <div className="section-padding">
@@ -196,7 +196,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
             {/* Right Actions */}
             <div className="flex items-center gap-3 md:gap-4">
               {/* Virtual Try-On Upload */}
-              <label className={`p-2 rounded-full hover:bg-white/20 transition-colors cursor-pointer relative ${userImage ? 'bg-coral-100 ring-2 ring-coral-400/20' : ''}`} title="Upload Photo for Virtual Try-On">
+              <label className={`p-2 rounded-full hover:bg-white/20 transition-colors cursor-pointer relative ${hasPhoto ? 'bg-coral-100 ring-2 ring-coral-400/20' : ''}`} title={hasPhoto ? `Photo uploaded! ${rateLimit?.remaining || 0} generations remaining` : 'Upload Photo for Virtual Try-On'}>
                 <input
                   type="file"
                   accept="image/*"
@@ -204,14 +204,17 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     if (file) {
-                      uploadUserImage(file);
-                      alert("Profile photo uploaded! Now click 'Try On' on any product.");
+                      uploadUserPhoto(file).then((success: boolean) => {
+                        if (success) {
+                          alert("Profile photo uploaded! Now click 'Try On' on any product. You have 10 generations per 10 minutes.");
+                        }
+                      });
                     }
                   }}
                 />
-                <Camera className={`w-5 h-5 ${userImage ? 'text-coral-600' : (isScrolled ? 'text-gray-700' : 'text-white')}`} />
+                <Camera className={`w-5 h-5 ${hasPhoto ? 'text-coral-600' : (isScrolled ? 'text-gray-700' : 'text-white')}`} />
                 <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-coral-400 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
-                  {userImage ? '✓' : '+'}
+                  {hasPhoto ? '✓' : '+'}
                 </span>
               </label>
 
@@ -286,6 +289,15 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                   <DropdownMenuContent align="end" className="w-56">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
+                    {(user.role === 'admin' || user.role === 'seller') && (
+                      <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={() => window.location.href = user.role === 'admin' ? '/admin/dashboard' : '/seller/dashboard'}
+                      >
+                        <LayoutDashboard className="mr-2 h-4 w-4" />
+                        <span>Dashboard</span>
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/profile?tab=profile'}>
                       <User className="mr-2 h-4 w-4" />
                       <span>Profile</span>
@@ -480,6 +492,18 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               </button>
             ))}
             <div className="pt-3 mt-2 border-t border-gray-200 space-y-1">
+              {isAuthenticated && user && (user.role === 'admin' || user.role === 'seller') && (
+                <button
+                  onClick={() => {
+                    window.location.href = user.role === 'admin' ? '/admin/dashboard' : '/seller/dashboard';
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="flex items-center gap-3 w-full py-3 px-4 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors text-gray-800"
+                >
+                  <LayoutDashboard className="w-5 h-5 text-gray-600" />
+                  <span className="font-medium">Dashboard</span>
+                </button>
+              )}
               <button
                 onClick={() => {
                   onWishlistClick();

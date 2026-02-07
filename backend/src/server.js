@@ -22,6 +22,7 @@ const couponRoutes = require('./routes/coupon.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const inventoryRoutes = require('./routes/inventory.routes');
 const virtualTryOnRoutes = require('./routes/virtualTryOn.routes');
+const tryOnRoutes = require('./routes/tryOn.routes');
 const imageRoutes = require('./routes/image.routes');
 const { trackActivity } = require('./middleware/analytics.middleware');
 const { errorHandler } = require('./middleware/error.middleware');
@@ -125,6 +126,7 @@ app.use('/api/coupons', couponRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/try-on', virtualTryOnRoutes);
+app.use('/api/try-on-v2', tryOnRoutes);
 app.use('/api/images', imageRoutes);
 
 // Health check
