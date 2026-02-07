@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera, Bell, LogOut, Package, Settings, MapPin } from 'lucide-react';
 import {
   DropdownMenu,
@@ -34,6 +35,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const [unreadCount, setUnreadCount] = useState(0);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
 
   const { getCartCount } = useCart();
   const { wishlist: wishlistItems } = useWishlist();
@@ -41,6 +43,12 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const { isAuthenticated, user } = useAuth();
   const { recentSearches, trendingSearches, getSuggestions, addToHistory } = useSearch();
   const { uploadUserImage, userImage } = useTryOn();
+
+  // Check if we are on the homepage
+  const isHome = location.pathname === '/';
+
+  // Apply scrolled style if we are scrolled OR if we are not on the homepage
+  const showScrolledStyle = isScrolled || !isHome;
 
   // Fetch unread count periodically
   useEffect(() => {
@@ -134,9 +142,9 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? 'bg-white/90 backdrop-blur-lg shadow-soft py-3'
-          : 'bg-transparent py-5'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${showScrolledStyle
+            ? 'bg-white/90 backdrop-blur-lg shadow-soft py-3'
+            : 'bg-transparent py-5'
           }`}
       >
         <div className="section-padding">
@@ -149,9 +157,9 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               }}
               className="flex items-center gap-2 group"
             >
-              <img 
-                src="/images/logo.png" 
-                alt="Evara" 
+              <img
+                src="/images/logo.png"
+                alt="Evara"
                 className="h-8 md:h-10 w-auto object-contain"
                 onError={(e) => {
                   // Fallback to text if logo fails to load
@@ -164,10 +172,10 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
             <div className="hidden lg:flex items-center gap-8">
               <button
                 onClick={() => handleCategoryClick('all')}
-                className={`text-sm font-medium transition-colors ${activeCategory === 'all' 
+                className={`text-sm font-medium transition-colors ${activeCategory === 'all'
                   ? (isScrolled ? 'text-coral-400' : 'text-coral-200')
                   : (isScrolled ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
-                }`}
+                  }`}
               >
                 Home
               </button>
@@ -175,10 +183,10 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                 <button
                   key={cat.id}
                   onClick={() => handleCategoryClick(cat.id)}
-                  className={`text-sm font-medium transition-colors ${activeCategory === cat.id 
+                  className={`text-sm font-medium transition-colors ${activeCategory === cat.id
                     ? (isScrolled ? 'text-coral-400' : 'text-coral-200')
                     : (isScrolled ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
-                  }`}
+                    }`}
                 >
                   {cat.name}
                 </button>
