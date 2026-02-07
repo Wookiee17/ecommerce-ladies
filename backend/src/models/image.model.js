@@ -44,4 +44,5 @@ const imageSchema = new mongoose.Schema({
 imageSchema.index({ category: 1, productId: 1 });
 imageSchema.index({ uploadedBy: 1 });
 
-module.exports = mongoose.model('Image', imageSchema);
+module.exports = mongoose.models.Image ||
+    mongoose.model('Image', imageSchema);
