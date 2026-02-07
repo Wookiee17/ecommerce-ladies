@@ -207,11 +207,15 @@ router.get('/list/:category', optionalAuth, async (req, res) => {
 // Delete image
 router.delete('/:imageId', authenticate, async (req, res) => {
   try {
+    console.log('DEBUG - Deleting image:', req.params.imageId);
     const image = await Image.findByIdAndDelete(req.params.imageId);
     
     if (!image) {
+      console.log('DEBUG - Image not found');
       return res.status(404).json({ success: false, message: 'Image not found' });
     }
+
+    console.log('DEBUG - Image deleted');
 
     res.json({
       success: true,
