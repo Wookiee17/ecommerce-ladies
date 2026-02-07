@@ -19,6 +19,14 @@ const slides = [
     cta: 'Shop Now',
     category: 'jewelry' as const,
   },
+  {
+    image: '/images/hero-3.jpg',
+    title: 'Beauty Essentials',
+    subtitle: 'Innovative Devices',
+    description: 'Transform your routine with cutting-edge beauty electronics',
+    cta: 'Discover More',
+    category: 'beauty' as const,
+  },
 ];
 
 export default function Hero() {

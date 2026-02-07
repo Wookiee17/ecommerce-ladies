@@ -109,6 +109,13 @@ export default function ProductPage() {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
+  // Construct full image URLs
+  const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const baseUrl = backendUrl.replace('/api', '');
+  const fullImageUrls = product.images?.map((img: string) =>
+    img.startsWith('http') ? img : `${baseUrl}${img}`
+  ) || [];
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -131,13 +138,13 @@ export default function ProductPage() {
           <div className="space-y-4">
             <div className="aspect-square bg-muted rounded-lg overflow-hidden">
               <img
-                src={product.images?.[activeImage]}
+                src={fullImageUrls?.[activeImage]}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="grid grid-cols-4 gap-2">
-              {product.images?.map((image, index) => (
+              {fullImageUrls?.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveImage(index)}

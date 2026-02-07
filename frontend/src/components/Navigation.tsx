@@ -149,9 +149,15 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               }}
               className="flex items-center gap-2 group"
             >
-              <span className={`font-display text-2xl md:text-3xl font-bold transition-colors ${isScrolled ? 'text-gray-900 group-hover:text-coral-400' : 'text-white group-hover:text-coral-200'}`}>
-                Evara
-              </span>
+              <img 
+                src="/images/logo.png" 
+                alt="Evara" 
+                className="h-8 md:h-10 w-auto object-contain"
+                onError={(e) => {
+                  // Fallback to text if logo fails to load
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
             </button>
 
             {/* Desktop Navigation */}

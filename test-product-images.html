@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Product API</title>
+</head>
+<body>
+  <h1>Testing Production Product API</h1>
+  <div id="output"></div>
+  
+  <script>
+    const API_URL = 'https://evara-backend.onrender.com/api';
+    
+    async function testProducts() {
+      const output = document.getElementById('output');
+      output.innerHTML = '<p>Loading...</p>';
+      
+      try {
+        const response = await fetch(`${API_URL}/products?page=1&limit=2`);
+        const data = await response.json();
+        
+        console.log('API Response:', data);
+        
+        let html = '<h2>Products:</h2>';
+        const products = data.data || data;
+        
+        products.slice(0, 2).forEach((p, i) => {
+          const primaryImage = p.images?.find(img => img.isPrimary)?.url || p.images?.[0]?.url || '';
+          const baseUrl = API_URL.replace('/api', '');
+          const imageUrl = primaryImage.startsWith('http') ? primaryImage : `${baseUrl}${primaryImage}`;
+          
+          html += `
+            <div style="margin: 20px 0; border: 1px solid #ccc; padding: 10px;">
+              <h3>${p.name}</h3>
+              <p>Primary Image URL from API: <code>${primaryImage}</code></p>
+              <p>Constructed URL: <code>${imageUrl}</code></p>
+              <img src="${imageUrl}" style="max-width: 200px; max-height: 200px; border: 1px solid red;" 
+                   onerror="this.style.border='3px solid red'; this.parentElement.innerHTML += '<p style=\'color:red\'>Image failed to load!</p>'"
+                   onload="this.style.border='3px solid green'; this.parentElement.innerHTML += '<p style=\'color:green\'>Image loaded!</p>'">
+            </div>
+          `;
+        });
+        
+        output.innerHTML = html;
+      } catch (error) {
+        output.innerHTML = `<p style="color:red">Error: ${error.message}</p>`;
+      }
+    }
+    
+    testProducts();
+  </script>
+</body>
+</html>
