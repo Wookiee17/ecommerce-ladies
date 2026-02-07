@@ -101,13 +101,14 @@ router.post('/upload-multiple', authenticate, upload.array('images', 10), async 
 // Get image by ID
 router.get('/:imageId', optionalAuth, async (req, res) => {
   try {
+    console.log('DEBUG - Looking for image:', req.params.imageId);
     const image = await Image.findById(req.params.imageId).lean();
     
     if (!image) {
+      console.log('DEBUG - Image not found in DB');
       return res.status(404).json({ success: false, message: 'Image not found' });
     }
 
-    // Debug logging
     console.log('DEBUG - Image found:', image.filename);
     console.log('DEBUG - Data type:', typeof image.data);
     console.log('DEBUG - Is Buffer:', Buffer.isBuffer(image.data));
