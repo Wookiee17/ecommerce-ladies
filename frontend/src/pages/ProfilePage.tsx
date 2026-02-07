@@ -80,7 +80,7 @@ export default function ProfilePage() {
   const [addressSaving, setAddressSaving] = useState(false);
   const [editingAddressId, setEditingAddressId] = useState<string | null>(null);
 
-  const [preferences, setPreferences] = useState(user?.preferences || {
+  const [preferences, setPreferences] = useState({
     newsletter: true,
     notifications: { email: true, sms: false, push: true },
     language: 'en',
@@ -99,7 +99,6 @@ export default function ProfilePage() {
     if (user) {
       setProfileForm({ name: user.name, phone: user.phone || '' });
       setAddresses(user.addresses || []);
-      setPreferences(user.preferences || preferences);
     }
   }, [user]);
 
@@ -218,13 +217,26 @@ export default function ProfilePage() {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/?login=required');
+  };
+
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="w-6 h-6 animate-spin text-coral-500" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-slate-50 py-16">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <aside className="space-y-6">
             <UserCard user={user} ordersCount={orders.length} addressesCount={addresses.length} />
-            <NavMenu activeTab={activeTab} onChange={setActiveTab} onLogout={logout} />
+            <NavMenu activeTab={activeTab} onChange={setActiveTab} onLogout={handleLogout} />
           </aside>
 
           <section className="lg:col-span-3">
