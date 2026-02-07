@@ -99,13 +99,38 @@ router.get('/:imageId', optionalAuth, async (req, res) => {
     const image = await Image.findById(req.params.imageId);
     
     if (!image) {
+      console.log('Image not found:', req.params.imageId);
       return res.status(404).json({ success: false, message: 'Image not found' });
     }
 
+    console.log('Serving image:', image.filename, 'Type:', typeof image.data, 'Buffer?', Buffer.isBuffer(image.data));
+
+    // Convert MongoDB Binary to Buffer - handle multiple possible structures
+    let imageData = image.data;
+    if (imageData && typeof imageData === 'object' && !Buffer.isBuffer(imageData)) {
+      // MongoDB Binary type - could have _bsontype or buffer property
+      if (imageData._bsontype === 'Binary' && imageData.buffer) {
+        imageData = Buffer.from(imageData.buffer);
+      } else if (imageData.buffer) {
+        imageData = Buffer.from(imageData.buffer);
+      } else {
+        // Try to convert the whole object
+        imageData = Buffer.from(imageData);
+      }
+    } else if (Buffer.isBuffer(imageData)) {
+      console.log('Already Buffer, length:', imageData.length);
+    } else if (imageData) {
+      imageData = Buffer.from(imageData);
+      console.log('Converted to Buffer, length:', imageData.length);
+    } else {
+      console.log('No image data!');
+      return res.status(500).json({ success: false, message: 'Image data corrupted' });
+    }
+
     res.set('Content-Type', image.mimeType);
-    res.set('Content-Length', image.size);
+    res.set('Content-Length', imageData.length);
     res.set('Cache-Control', 'public, max-age=31536000');
-    res.send(image.data);
+    res.send(imageData);
   } catch (error) {
     console.error('Get image error:', error);
     res.status(500).json({ success: false, message: 'Image not found' });
