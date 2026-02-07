@@ -4,6 +4,11 @@ const multer = require('multer');
 const Image = require('../../models/image.model');
 const { authenticate, optionalAuth } = require('../middleware/auth.middleware');
 
+// Test route to verify router is loaded
+router.get('/test', (req, res) => {
+  res.json({ message: 'Image routes working', timestamp: new Date().toISOString() });
+});
+
 // Configure multer for memory storage
 const upload = multer({
   storage: multer.memoryStorage(),
