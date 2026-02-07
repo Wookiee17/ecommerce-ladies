@@ -13,10 +13,11 @@ router.get('/test', (req, res) => {
 // Check DB connection and image count
 router.get('/check-db', async (req, res) => {
   try {
+    const count = await Image.countDocuments();
     res.json({ 
-      message: 'DB check endpoint working',
-      mongooseConnected: mongoose.connection.readyState === 1,
-      readyState: mongoose.connection.readyState
+      message: 'DB check',
+      imageCount: count,
+      mongooseConnected: mongoose.connection.readyState === 1
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
