@@ -23,7 +23,7 @@ router.post('/seed', async (req, res) => {
 
     // Get images from database
     const getDbImages = async (category, index) => {
-      const num = (index % 150) + 1; // Cycle through 1-150
+      const num = (index % 150) + 1;
       const imageNum = num;
       
       // Find images by category and filename
@@ -33,14 +33,17 @@ router.post('/seed', async (req, res) => {
       }).limit(3);
 
       if (images.length > 0) {
-        return images.map((img, i) => ({
-          url: `/api/images/${img._id}`,
-          alt: `${category} view`,
-          isPrimary: i === 0
-        }));
+        return images.map((img, i) => {
+          // Check if this image has an externalUrl (for dress images)
+          const imageUrl = img.externalUrl || `/api/images/${img._id}`;
+          return {
+            url: imageUrl,
+            alt: `${category} view`,
+            isPrimary: i === 0
+          };
+        });
       }
       
-      // No fallback needed - all images should be in database
       return [];
     };
 
