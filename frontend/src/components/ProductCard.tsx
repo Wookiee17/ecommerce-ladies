@@ -12,19 +12,19 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onClick, viewMode = 'grid' }: ProductCardProps) {
-  const { userImage, generatedImages, generateTryOn, loading } = useTryOn();
+  const { hasPhoto, getProductTryOnImage, generateTryOn, loading } = useTryOn();
 
   // Check if we have a generated image for this product
   const productId = (product as any)._id || product.id;
-  const tryOnImage = generatedImages.get(productId);
+  const tryOnImage = getProductTryOnImage(productId);
   const displayImage = tryOnImage || product.image;
 
   /* Removed unused isGenerating variable */
 
   const handleTryOnClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (userImage) {
-      await generateTryOn((product as any)._id || product.id, product.image);
+    if (hasPhoto) {
+      await generateTryOn((product as any)._id || product.id);
     } else {
       alert("Please upload your photo in the header first!");
     }
@@ -192,7 +192,7 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
               {/* 1. If loading globally, and we don't know specifically which ID is loading, we might show generic. But let's assume global loading for now. Ideal: track loading ID. */}
               {/* Simplification: If global loading is true, we show spinner here if we don't have an image yet? No, that's messy. Global loading blocks everything in current context. */}
               {loading && !tryOnImage ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : null}
-              {tryOnImage ? 'View Original' : userImage ? 'Try On Me' : 'Virtual Try-On'}
+              {tryOnImage ? 'View Original' : hasPhoto ? 'Try On Me' : 'Virtual Try-On'}
             </Button>
           )}
         </div>

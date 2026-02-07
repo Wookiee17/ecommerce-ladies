@@ -212,7 +212,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                     }
                   }}
                 />
-                <Camera className={`w-5 h-5 ${hasPhoto ? 'text-coral-600' : (isScrolled ? 'text-gray-700' : 'text-white')}`} />
+                <Camera className={`w-5 h-5 ${hasPhoto ? 'text-coral-600' : (showScrolledStyle ? 'text-gray-700' : 'text-white')}`} />
                 <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-coral-400 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
                   {hasPhoto ? '✓' : '+'}
                 </span>
