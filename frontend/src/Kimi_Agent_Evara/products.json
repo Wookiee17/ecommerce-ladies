@@ -1,0 +1,1768 @@
+{
+  "products": [
+    {
+      "name": "Elegant Evening Gown Red",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A stunning red evening gown perfect for formal occasions. Features elegant design with comfortable fit.",
+      "shortDescription": "A stunning red evening gown perfect for formal occasions. Fe...",
+      "price": 4999,
+      "originalPrice": 7999,
+      "colors": [
+        "Red",
+        "Black"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-1.jpg",
+        "dress-2.jpg",
+        "dress-3.jpg"
+      ]
+    },
+    {
+      "name": "Elegant Evening Gown Black",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A sophisticated black evening gown for formal events. Classic design with modern touch.",
+      "shortDescription": "A sophisticated black evening gown for formal events. Classi...",
+      "price": 4999,
+      "originalPrice": 7999,
+      "colors": [
+        "Black"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-4.jpg",
+        "dress-5.jpg",
+        "dress-6.jpg"
+      ]
+    },
+    {
+      "name": "Navy Blue Evening Gown",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A beautiful navy blue evening gown. Perfect for weddings and special occasions.",
+      "shortDescription": "A beautiful navy blue evening gown. Perfect for weddings and...",
+      "price": 5299,
+      "originalPrice": 8499,
+      "colors": [
+        "Navy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-7.jpg",
+        "dress-8.jpg",
+        "dress-9.jpg"
+      ]
+    },
+    {
+      "name": "Emerald Green Evening Gown",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A luxurious emerald green evening gown. Stunning color for any formal event.",
+      "shortDescription": "A luxurious emerald green evening gown. Stunning color for a...",
+      "price": 5499,
+      "originalPrice": 8999,
+      "colors": [
+        "Green"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-10.jpg",
+        "dress-11.jpg",
+        "dress-12.jpg"
+      ]
+    },
+    {
+      "name": "Champagne Gold Evening Gown",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "An elegant champagne gold evening gown. Perfect for gala events.",
+      "shortDescription": "An elegant champagne gold evening gown. Perfect for gala eve...",
+      "price": 5799,
+      "originalPrice": 9299,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-13.jpg",
+        "dress-14.jpg",
+        "dress-15.jpg"
+      ]
+    },
+    {
+      "name": "Burgundy Wine Evening Gown",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A rich burgundy wine evening gown. Sophisticated and elegant.",
+      "shortDescription": "A rich burgundy wine evening gown. Sophisticated and elegant...",
+      "price": 5599,
+      "originalPrice": 8999,
+      "colors": [
+        "Burgundy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-16.jpg",
+        "dress-17.jpg",
+        "dress-18.jpg"
+      ]
+    },
+    {
+      "name": "Floral Summer Sundress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A beautiful floral summer sundress. Light and breezy for hot days.",
+      "shortDescription": "A beautiful floral summer sundress. Light and breezy for hot...",
+      "price": 1999,
+      "originalPrice": 3499,
+      "colors": [
+        "Multi"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-19.jpg",
+        "dress-20.jpg",
+        "dress-21.jpg"
+      ]
+    },
+    {
+      "name": "Yellow Summer Dress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A bright yellow summer dress. Cheerful and comfortable.",
+      "shortDescription": "A bright yellow summer dress. Cheerful and comfortable.",
+      "price": 1799,
+      "originalPrice": 2999,
+      "colors": [
+        "Yellow"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-22.jpg",
+        "dress-23.jpg",
+        "dress-24.jpg"
+      ]
+    },
+    {
+      "name": "Pink Cocktail Dress",
+      "category": "dress",
+      "subcategory": "cocktail",
+      "description": "A stylish pink cocktail dress. Perfect for parties and events.",
+      "shortDescription": "A stylish pink cocktail dress. Perfect for parties and event...",
+      "price": 2999,
+      "originalPrice": 4999,
+      "colors": [
+        "Pink"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-25.jpg",
+        "dress-26.jpg",
+        "dress-27.jpg"
+      ]
+    },
+    {
+      "name": "Silver Sequin Cocktail Dress",
+      "category": "dress",
+      "subcategory": "cocktail",
+      "description": "A glamorous silver sequin cocktail dress. Shine at any party.",
+      "shortDescription": "A glamorous silver sequin cocktail dress. Shine at any party...",
+      "price": 3999,
+      "originalPrice": 6499,
+      "colors": [
+        "Silver"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-28.jpg",
+        "dress-29.jpg",
+        "dress-30.jpg"
+      ]
+    },
+    {
+      "name": "Blue Maxi Dress",
+      "category": "dress",
+      "subcategory": "maxi",
+      "description": "A flowing blue maxi dress. Elegant and comfortable for any occasion.",
+      "shortDescription": "A flowing blue maxi dress. Elegant and comfortable for any o...",
+      "price": 2499,
+      "originalPrice": 3999,
+      "colors": [
+        "Blue"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-31.jpg",
+        "dress-32.jpg",
+        "dress-33.jpg"
+      ]
+    },
+    {
+      "name": "Coral Party Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A fun coral party dress. Perfect for celebrations.",
+      "shortDescription": "A fun coral party dress. Perfect for celebrations.",
+      "price": 2299,
+      "originalPrice": 3799,
+      "colors": [
+        "Coral"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-34.jpg",
+        "dress-35.jpg",
+        "dress-36.jpg"
+      ]
+    },
+    {
+      "name": "White Lace Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A delicate white lace dress. Romantic and elegant.",
+      "shortDescription": "A delicate white lace dress. Romantic and elegant.",
+      "price": 3299,
+      "originalPrice": 5499,
+      "colors": [
+        "White"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-37.jpg",
+        "dress-38.jpg",
+        "dress-39.jpg"
+      ]
+    },
+    {
+      "name": "Purple Velvet Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A luxurious purple velvet dress. Rich texture and color.",
+      "shortDescription": "A luxurious purple velvet dress. Rich texture and color.",
+      "price": 3799,
+      "originalPrice": 5999,
+      "colors": [
+        "Purple"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-40.jpg",
+        "dress-41.jpg",
+        "dress-42.jpg"
+      ]
+    },
+    {
+      "name": "Teal Wrap Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A stylish teal wrap dress. Flattering fit for any body type.",
+      "shortDescription": "A stylish teal wrap dress. Flattering fit for any body type.",
+      "price": 2199,
+      "originalPrice": 3599,
+      "colors": [
+        "Teal"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-43.jpg",
+        "dress-44.jpg",
+        "dress-45.jpg"
+      ]
+    },
+    {
+      "name": "Mint Green Dress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A fresh mint green dress. Perfect for spring and summer.",
+      "shortDescription": "A fresh mint green dress. Perfect for spring and summer.",
+      "price": 1899,
+      "originalPrice": 3199,
+      "colors": [
+        "Mint"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-46.jpg",
+        "dress-47.jpg",
+        "dress-48.jpg"
+      ]
+    },
+    {
+      "name": "Orange Boho Dress",
+      "category": "dress",
+      "subcategory": "boho",
+      "description": "A vibrant orange boho dress. Free-spirited and comfortable.",
+      "shortDescription": "A vibrant orange boho dress. Free-spirited and comfortable.",
+      "price": 2099,
+      "originalPrice": 3499,
+      "colors": [
+        "Orange"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-49.jpg",
+        "dress-50.jpg",
+        "dress-51.jpg"
+      ]
+    },
+    {
+      "name": "Rose Gold Metallic Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A stunning rose gold metallic dress. Glamorous and eye-catching.",
+      "shortDescription": "A stunning rose gold metallic dress. Glamorous and eye-catch...",
+      "price": 4299,
+      "originalPrice": 6999,
+      "colors": [
+        "Rose Gold"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-52.jpg",
+        "dress-53.jpg",
+        "dress-54.jpg"
+      ]
+    },
+    {
+      "name": "Black Polka Dot Dress",
+      "category": "dress",
+      "subcategory": "vintage",
+      "description": "A classic black polka dot dress. Vintage charm with modern style.",
+      "shortDescription": "A classic black polka dot dress. Vintage charm with modern s...",
+      "price": 2399,
+      "originalPrice": 3999,
+      "colors": [
+        "Black",
+        "White"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-55.jpg",
+        "dress-56.jpg",
+        "dress-57.jpg"
+      ]
+    },
+    {
+      "name": "Red Bodycon Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A bold red bodycon dress. Confidence and style in one.",
+      "shortDescription": "A bold red bodycon dress. Confidence and style in one.",
+      "price": 2599,
+      "originalPrice": 4299,
+      "colors": [
+        "Red"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-58.jpg",
+        "dress-59.jpg",
+        "dress-60.jpg"
+      ]
+    },
+    {
+      "name": "Navy Striped Dress",
+      "category": "dress",
+      "subcategory": "nautical",
+      "description": "A chic navy striped dress. Nautical vibes for summer.",
+      "shortDescription": "A chic navy striped dress. Nautical vibes for summer.",
+      "price": 1999,
+      "originalPrice": 3299,
+      "colors": [
+        "Navy",
+        "White"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-61.jpg",
+        "dress-62.jpg",
+        "dress-63.jpg"
+      ]
+    },
+    {
+      "name": "Blush Pink Tulle Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A dreamy blush pink tulle dress. Fairytale elegance.",
+      "shortDescription": "A dreamy blush pink tulle dress. Fairytale elegance.",
+      "price": 4599,
+      "originalPrice": 7499,
+      "colors": [
+        "Pink"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-64.jpg",
+        "dress-65.jpg",
+        "dress-66.jpg"
+      ]
+    },
+    {
+      "name": "Olive Green Utility Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A practical olive green utility dress. Style meets function.",
+      "shortDescription": "A practical olive green utility dress. Style meets function.",
+      "price": 1799,
+      "originalPrice": 2999,
+      "colors": [
+        "Olive"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-67.jpg",
+        "dress-68.jpg",
+        "dress-69.jpg"
+      ]
+    },
+    {
+      "name": "Lilac Satin Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A soft lilac satin dress. Elegant and feminine.",
+      "shortDescription": "A soft lilac satin dress. Elegant and feminine.",
+      "price": 2899,
+      "originalPrice": 4799,
+      "colors": [
+        "Lilac"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-70.jpg",
+        "dress-71.jpg",
+        "dress-72.jpg"
+      ]
+    },
+    {
+      "name": "Hot Pink Mini Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A vibrant hot pink mini dress. Fun and flirty.",
+      "shortDescription": "A vibrant hot pink mini dress. Fun and flirty.",
+      "price": 1999,
+      "originalPrice": 3299,
+      "colors": [
+        "Pink"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-73.jpg",
+        "dress-74.jpg",
+        "dress-75.jpg"
+      ]
+    },
+    {
+      "name": "Cream Knit Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A cozy cream knit dress. Comfortable and stylish.",
+      "shortDescription": "A cozy cream knit dress. Comfortable and stylish.",
+      "price": 2299,
+      "originalPrice": 3799,
+      "colors": [
+        "Cream"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-76.jpg",
+        "dress-77.jpg",
+        "dress-78.jpg"
+      ]
+    },
+    {
+      "name": "Terracotta Midi Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A warm terracotta midi dress. Earthy and elegant.",
+      "shortDescription": "A warm terracotta midi dress. Earthy and elegant.",
+      "price": 2199,
+      "originalPrice": 3599,
+      "colors": [
+        "Terracotta"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-79.jpg",
+        "dress-80.jpg",
+        "dress-81.jpg"
+      ]
+    },
+    {
+      "name": "Dusty Blue Chiffon Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A flowing dusty blue chiffon dress. Ethereal beauty.",
+      "shortDescription": "A flowing dusty blue chiffon dress. Ethereal beauty.",
+      "price": 2699,
+      "originalPrice": 4499,
+      "colors": [
+        "Blue"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-82.jpg",
+        "dress-83.jpg",
+        "dress-84.jpg"
+      ]
+    },
+    {
+      "name": "Forest Green Satin Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A deep forest green satin dress. Rich and luxurious.",
+      "shortDescription": "A deep forest green satin dress. Rich and luxurious.",
+      "price": 3199,
+      "originalPrice": 5299,
+      "colors": [
+        "Green"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-85.jpg",
+        "dress-86.jpg",
+        "dress-87.jpg"
+      ]
+    },
+    {
+      "name": "Beige Linen Dress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A natural beige linen dress. Breathable and comfortable.",
+      "shortDescription": "A natural beige linen dress. Breathable and comfortable.",
+      "price": 1899,
+      "originalPrice": 3099,
+      "colors": [
+        "Beige"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-88.jpg",
+        "dress-89.jpg",
+        "dress-90.jpg"
+      ]
+    },
+    {
+      "name": "Mauve Slip Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A silky mauve slip dress. Effortlessly chic.",
+      "shortDescription": "A silky mauve slip dress. Effortlessly chic.",
+      "price": 2099,
+      "originalPrice": 3499,
+      "colors": [
+        "Mauve"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-91.jpg",
+        "dress-92.jpg",
+        "dress-93.jpg"
+      ]
+    },
+    {
+      "name": "Coral Off-Shoulder Dress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A romantic coral off-shoulder dress. Perfect for date nights.",
+      "shortDescription": "A romantic coral off-shoulder dress. Perfect for date nights...",
+      "price": 2499,
+      "originalPrice": 3999,
+      "colors": [
+        "Coral"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-94.jpg",
+        "dress-95.jpg",
+        "dress-96.jpg"
+      ]
+    },
+    {
+      "name": "Black Leather Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "An edgy black leather dress. Bold and stylish.",
+      "shortDescription": "An edgy black leather dress. Bold and stylish.",
+      "price": 3999,
+      "originalPrice": 6499,
+      "colors": [
+        "Black"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-97.jpg",
+        "dress-98.jpg",
+        "dress-99.jpg"
+      ]
+    },
+    {
+      "name": "White Peasant Dress",
+      "category": "dress",
+      "subcategory": "boho",
+      "description": "A breezy white peasant dress. Bohemian charm.",
+      "shortDescription": "A breezy white peasant dress. Bohemian charm.",
+      "price": 1799,
+      "originalPrice": 2999,
+      "colors": [
+        "White"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-100.jpg",
+        "dress-101.jpg",
+        "dress-102.jpg"
+      ]
+    },
+    {
+      "name": "Red Plaid Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A classic red plaid dress. Timeless style.",
+      "shortDescription": "A classic red plaid dress. Timeless style.",
+      "price": 1999,
+      "originalPrice": 3299,
+      "colors": [
+        "Red",
+        "Black"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-103.jpg",
+        "dress-104.jpg",
+        "dress-105.jpg"
+      ]
+    },
+    {
+      "name": "Grey Sweater Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A cozy grey sweater dress. Warm and stylish.",
+      "shortDescription": "A cozy grey sweater dress. Warm and stylish.",
+      "price": 2299,
+      "originalPrice": 3799,
+      "colors": [
+        "Grey"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-106.jpg",
+        "dress-107.jpg",
+        "dress-108.jpg"
+      ]
+    },
+    {
+      "name": "Yellow Sundress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A cheerful yellow sundress. Sunny disposition.",
+      "shortDescription": "A cheerful yellow sundress. Sunny disposition.",
+      "price": 1699,
+      "originalPrice": 2799,
+      "colors": [
+        "Yellow"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-109.jpg",
+        "dress-110.jpg",
+        "dress-111.jpg"
+      ]
+    },
+    {
+      "name": "Navy Shirt Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A classic navy shirt dress. Versatile and chic.",
+      "shortDescription": "A classic navy shirt dress. Versatile and chic.",
+      "price": 2099,
+      "originalPrice": 3499,
+      "colors": [
+        "Navy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-112.jpg",
+        "dress-113.jpg",
+        "dress-114.jpg"
+      ]
+    },
+    {
+      "name": "Blush Floral Dress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A delicate blush floral dress. Feminine and romantic.",
+      "shortDescription": "A delicate blush floral dress. Feminine and romantic.",
+      "price": 2199,
+      "originalPrice": 3599,
+      "colors": [
+        "Pink",
+        "Multi"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-115.jpg",
+        "dress-116.jpg",
+        "dress-117.jpg"
+      ]
+    },
+    {
+      "name": "Black Velvet Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A luxurious black velvet dress. Sophisticated elegance.",
+      "shortDescription": "A luxurious black velvet dress. Sophisticated elegance.",
+      "price": 3499,
+      "originalPrice": 5799,
+      "colors": [
+        "Black"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-118.jpg",
+        "dress-119.jpg",
+        "dress-120.jpg"
+      ]
+    },
+    {
+      "name": "Sage Green Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A soothing sage green dress. Natural beauty.",
+      "shortDescription": "A soothing sage green dress. Natural beauty.",
+      "price": 1899,
+      "originalPrice": 3099,
+      "colors": [
+        "Sage"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-121.jpg",
+        "dress-122.jpg",
+        "dress-123.jpg"
+      ]
+    },
+    {
+      "name": "Burgundy Lace Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A romantic burgundy lace dress. Intricate details.",
+      "shortDescription": "A romantic burgundy lace dress. Intricate details.",
+      "price": 3299,
+      "originalPrice": 5499,
+      "colors": [
+        "Burgundy"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-124.jpg",
+        "dress-125.jpg",
+        "dress-126.jpg"
+      ]
+    },
+    {
+      "name": "Champagne Sequin Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A sparkling champagne sequin dress. Celebrate in style.",
+      "shortDescription": "A sparkling champagne sequin dress. Celebrate in style.",
+      "price": 4499,
+      "originalPrice": 7299,
+      "colors": [
+        "Champagne"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-127.jpg",
+        "dress-128.jpg",
+        "dress-129.jpg"
+      ]
+    },
+    {
+      "name": "Ivory Bridal Dress",
+      "category": "dress",
+      "subcategory": "formal",
+      "description": "A stunning ivory bridal dress. Special day elegance.",
+      "shortDescription": "A stunning ivory bridal dress. Special day elegance.",
+      "price": 5999,
+      "originalPrice": 9999,
+      "colors": [
+        "Ivory"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-130.jpg",
+        "dress-131.jpg",
+        "dress-132.jpg"
+      ]
+    },
+    {
+      "name": "Rust Orange Dress",
+      "category": "dress",
+      "subcategory": "autumn",
+      "description": "A warm rust orange dress. Autumn vibes.",
+      "shortDescription": "A warm rust orange dress. Autumn vibes.",
+      "price": 2099,
+      "originalPrice": 3499,
+      "colors": [
+        "Rust"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-133.jpg",
+        "dress-134.jpg",
+        "dress-135.jpg"
+      ]
+    },
+    {
+      "name": "Cobalt Blue Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A bold cobalt blue dress. Stand out from the crowd.",
+      "shortDescription": "A bold cobalt blue dress. Stand out from the crowd.",
+      "price": 2399,
+      "originalPrice": 3999,
+      "colors": [
+        "Blue"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-136.jpg",
+        "dress-137.jpg",
+        "dress-138.jpg"
+      ]
+    },
+    {
+      "name": "Fuchsia Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A vibrant fuchsia dress. Bold and beautiful.",
+      "shortDescription": "A vibrant fuchsia dress. Bold and beautiful.",
+      "price": 2199,
+      "originalPrice": 3599,
+      "colors": [
+        "Fuchsia"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-139.jpg",
+        "dress-140.jpg",
+        "dress-141.jpg"
+      ]
+    },
+    {
+      "name": "Taupe Dress",
+      "category": "dress",
+      "subcategory": "casual",
+      "description": "A neutral taupe dress. Versatile elegance.",
+      "shortDescription": "A neutral taupe dress. Versatile elegance.",
+      "price": 1999,
+      "originalPrice": 3299,
+      "colors": [
+        "Taupe"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-142.jpg",
+        "dress-143.jpg",
+        "dress-144.jpg"
+      ]
+    },
+    {
+      "name": "Magenta Dress",
+      "category": "dress",
+      "subcategory": "party",
+      "description": "A striking magenta dress. Eye-catching color.",
+      "shortDescription": "A striking magenta dress. Eye-catching color.",
+      "price": 2299,
+      "originalPrice": 3799,
+      "colors": [
+        "Magenta"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-145.jpg",
+        "dress-146.jpg",
+        "dress-147.jpg"
+      ]
+    },
+    {
+      "name": "Aqua Dress",
+      "category": "dress",
+      "subcategory": "summer",
+      "description": "A refreshing aqua dress. Cool and comfortable.",
+      "shortDescription": "A refreshing aqua dress. Cool and comfortable.",
+      "price": 1899,
+      "originalPrice": 3099,
+      "colors": [
+        "Aqua"
+      ],
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "dress-148.jpg",
+        "dress-149.jpg",
+        "dress-150.jpg"
+      ]
+    },
+    {
+      "name": "Gold Diamond Necklace",
+      "category": "jewelry",
+      "subcategory": "necklace",
+      "description": "Elegant gold necklace with diamond pendant. Adds luxury to any outfit.",
+      "shortDescription": "Elegant gold necklace with diamond pendant. Adds luxury to a...",
+      "price": 5999,
+      "originalPrice": 8999,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-1.jpg",
+        "jewelry-2.jpg",
+        "jewelry-3.jpg"
+      ]
+    },
+    {
+      "name": "Gold Chain Necklace",
+      "category": "jewelry",
+      "subcategory": "necklace",
+      "description": "Classic gold chain necklace. Timeless and versatile.",
+      "shortDescription": "Classic gold chain necklace. Timeless and versatile.",
+      "price": 3999,
+      "originalPrice": 5999,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-4.jpg",
+        "jewelry-5.jpg",
+        "jewelry-6.jpg"
+      ]
+    },
+    {
+      "name": "Sapphire Gold Pendant",
+      "category": "jewelry",
+      "subcategory": "necklace",
+      "description": "Stunning gold pendant with sapphire gemstone. Eye-catching beauty.",
+      "shortDescription": "Stunning gold pendant with sapphire gemstone. Eye-catching b...",
+      "price": 6999,
+      "originalPrice": 10999,
+      "colors": [
+        "Gold",
+        "Blue"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-7.jpg",
+        "jewelry-8.jpg",
+        "jewelry-9.jpg"
+      ]
+    },
+    {
+      "name": "Gold Choker Necklace",
+      "category": "jewelry",
+      "subcategory": "necklace",
+      "description": "Trendy gold choker necklace. Modern and stylish.",
+      "shortDescription": "Trendy gold choker necklace. Modern and stylish.",
+      "price": 2999,
+      "originalPrice": 4999,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-10.jpg",
+        "jewelry-11.jpg",
+        "jewelry-12.jpg"
+      ]
+    },
+    {
+      "name": "Diamond Engagement Ring",
+      "category": "jewelry",
+      "subcategory": "ring",
+      "description": "Brilliant diamond engagement ring. Symbol of eternal love.",
+      "shortDescription": "Brilliant diamond engagement ring. Symbol of eternal love.",
+      "price": 19999,
+      "originalPrice": 29999,
+      "colors": [
+        "Silver",
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-13.jpg",
+        "jewelry-14.jpg",
+        "jewelry-15.jpg"
+      ]
+    },
+    {
+      "name": "Gold Wedding Band",
+      "category": "jewelry",
+      "subcategory": "ring",
+      "description": "Classic gold wedding band. Timeless commitment.",
+      "shortDescription": "Classic gold wedding band. Timeless commitment.",
+      "price": 14999,
+      "originalPrice": 22999,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-16.jpg",
+        "jewelry-17.jpg",
+        "jewelry-18.jpg"
+      ]
+    },
+    {
+      "name": "Ruby Gold Ring",
+      "category": "jewelry",
+      "subcategory": "ring",
+      "description": "Exquisite gold ring with ruby gemstone. Bold and beautiful.",
+      "shortDescription": "Exquisite gold ring with ruby gemstone. Bold and beautiful.",
+      "price": 8999,
+      "originalPrice": 13999,
+      "colors": [
+        "Gold",
+        "Red"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-19.jpg",
+        "jewelry-20.jpg",
+        "jewelry-21.jpg"
+      ]
+    },
+    {
+      "name": "Pearl Stud Earrings",
+      "category": "jewelry",
+      "subcategory": "earrings",
+      "description": "Elegant pearl stud earrings. Classic sophistication.",
+      "shortDescription": "Elegant pearl stud earrings. Classic sophistication.",
+      "price": 2999,
+      "originalPrice": 4999,
+      "colors": [
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-22.jpg",
+        "jewelry-23.jpg",
+        "jewelry-24.jpg"
+      ]
+    },
+    {
+      "name": "Pearl Drop Earrings",
+      "category": "jewelry",
+      "subcategory": "earrings",
+      "description": "Beautiful pearl drop earrings. Graceful and feminine.",
+      "shortDescription": "Beautiful pearl drop earrings. Graceful and feminine.",
+      "price": 3999,
+      "originalPrice": 6499,
+      "colors": [
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-25.jpg",
+        "jewelry-26.jpg",
+        "jewelry-27.jpg"
+      ]
+    },
+    {
+      "name": "Silver Chain Bracelet",
+      "category": "jewelry",
+      "subcategory": "bracelet",
+      "description": "Delicate silver chain bracelet. Simple elegance.",
+      "shortDescription": "Delicate silver chain bracelet. Simple elegance.",
+      "price": 2499,
+      "originalPrice": 3999,
+      "colors": [
+        "Silver"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-28.jpg",
+        "jewelry-29.jpg",
+        "jewelry-30.jpg"
+      ]
+    },
+    {
+      "name": "Diamond Tennis Bracelet",
+      "category": "jewelry",
+      "subcategory": "bracelet",
+      "description": "Stunning diamond tennis bracelet. Sparkling luxury.",
+      "shortDescription": "Stunning diamond tennis bracelet. Sparkling luxury.",
+      "price": 14999,
+      "originalPrice": 22999,
+      "colors": [
+        "Silver",
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-31.jpg",
+        "jewelry-32.jpg",
+        "jewelry-33.jpg"
+      ]
+    },
+    {
+      "name": "Gold Statement Earrings",
+      "category": "jewelry",
+      "subcategory": "earrings",
+      "description": "Bold gold statement earrings. Make a statement.",
+      "shortDescription": "Bold gold statement earrings. Make a statement.",
+      "price": 4999,
+      "originalPrice": 7999,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-34.jpg",
+        "jewelry-35.jpg",
+        "jewelry-36.jpg"
+      ]
+    },
+    {
+      "name": "Diamond Hoop Earrings",
+      "category": "jewelry",
+      "subcategory": "earrings",
+      "description": "Glamorous diamond hoop earrings. Shine bright.",
+      "shortDescription": "Glamorous diamond hoop earrings. Shine bright.",
+      "price": 6999,
+      "originalPrice": 10999,
+      "colors": [
+        "Silver",
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-37.jpg",
+        "jewelry-38.jpg",
+        "jewelry-39.jpg"
+      ]
+    },
+    {
+      "name": "Gold Bangle Bracelet",
+      "category": "jewelry",
+      "subcategory": "bracelet",
+      "description": "Classic gold bangle bracelet. Stackable style.",
+      "shortDescription": "Classic gold bangle bracelet. Stackable style.",
+      "price": 3499,
+      "originalPrice": 5499,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-40.jpg",
+        "jewelry-41.jpg",
+        "jewelry-42.jpg"
+      ]
+    },
+    {
+      "name": "Emerald Gold Ring",
+      "category": "jewelry",
+      "subcategory": "ring",
+      "description": "Luxurious gold ring with emerald gemstone. Rich green beauty.",
+      "shortDescription": "Luxurious gold ring with emerald gemstone. Rich green beauty...",
+      "price": 9999,
+      "originalPrice": 15999,
+      "colors": [
+        "Gold",
+        "Green"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-43.jpg",
+        "jewelry-44.jpg",
+        "jewelry-45.jpg"
+      ]
+    },
+    {
+      "name": "Gold Heart Pendant",
+      "category": "jewelry",
+      "subcategory": "necklace",
+      "description": "Romantic gold heart pendant necklace. Love in jewelry.",
+      "shortDescription": "Romantic gold heart pendant necklace. Love in jewelry.",
+      "price": 3499,
+      "originalPrice": 5499,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-46.jpg",
+        "jewelry-47.jpg",
+        "jewelry-48.jpg"
+      ]
+    },
+    {
+      "name": "Gold Charm Bracelet",
+      "category": "jewelry",
+      "subcategory": "bracelet",
+      "description": "Playful gold charm bracelet. Personal and unique.",
+      "shortDescription": "Playful gold charm bracelet. Personal and unique.",
+      "price": 4499,
+      "originalPrice": 6999,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-49.jpg",
+        "jewelry-50.jpg",
+        "jewelry-51.jpg"
+      ]
+    },
+    {
+      "name": "Diamond Tennis Necklace",
+      "category": "jewelry",
+      "subcategory": "necklace",
+      "description": "Elegant diamond tennis necklace. Continuous sparkle.",
+      "shortDescription": "Elegant diamond tennis necklace. Continuous sparkle.",
+      "price": 24999,
+      "originalPrice": 39999,
+      "colors": [
+        "Silver",
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-52.jpg",
+        "jewelry-53.jpg",
+        "jewelry-54.jpg"
+      ]
+    },
+    {
+      "name": "Gold Cross Pendant",
+      "category": "jewelry",
+      "subcategory": "necklace",
+      "description": "Meaningful gold cross pendant necklace. Faith and fashion.",
+      "shortDescription": "Meaningful gold cross pendant necklace. Faith and fashion.",
+      "price": 2999,
+      "originalPrice": 4999,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-55.jpg",
+        "jewelry-56.jpg",
+        "jewelry-57.jpg"
+      ]
+    },
+    {
+      "name": "Amethyst Gold Ring",
+      "category": "jewelry",
+      "subcategory": "ring",
+      "description": "Beautiful gold ring with amethyst gemstone. Purple elegance.",
+      "shortDescription": "Beautiful gold ring with amethyst gemstone. Purple elegance.",
+      "price": 7999,
+      "originalPrice": 12499,
+      "colors": [
+        "Gold",
+        "Purple"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-58.jpg",
+        "jewelry-59.jpg",
+        "jewelry-60.jpg"
+      ]
+    },
+    {
+      "name": "Gold Infinity Bracelet",
+      "category": "jewelry",
+      "subcategory": "bracelet",
+      "description": "Symbolic gold infinity bracelet. Forever connected.",
+      "shortDescription": "Symbolic gold infinity bracelet. Forever connected.",
+      "price": 3999,
+      "originalPrice": 6499,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-61.jpg",
+        "jewelry-62.jpg",
+        "jewelry-63.jpg"
+      ]
+    },
+    {
+      "name": "Diamond Stud Earrings",
+      "category": "jewelry",
+      "subcategory": "earrings",
+      "description": "Classic diamond stud earrings. Timeless sparkle.",
+      "shortDescription": "Classic diamond stud earrings. Timeless sparkle.",
+      "price": 8999,
+      "originalPrice": 13999,
+      "colors": [
+        "Silver",
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-64.jpg",
+        "jewelry-65.jpg",
+        "jewelry-66.jpg"
+      ]
+    },
+    {
+      "name": "Gold Anklet Chain",
+      "category": "jewelry",
+      "subcategory": "anklet",
+      "description": "Delicate gold anklet chain. Subtle elegance.",
+      "shortDescription": "Delicate gold anklet chain. Subtle elegance.",
+      "price": 1999,
+      "originalPrice": 3299,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "jewelry-67.jpg",
+        "jewelry-68.jpg",
+        "jewelry-69.jpg"
+      ]
+    },
+    {
+      "name": "Luxury Red Lipstick",
+      "category": "beauty",
+      "subcategory": "lipstick",
+      "description": "Premium long-lasting red lipstick. High-quality formula for flawless look.",
+      "shortDescription": "Premium long-lasting red lipstick. High-quality formula for ...",
+      "price": 899,
+      "originalPrice": 1299,
+      "colors": [
+        "Red"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "beauty-1.jpg",
+        "beauty-2.jpg",
+        "beauty-3.jpg"
+      ]
+    },
+    {
+      "name": "Luxury Pink Lipstick",
+      "category": "beauty",
+      "subcategory": "lipstick",
+      "description": "Beautiful pink lipstick. Soft and feminine shade.",
+      "shortDescription": "Beautiful pink lipstick. Soft and feminine shade.",
+      "price": 899,
+      "originalPrice": 1299,
+      "colors": [
+        "Pink"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "beauty-4.jpg",
+        "beauty-5.jpg",
+        "beauty-6.jpg"
+      ]
+    },
+    {
+      "name": "Elegant Perfume Lumina",
+      "category": "beauty",
+      "subcategory": "perfume",
+      "description": "Sophisticated fragrance with floral notes. Long-lasting scent.",
+      "shortDescription": "Sophisticated fragrance with floral notes. Long-lasting scen...",
+      "price": 4999,
+      "originalPrice": 7999,
+      "colors": [
+        "Clear"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "beauty-7.jpg",
+        "beauty-8.jpg",
+        "beauty-9.jpg"
+      ]
+    },
+    {
+      "name": "Age-Defying Cream",
+      "category": "beauty",
+      "subcategory": "skincare",
+      "description": "Luxurious anti-aging cream. Rejuvenates and nourishes skin.",
+      "shortDescription": "Luxurious anti-aging cream. Rejuvenates and nourishes skin.",
+      "price": 2999,
+      "originalPrice": 4999,
+      "colors": [
+        "White"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "beauty-10.jpg",
+        "beauty-11.jpg",
+        "beauty-12.jpg"
+      ]
+    },
+    {
+      "name": "Eyeshadow Palette",
+      "category": "beauty",
+      "subcategory": "makeup",
+      "description": "Versatile eyeshadow palette with multiple shades. Create endless looks.",
+      "shortDescription": "Versatile eyeshadow palette with multiple shades. Create end...",
+      "price": 1999,
+      "originalPrice": 3299,
+      "colors": [
+        "Multi"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "beauty-13.jpg",
+        "beauty-14.jpg",
+        "beauty-15.jpg"
+      ]
+    },
+    {
+      "name": "Youthful Radiance Serum",
+      "category": "beauty",
+      "subcategory": "skincare",
+      "description": "Powerful face serum with active ingredients. Brightens and firms.",
+      "shortDescription": "Powerful face serum with active ingredients. Brightens and f...",
+      "price": 3499,
+      "originalPrice": 5499,
+      "colors": [
+        "Gold"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "beauty-16.jpg",
+        "beauty-17.jpg",
+        "beauty-18.jpg"
+      ]
+    },
+    {
+      "name": "Nude Lipstick",
+      "category": "beauty",
+      "subcategory": "lipstick",
+      "description": "Perfect nude lipstick. Natural and elegant shade.",
+      "shortDescription": "Perfect nude lipstick. Natural and elegant shade.",
+      "price": 899,
+      "originalPrice": 1299,
+      "colors": [
+        "Nude"
+      ],
+      "sizes": [
+        "One Size"
+      ],
+      "images": [
+        "beauty-19.jpg",
+        "beauty-20.jpg",
+        "beauty-21.jpg"
+      ]
+    }
+  ]
+}
