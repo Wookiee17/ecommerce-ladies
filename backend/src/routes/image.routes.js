@@ -103,18 +103,21 @@ router.get('/:imageId', optionalAuth, async (req, res) => {
       return res.status(404).json({ success: false, message: 'Image not found' });
     }
 
-    console.log('Serving image:', image.filename, 'Type:', typeof image.data, 'Buffer?', Buffer.isBuffer(image.data));
+    console.log('Serving image:', image.filename, 'ID:', req.params.imageId);
+    console.log('Data type:', typeof image.data, 'Is Buffer:', Buffer.isBuffer(image.data));
+    console.log('Data keys:', image.data ? Object.keys(image.data) : 'no data');
 
-    // Convert MongoDB Binary to Buffer - handle multiple possible structures
+    // Convert MongoDB Binary to Buffer
     let imageData = image.data;
     if (imageData && typeof imageData === 'object' && !Buffer.isBuffer(imageData)) {
-      // MongoDB Binary type - could have _bsontype or buffer property
-      if (imageData._bsontype === 'Binary' && imageData.buffer) {
+      console.log('Converting from MongoDB Binary...');
+      if (imageData.buffer) {
         imageData = Buffer.from(imageData.buffer);
-      } else if (imageData.buffer) {
-        imageData = Buffer.from(imageData.buffer);
+        console.log('Converted via buffer property, length:', imageData.length);
+      } else if (imageData._bsontype === 'Binary') {
+        imageData = Buffer.from(imageData.read(0, imageData.length()));
+        console.log('Converted via _bsontype, length:', imageData.length);
       } else {
-        // Try to convert the whole object
         imageData = Buffer.from(imageData);
       }
     } else if (Buffer.isBuffer(imageData)) {
