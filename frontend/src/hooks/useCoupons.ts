@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { api } from '@/lib/api';
 
 interface Coupon {
   _id: string;
@@ -29,19 +30,15 @@ export function useCoupons() {
         return;
       }
 
-      const response = await fetch('/api/coupons/user', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+      try {
+        const response: any = await api.get('/coupons/user');
+        if (response.success) {
+          setCoupons(response.data);
+        } else {
+          setError(response.message || 'Failed to fetch coupons');
         }
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setCoupons(data.data);
-      } else {
-        setError(data.message || 'Failed to fetch coupons');
+      } catch (err: any) {
+        setError(err.message || 'Failed to fetch coupons');
       }
     } catch (err) {
       setError('Network error. Please try again.');
@@ -58,18 +55,8 @@ export function useCoupons() {
         return { valid: false, message: 'Please login to use coupons' };
       }
 
-      const response = await fetch('/api/coupons/validate', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ code, cartTotal })
-      });
-
-      const data = await response.json();
-
-      return data;
+      const response: any = await api.post('/coupons/validate', { code, cartTotal });
+      return response;
     } catch (err) {
       console.error('Validate coupon error:', err);
       return { valid: false, message: 'Network error. Please try again.' };
@@ -83,16 +70,7 @@ export function useCoupons() {
         return { success: false, message: 'Please login to use coupons' };
       }
 
-      const response = await fetch('/api/coupons/apply', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ code, orderId })
-      });
-
-      const data = await response.json();
+      const data: any = await api.post('/coupons/apply', { code, orderId });
 
       if (data.success) {
         // Refresh coupons after applying
@@ -125,9 +103,9 @@ export function useCoupons() {
   };
 
   const getBestCoupon = (cartTotal: number) => {
-    const validCoupons = coupons.filter(coupon => 
-      !coupon.isUsed && 
-      new Date(coupon.validUntil) > new Date() && 
+    const validCoupons = coupons.filter(coupon =>
+      !coupon.isUsed &&
+      new Date(coupon.validUntil) > new Date() &&
       cartTotal >= coupon.minOrderAmount
     );
 

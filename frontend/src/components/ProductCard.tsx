@@ -181,7 +181,7 @@ export default function ProductCard({ product, onClick, viewMode = 'grid' }: Pro
           )}
 
           {/* Virtual Try-On Badge/Button */}
-          {((product.category as string) === 'women' || (product.category as string) === 'jewelry') && ( // Simple category check
+          {((product.category as string) === 'women') && ( // Only show for clothing
             <Button
               variant="secondary"
               size="sm"

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Star, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { api } from '@/lib/api';
+import { api, API_URL } from '@/lib/api';
 import type { Product } from '@/data/products';
 
 interface ProductSuggestionsProps {
@@ -28,7 +28,7 @@ export default function ProductSuggestions({ currentProduct, category }: Product
       // Handle both direct data and wrapped response formats
       const allProducts = response.data || response || [];
 
-      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const backendUrl = API_URL;
       const baseUrl = backendUrl.replace('/api', '');
 
       const mappedProducts = allProducts.map((p: any) => {

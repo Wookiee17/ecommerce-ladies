@@ -1,0 +1,10 @@
+node_modules/
+dist/
+www/
+android/app/build/
+android/.gradle/
+ios/App/App/public/
+.DS_Store
+*.log
+*.zip
+jdk17.zip

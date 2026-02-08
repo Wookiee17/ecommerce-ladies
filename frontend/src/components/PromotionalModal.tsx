@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { X, Gift, Clock, Tag } from 'lucide-react';
+import { X, Gift, Clock, Tag, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/context/AuthContext';
+import { api } from '@/lib/api';
 
 interface PromotionalModalProps {
   isOpen: boolean;
@@ -30,13 +31,7 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
     try {
       const token = localStorage.getItem('evara_token');
       if (token) {
-        await fetch('/api/coupons/track-modal', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
+        await api.post('/coupons/track-modal', {});
       }
     } catch (error) {
       console.error('Failed to track modal view:', error);
@@ -48,19 +43,11 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password
-        })
+      const data: any = await api.post('/auth/register', {
+        name,
+        email,
+        password
       });
-
-      const data = await response.json();
 
       if (data.success) {
         localStorage.setItem('evara_token', data.data.token);
@@ -137,6 +124,25 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
                 <span>Limited time offer</span>
               </div>
 
+              <div className="bg-pink-50 border border-pink-200 rounded-lg p-4 text-left">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-white shadow-sm">
+                    <Instagram className="w-5 h-5 text-pink-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-pink-700">Follow us on Instagram</p>
+                    <a
+                      href="https://www.instagram.com/evara_ind/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-pink-600 hover:text-pink-800"
+                    >
+                      @evara_ind
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               <div className="space-y-3 pt-4">
                 <Button
                   onClick={() => setShowSignupForm(true)}
@@ -144,7 +150,7 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
                 >
                   Get My 30% OFF →
                 </Button>
-                
+
                 <Button
                   variant="outline"
                   onClick={handleNoThanks}
@@ -199,6 +205,25 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
                 </p>
               </div>
 
+              <div className="bg-pink-50 border border-pink-200 rounded-lg p-4 text-left">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-full bg-white shadow-sm">
+                    <Instagram className="w-5 h-5 text-pink-600" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-pink-700">Follow us on Instagram</p>
+                    <a
+                      href="https://www.instagram.com/evara_ind/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm text-pink-600 hover:text-pink-800"
+                    >
+                      @evara_ind
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex space-x-3">
                 <Button
                   type="submit"
@@ -207,7 +232,7 @@ export default function PromotionalModal({ isOpen, onClose, onSignupSuccess }: P
                 >
                   {isLoading ? 'Creating Account...' : 'Sign Up & Get 30% OFF'}
                 </Button>
-                
+
                 <Button
                   type="button"
                   variant="outline"

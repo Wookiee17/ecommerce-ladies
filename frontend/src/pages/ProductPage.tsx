@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Minus, Plus, MessageSquare, Camera, Maximize2 } from 'lucide-react';
+import { toast } from 'sonner';
+
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
 import { useTryOn } from '@/context/TryOnContext';
+import { useAuth } from '@/context/AuthContext';
+
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -13,7 +17,7 @@ import ProductSuggestions from '@/components/ProductSuggestions';
 import VirtualTryOnModal from '@/components/VirtualTryOnModal';
 import ImageLightbox from '@/components/ImageLightbox';
 import CommunityTryOns from '@/components/CommunityTryOns';
-import { api } from '@/lib/api';
+import { api, API_URL } from '@/lib/api';
 import type { Product } from '@/data/products';
 
 export default function ProductPage() {
@@ -33,6 +37,7 @@ export default function ProductPage() {
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { setActiveCategory } = useCategory();
   const { getProductTryOnImage } = useTryOn();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     if (id) {
@@ -89,6 +94,14 @@ export default function ProductPage() {
     }
   };
 
+  const handleVirtualTryOnClick = () => {
+    if (!isAuthenticated) {
+      toast.error('Please sign in to use Virtual Try-On');
+      return;
+    }
+    setShowVirtualTryOn(true);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -115,7 +128,7 @@ export default function ProductPage() {
     : 0;
 
   // Construct full image URLs - handle both object format {url, isPrimary} and string format
-  const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const backendUrl = API_URL;
   const baseUrl = backendUrl.replace('/api', '');
   const productImageUrls = product.images?.map((img: any) => {
     const url = typeof img === 'string' ? img : img?.url || '';
@@ -171,6 +184,12 @@ export default function ProductPage() {
                   <Maximize2 className="h-5 w-5" />
                 </Button>
               </div>
+
+              {!isAuthenticated && !/jewel|beauty|lifestyle/i.test(product.category) && (
+                <p className="text-sm text-muted-foreground">
+                  Please sign in to access Virtual Try-On.
+                </p>
+              )}
               {/* Try-on badge */}
               {activeImage === 0 && tryOnImage && (
                 <Badge className="absolute top-3 left-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
@@ -298,12 +317,13 @@ export default function ProductPage() {
               <Button onClick={handleBuyNow} size="lg" variant="outline" className="flex-1 min-w-[150px]">
                 Buy Now
               </Button>
-              {!/jewel/i.test(product.category) && (
+              {!/jewel|beauty|lifestyle/i.test(product.category) && (
                 <Button
-                  onClick={() => setShowVirtualTryOn(true)}
+                  onClick={handleVirtualTryOnClick}
                   size="lg"
                   variant="outline"
                   className="flex-1 min-w-[150px]"
+                  disabled={!isAuthenticated}
                 >
                   <Camera className="mr-2 h-5 w-5" />
                   Virtual Try-On
