@@ -44,5 +44,7 @@ export const api = {
     get: (endpoint: string, options?: RequestOptions) => request(endpoint, { ...options, method: 'GET' }),
     post: (endpoint: string, data: any, options?: RequestOptions) => request(endpoint, { ...options, method: 'POST', data }),
     put: (endpoint: string, data: any, options?: RequestOptions) => request(endpoint, { ...options, method: 'PUT', data }),
+    patch: (endpoint: string, data?: any, options?: RequestOptions) => request(endpoint, { ...options, method: 'PATCH', data }),
     delete: (endpoint: string, options?: RequestOptions) => request(endpoint, { ...options, method: 'DELETE' }),
 };
+

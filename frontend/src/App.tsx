@@ -14,6 +14,7 @@ import HomePage from '@/pages/HomePage';
 import ProductsPage from '@/pages/ProductsPage';
 import ProductPage from '@/pages/ProductPage';
 import ProfilePage from '@/pages/ProfilePage';
+import TryOnGalleryPage from '@/pages/TryOnGalleryPage';
 import AdminDashboard from '@/pages/AdminDashboard';
 import SellerDashboard from '@/pages/SellerDashboard';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
@@ -66,6 +67,7 @@ function AppContent() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/my-gallery" element={<TryOnGalleryPage />} />
           <Route path="/admin/dashboard" element={
             <ProtectedRoute allowedRoles={['admin']}>
               <AdminDashboard />

@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Minus, Plus, MessageSquare, Camera } from 'lucide-react';
+import { Heart, ShoppingBag, Star, Truck, RotateCcw, Shield, Minus, Plus, MessageSquare, Camera, Maximize2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useWishlist } from '@/context/WishlistContext';
 import { useCategory } from '@/context/CategoryContext';
+import { useTryOn } from '@/context/TryOnContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ReviewShareModal from '@/components/ReviewShareModal';
 import ProductSuggestions from '@/components/ProductSuggestions';
 import VirtualTryOnModal from '@/components/VirtualTryOnModal';
+import ImageLightbox from '@/components/ImageLightbox';
+import CommunityTryOns from '@/components/CommunityTryOns';
 import { api } from '@/lib/api';
 import type { Product } from '@/data/products';
 
@@ -25,9 +28,11 @@ export default function ProductPage() {
   const [activeImage, setActiveImage] = useState(0);
   const [showReviewShare, setShowReviewShare] = useState(false);
   const [showVirtualTryOn, setShowVirtualTryOn] = useState(false);
+  const [showLightbox, setShowLightbox] = useState(false);
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { setActiveCategory } = useCategory();
+  const { getProductTryOnImage } = useTryOn();
 
   useEffect(() => {
     if (id) {
@@ -112,10 +117,16 @@ export default function ProductPage() {
   // Construct full image URLs - handle both object format {url, isPrimary} and string format
   const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
   const baseUrl = backendUrl.replace('/api', '');
-  const fullImageUrls = product.images?.map((img: any) => {
+  const productImageUrls = product.images?.map((img: any) => {
     const url = typeof img === 'string' ? img : img?.url || '';
     return url.startsWith('http') ? url : `${baseUrl}${url}`;
   }) || [];
+
+  // Get try-on image for this product and prepend it to gallery
+  const tryOnImage = getProductTryOnImage(product.id);
+  const fullImageUrls = tryOnImage
+    ? [tryOnImage, ...productImageUrls]
+    : productImageUrls;
 
   return (
     <div className="min-h-screen bg-background">
@@ -137,12 +148,35 @@ export default function ProductPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Image Gallery */}
           <div className="space-y-4">
-            <div className="aspect-square bg-muted rounded-lg overflow-hidden">
+            <div
+              className="aspect-square bg-muted rounded-lg overflow-hidden relative group cursor-pointer"
+              onClick={() => setShowLightbox(true)}
+            >
               <img
                 src={fullImageUrls?.[activeImage]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform group-hover:scale-105"
               />
+              {/* Fullscreen button overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowLightbox(true);
+                  }}
+                >
+                  <Maximize2 className="h-5 w-5" />
+                </Button>
+              </div>
+              {/* Try-on badge */}
+              {activeImage === 0 && tryOnImage && (
+                <Badge className="absolute top-3 left-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                  ✨ Your Try-On
+                </Badge>
+              )}
             </div>
             <div className="grid grid-cols-4 gap-2">
               {fullImageUrls?.map((image, index) => (
@@ -264,15 +298,17 @@ export default function ProductPage() {
               <Button onClick={handleBuyNow} size="lg" variant="outline" className="flex-1 min-w-[150px]">
                 Buy Now
               </Button>
-              <Button
-                onClick={() => setShowVirtualTryOn(true)}
-                size="lg"
-                variant="outline"
-                className="flex-1 min-w-[150px]"
-              >
-                <Camera className="mr-2 h-5 w-5" />
-                Virtual Try-On
-              </Button>
+              {!/jewel/i.test(product.category) && (
+                <Button
+                  onClick={() => setShowVirtualTryOn(true)}
+                  size="lg"
+                  variant="outline"
+                  className="flex-1 min-w-[150px]"
+                >
+                  <Camera className="mr-2 h-5 w-5" />
+                  Virtual Try-On
+                </Button>
+              )}
               <Button
                 onClick={() => toggleWishlist(product)}
                 size="lg"
@@ -360,6 +396,9 @@ export default function ProductPage() {
           </Tabs>
         </div>
 
+        {/* Community Try-Ons */}
+        <CommunityTryOns productId={product.id} />
+
         {/* Product Suggestions */}
         <ProductSuggestions
           currentProduct={product}
@@ -385,6 +424,14 @@ export default function ProductPage() {
           product={product}
         />
       )}
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        images={fullImageUrls}
+        initialIndex={activeImage}
+        isOpen={showLightbox}
+        onClose={() => setShowLightbox(false)}
+      />
     </div>
   );
 }

@@ -109,6 +109,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 const wishlistRoutes = require('./routes/wishlist.routes');
+const galleryRoutes = require('./routes/gallery.routes');
 
 // API Routes
 app.use('/api/auth', authRoutes);
@@ -128,6 +129,7 @@ app.use('/api/inventory', inventoryRoutes);
 app.use('/api/try-on', virtualTryOnRoutes);
 app.use('/api/try-on-v2', tryOnRoutes);
 app.use('/api/images', imageRoutes);
+app.use('/api/gallery', galleryRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

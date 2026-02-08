@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingBag, Heart, Search, Menu, X, User, Clock, TrendingUp, Camera, Bell, LogOut, Package, Settings, MapPin, LayoutDashboard } from 'lucide-react';
 import {
   DropdownMenu,
@@ -36,6 +36,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { getCartCount } = useCart();
   const { wishlist: wishlistItems } = useWishlist();
@@ -118,7 +119,14 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
 
   const handleCategoryClick = (categoryId: string) => {
     setActiveCategory(categoryId as 'all' | 'dress' | 'jewelry' | 'beauty');
-    scrollToSection('products');
+
+    // Navigate to products page with category filter
+    if (categoryId === 'all') {
+      navigate('/');
+      setTimeout(() => scrollToSection('products'), 100);
+    } else {
+      navigate(`/products?category=${categoryId}`);
+    }
   };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -153,7 +161,7 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
             <button
               onClick={() => {
                 setActiveCategory('all');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                navigate('/');
               }}
               className="flex items-center gap-2 group"
             >
@@ -173,8 +181,8 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               <button
                 onClick={() => handleCategoryClick('all')}
                 className={`text-sm font-medium transition-colors ${activeCategory === 'all'
-                  ? (isScrolled ? 'text-coral-400' : 'text-coral-200')
-                  : (isScrolled ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
+                  ? (showScrolledStyle ? 'text-coral-400' : 'text-coral-200')
+                  : (showScrolledStyle ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
                   }`}
               >
                 Home
@@ -184,8 +192,8 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                   key={cat.id}
                   onClick={() => handleCategoryClick(cat.id)}
                   className={`text-sm font-medium transition-colors ${activeCategory === cat.id
-                    ? (isScrolled ? 'text-coral-400' : 'text-coral-200')
-                    : (isScrolled ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
+                    ? (showScrolledStyle ? 'text-coral-400' : 'text-coral-200')
+                    : (showScrolledStyle ? 'text-gray-700 hover:text-coral-400' : 'text-white/90 hover:text-coral-200')
                     }`}
                 >
                   {cat.name}
@@ -224,17 +232,17 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                   setIsSearchOpen(!isSearchOpen);
                   setShowSuggestions(true);
                 }}
-                className={`p-2 rounded-full transition-colors ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
+                className={`p-2 rounded-full transition-colors ${showScrolledStyle ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
               >
-                <Search className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
+                <Search className={`w-5 h-5 ${showScrolledStyle ? 'text-gray-700' : 'text-white'}`} />
               </button>
 
               {/* Wishlist */}
               <button
                 onClick={onWishlistClick}
-                className={`hidden sm:flex p-2 rounded-full transition-colors relative ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
+                className={`hidden sm:flex p-2 rounded-full transition-colors relative ${showScrolledStyle ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
               >
-                <Heart className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
+                <Heart className={`w-5 h-5 ${showScrolledStyle ? 'text-gray-700' : 'text-white'}`} />
                 {wishlistItems.length > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-coral-400 text-white text-xs rounded-full flex items-center justify-center">
                     {wishlistItems.length}
@@ -245,9 +253,9 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               {/* Cart */}
               <button
                 onClick={onCartClick}
-                className={`p-2 rounded-full transition-colors relative ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
+                className={`p-2 rounded-full transition-colors relative ${showScrolledStyle ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
               >
-                <ShoppingBag className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
+                <ShoppingBag className={`w-5 h-5 ${showScrolledStyle ? 'text-gray-700' : 'text-white'}`} />
                 {getCartCount() > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-coral-400 text-white text-xs rounded-full flex items-center justify-center">
                     {getCartCount()}
@@ -259,9 +267,9 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
               {isAuthenticated && (
                 <button
                   onClick={() => setIsNotificationsOpen(true)}
-                  className={`hidden sm:flex p-2 rounded-full transition-colors relative ${isScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
+                  className={`hidden sm:flex p-2 rounded-full transition-colors relative ${showScrolledStyle ? 'hover:bg-gray-100' : 'hover:bg-white/20'}`}
                 >
-                  <Bell className={`w-5 h-5 ${isScrolled ? 'text-gray-700' : 'text-white'}`} />
+                  <Bell className={`w-5 h-5 ${showScrolledStyle ? 'text-gray-700' : 'text-white'}`} />
                   {unreadCount > 0 && (
                     <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                       {unreadCount > 9 ? '9+' : unreadCount}
@@ -313,6 +321,10 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
                     <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/profile?tab=settings'}>
                       <Settings className="mr-2 h-4 w-4" />
                       <span>Settings</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = '/my-gallery'}>
+                      <Camera className="mr-2 h-4 w-4" />
+                      <span>My Try-On Gallery</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem

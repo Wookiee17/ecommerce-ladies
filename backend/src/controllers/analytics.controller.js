@@ -13,48 +13,142 @@ exports.getDashboardOverview = async (req, res) => {
   try {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     const thirtyDaysAgo = new Date(today);
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-    
+
+    const Order = require('../models/order.model');
+
     // Get today's stats
     const todayStats = await getStatsForDateRange(today, new Date());
-    
+
     // Get last 30 days stats
     const thirtyDayStats = await getStatsForDateRange(thirtyDaysAgo, new Date());
-    
+
     // Get user growth
     const userGrowth = await getUserGrowth(30);
-    
+
     // Get top products
     const topProducts = await getTopProducts(10);
-    
+
     // Get top searches
     const topSearches = await getTopSearches(10);
-    
+
     // Get device breakdown
     const deviceBreakdown = await getDeviceBreakdown();
-    
+
     // Get location breakdown
     const locationBreakdown = await getLocationBreakdown(10);
-    
+
     // Get recent activity
     const recentActivity = await getRecentActivity(20);
-    
+
+    // Get order stats
+    const [totalOrders, todayOrders, ordersByStatus] = await Promise.all([
+      Order.countDocuments(),
+      Order.countDocuments({ createdAt: { $gte: today } }),
+      Order.aggregate([
+        {
+          $group: {
+            _id: '$status',
+            count: { $sum: 1 }
+          }
+        }
+      ])
+    ]);
+
+    // Get revenue stats
+    const [revenueResult, todayRevenueResult] = await Promise.all([
+      Order.aggregate([
+        { $match: { 'payment.status': 'completed' } },
+        {
+          $group: {
+            _id: null,
+            totalRevenue: { $sum: '$payment.amount' },
+            averageOrderValue: { $avg: '$payment.amount' }
+          }
+        }
+      ]),
+      Order.aggregate([
+        {
+          $match: {
+            'payment.status': 'completed',
+            createdAt: { $gte: today }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            todayRevenue: { $sum: '$payment.amount' }
+          }
+        }
+      ])
+    ]);
+
+    const totalRevenue = revenueResult[0]?.totalRevenue || 0;
+    const todayRevenue = todayRevenueResult[0]?.todayRevenue || 0;
+    const averageOrderValue = revenueResult[0]?.averageOrderValue || 0;
+
+    // Get revenue trend (last 30 days)
+    const revenueTrend = await Order.aggregate([
+      {
+        $match: {
+          'payment.status': 'completed',
+          createdAt: { $gte: thirtyDaysAgo }
+        }
+      },
+      {
+        $group: {
+          _id: {
+            $dateToString: { format: '%Y-%m-%d', date: '$createdAt' }
+          },
+          revenue: { $sum: '$payment.amount' },
+          orders: { $sum: 1 }
+        }
+      },
+      {
+        $sort: { _id: 1 }
+      },
+      {
+        $project: {
+          date: '$_id',
+          revenue: 1,
+          orders: 1,
+          _id: 0
+        }
+      }
+    ]);
+
     res.json({
       success: true,
       data: {
-        today: todayStats,
+        today: {
+          ...todayStats,
+          todayOrders,
+          todayRevenue
+        },
         last30Days: thirtyDayStats,
         userGrowth,
         topProducts,
         topSearches,
         deviceBreakdown,
         locationBreakdown,
-        recentActivity
+        recentActivity,
+        orders: {
+          total: totalOrders,
+          byStatus: ordersByStatus.reduce((acc, item) => {
+            acc[item._id] = item.count;
+            return acc;
+          }, {})
+        },
+        revenue: {
+          total: totalRevenue,
+          averageOrderValue,
+          trend: revenueTrend
+        }
       }
     });
-    
+
   } catch (error) {
     console.error('Dashboard overview error:', error);
     res.status(500).json({ success: false, message: error.message });
@@ -66,45 +160,45 @@ exports.getUserAnalytics = async (req, res) => {
   try {
     const { userId } = req.params;
     const { days = 30 } = req.query;
-    
+
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - parseInt(days));
-    
+
     // Get user details
     const user = await User.findById(userId).select('-password');
-    
+
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
-    
+
     // Get user activities
     const activities = await UserActivity.find({
       userId,
       timestamp: { $gte: startDate }
     }).sort({ timestamp: -1 }).limit(100);
-    
+
     // Get page visits
     const pageVisits = await PageVisit.find({
       userId,
       entryTime: { $gte: startDate }
     }).sort({ entryTime: -1 });
-    
+
     // Get searches
     const searches = await SearchHistory.find({
       userId,
       timestamp: { $gte: startDate }
     }).sort({ timestamp: -1 });
-    
+
     // Get sessions
     const sessions = await UserSession.find({
       userId,
       startTime: { $gte: startDate }
     }).sort({ startTime: -1 });
-    
+
     // Calculate stats
     const totalTimeSpent = sessions.reduce((sum, s) => sum + (s.totalTimeSpent || 0), 0);
     const uniquePages = [...new Set(pageVisits.map(p => p.page))];
-    
+
     res.json({
       success: true,
       data: {
@@ -124,7 +218,7 @@ exports.getUserAnalytics = async (req, res) => {
         sessions
       }
     });
-    
+
   } catch (error) {
     console.error('User analytics error:', error);
     res.status(500).json({ success: false, message: error.message });
@@ -135,7 +229,7 @@ exports.getUserAnalytics = async (req, res) => {
 exports.getAllUsersAnalytics = async (req, res) => {
   try {
     const { page = 1, limit = 50, search = '', role = '' } = req.query;
-    
+
     const query = {};
     if (search) {
       query.$or = [
@@ -144,15 +238,15 @@ exports.getAllUsersAnalytics = async (req, res) => {
       ];
     }
     if (role) query.role = role;
-    
+
     const users = await User.find(query)
       .select('-password')
       .skip((page - 1) * limit)
       .limit(parseInt(limit))
       .sort({ createdAt: -1 });
-    
+
     const total = await User.countDocuments(query);
-    
+
     // Get analytics for each user
     const usersWithAnalytics = await Promise.all(
       users.map(async (user) => {
@@ -160,7 +254,7 @@ exports.getAllUsersAnalytics = async (req, res) => {
         const lastActivity = await UserActivity.findOne({ userId: user._id })
           .sort({ timestamp: -1 });
         const sessionCount = await UserSession.countDocuments({ userId: user._id });
-        
+
         return {
           ...user.toPublicProfile(),
           analytics: {
@@ -171,7 +265,7 @@ exports.getAllUsersAnalytics = async (req, res) => {
         };
       })
     );
-    
+
     res.json({
       success: true,
       data: usersWithAnalytics,
@@ -182,7 +276,7 @@ exports.getAllUsersAnalytics = async (req, res) => {
         pages: Math.ceil(total / limit)
       }
     });
-    
+
   } catch (error) {
     console.error('All users analytics error:', error);
     res.status(500).json({ success: false, message: error.message });
@@ -193,10 +287,10 @@ exports.getAllUsersAnalytics = async (req, res) => {
 exports.getSearchAnalytics = async (req, res) => {
   try {
     const { days = 30, limit = 50 } = req.query;
-    
+
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - parseInt(days));
-    
+
     // Get all searches
     const searches = await SearchHistory.aggregate([
       {
@@ -219,7 +313,7 @@ exports.getSearchAnalytics = async (req, res) => {
         $limit: parseInt(limit)
       }
     ]);
-    
+
     // Get searches with no results
     const noResultSearches = await SearchHistory.aggregate([
       {
@@ -244,7 +338,7 @@ exports.getSearchAnalytics = async (req, res) => {
         $limit: 20
       }
     ]);
-    
+
     res.json({
       success: true,
       data: {
@@ -255,7 +349,7 @@ exports.getSearchAnalytics = async (req, res) => {
         })
       }
     });
-    
+
   } catch (error) {
     console.error('Search analytics error:', error);
     res.status(500).json({ success: false, message: error.message });
@@ -266,10 +360,10 @@ exports.getSearchAnalytics = async (req, res) => {
 exports.getPageAnalytics = async (req, res) => {
   try {
     const { days = 30 } = req.query;
-    
+
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - parseInt(days));
-    
+
     // Get page views
     const pageViews = await PageVisit.aggregate([
       {
@@ -297,12 +391,12 @@ exports.getPageAnalytics = async (req, res) => {
         $sort: { views: -1 }
       }
     ]);
-    
+
     res.json({
       success: true,
       data: pageViews
     });
-    
+
   } catch (error) {
     console.error('Page analytics error:', error);
     res.status(500).json({ success: false, message: error.message });
@@ -313,7 +407,7 @@ exports.getPageAnalytics = async (req, res) => {
 exports.getRealTimeStats = async (req, res) => {
   try {
     const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
-    
+
     const [activeUsers, recentActivities, recentOrders] = await Promise.all([
       UserSession.countDocuments({
         isActive: true,
@@ -324,7 +418,7 @@ exports.getRealTimeStats = async (req, res) => {
       }).sort({ timestamp: -1 }).limit(10),
       // Order.find({ createdAt: { $gte: fiveMinutesAgo } }).countDocuments()
     ]);
-    
+
     res.json({
       success: true,
       data: {
@@ -333,7 +427,7 @@ exports.getRealTimeStats = async (req, res) => {
         recentOrders: 0 // Placeholder
       }
     });
-    
+
   } catch (error) {
     console.error('Real-time stats error:', error);
     res.status(500).json({ success: false, message: error.message });
@@ -361,7 +455,7 @@ async function getStatsForDateRange(startDate, endDate) {
       startTime: { $gte: startDate, $lte: endDate }
     })
   ]);
-  
+
   return {
     totalVisits,
     uniqueVisitors,
@@ -372,25 +466,25 @@ async function getStatsForDateRange(startDate, endDate) {
 
 async function getUserGrowth(days) {
   const growth = [];
-  
+
   for (let i = days - 1; i >= 0; i--) {
     const date = new Date();
     date.setDate(date.getDate() - i);
     date.setHours(0, 0, 0, 0);
-    
+
     const nextDate = new Date(date);
     nextDate.setDate(nextDate.getDate() + 1);
-    
+
     const count = await User.countDocuments({
       createdAt: { $gte: date, $lt: nextDate }
     });
-    
+
     growth.push({
       date: date.toISOString().split('T')[0],
       count
     });
   }
-  
+
   return growth;
 }
 
@@ -404,7 +498,7 @@ async function getTopProducts(limit) {
 async function getTopSearches(limit) {
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - 30);
-  
+
   return await SearchHistory.aggregate([
     {
       $match: {
@@ -436,7 +530,7 @@ async function getTopSearches(limit) {
 async function getDeviceBreakdown() {
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - 30);
-  
+
   const breakdown = await UserSession.aggregate([
     {
       $match: {
@@ -450,19 +544,19 @@ async function getDeviceBreakdown() {
       }
     }
   ]);
-  
+
   const result = { mobile: 0, tablet: 0, desktop: 0 };
   breakdown.forEach(item => {
     if (item._id) result[item._id] = item.count;
   });
-  
+
   return result;
 }
 
 async function getLocationBreakdown(limit) {
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - 30);
-  
+
   return await PageVisit.aggregate([
     {
       $match: {

@@ -97,19 +97,43 @@ export default function AdminDashboard() {
         try {
             if (activeTab === 'overview') {
                 // Fetch analytics dashboard overview
-                const { data } = await api.get('/analytics/dashboard');
-                setAnalyticsData(data.data);
-                setStats(data.data.today);
-                setRevenueData(data.data.last30Days.userGrowth || []);
-                setUserGrowthData(data.data.userGrowth || []);
+                const response = await api.get('/analytics/dashboard');
+                // Fetch product count
+                const productsResponse = await api.get('/products?limit=1');
+
+                console.log('Analytics response:', response.data);
+                console.log('Products response:', productsResponse.data);
+
+                const analyticsData = response.data;
+                const productsData = productsResponse.data;
+
+                setAnalyticsData(analyticsData);
+                setStats({
+                    totalUsers: analyticsData.today?.newUsers || 0,
+                    totalProducts: productsData.pagination?.total || 0,
+                    totalOrders: analyticsData.orders?.total || 0,
+                    totalRevenue: Math.round(analyticsData.revenue?.total || 0),
+                    recentOrders: []
+                });
+                setRevenueData(analyticsData.revenue?.trend || []);
+                setUserGrowthData(analyticsData.userGrowth || []);
             } else if (activeTab === 'users') {
                 // Fetch users with analytics
-                const { data } = await api.get('/analytics/users');
-                setUsers(data.data || []);
+                const response = await api.get('/analytics/users');
+                console.log('Users API response:', response.data);
+                setUsers(response.data || []);  // API returns users array directly
             } else if (activeTab === 'products') {
-                // Fetch products with analytics
-                const { data } = await api.get('/analytics/products');
-                setProducts(data.data || []);
+                // Fetch products (using regular products endpoint with pagination)
+                console.log('Fetching products...');
+                const response = await api.get('/products?limit=50');
+                console.log('Full products API response:', response);
+                console.log('Response.data:', response.data);
+                console.log('Response.data.data:', response.data.data);
+                console.log('Products array length:', response.data.data?.length);
+
+                const productsArray = response.data || [];
+                console.log('Setting products to:', productsArray);
+                setProducts(productsArray);  // API returns {success, data, pagination}
             }
         } catch (error) {
             console.error('Failed to fetch dashboard data:', error);
@@ -138,16 +162,20 @@ export default function AdminDashboard() {
     };
 
     if (!user || (user as any).role !== 'admin') {
+        console.log('Admin Dashboard - Access check:', { user, role: (user as any)?.role });
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="text-center p-8">
                     <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h2>
                     <p className="text-gray-500">You do not have permission to view this page.</p>
+                    <p className="text-xs text-gray-400 mt-4">User role: {(user as any)?.role || 'not logged in'}</p>
                 </div>
             </div>
         );
     }
+
+    console.log('Admin Dashboard - Rendering with:', { loading, stats, activeTab });
 
     return (
         <div className="min-h-screen bg-gray-50/50 pt-20 pb-12">
@@ -195,7 +223,7 @@ export default function AdminDashboard() {
                                 {/* Stats Cards */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                                     {[
-                                        { label: 'Total Revenue', value: '$125,000', icon: DollarSign, color: 'text-green-600', bg: 'bg-green-100' },
+                                        { label: 'Total Revenue', value: `₹${stats?.totalRevenue?.toLocaleString() || 0}`, icon: DollarSign, color: 'text-green-600', bg: 'bg-green-100' },
                                         { label: 'Active Users', value: stats?.totalUsers || 0, icon: Users, color: 'text-blue-600', bg: 'bg-blue-100' },
                                         { label: 'Total Products', value: stats?.totalProducts || 0, icon: Package, color: 'text-purple-600', bg: 'bg-purple-100' },
                                         { label: 'Total Orders', value: stats?.totalOrders || 0, icon: ShoppingBag, color: 'text-orange-600', bg: 'bg-orange-100' },
@@ -344,29 +372,39 @@ export default function AdminDashboard() {
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-100">
-                                            {users.map((user) => (
-                                                <tr key={user._id} className="hover:bg-gray-50/50 transition-colors">
-                                                    <td className="px-6 py-4 font-medium text-gray-900">{user.name}</td>
-                                                    <td className="px-6 py-4 text-gray-500">{user.email}</td>
-                                                    <td className="px-6 py-4">
-                                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${user.role === 'admin'
-                                                            ? 'bg-purple-100 text-purple-800'
-                                                            : 'bg-blue-100 text-blue-800'
-                                                            }`}>
-                                                            {user.role}
-                                                        </span>
-                                                    </td>
-                                                    <td className="px-6 py-4">
-                                                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                            <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                                                            Active
-                                                        </span>
-                                                    </td>
-                                                    <td className="px-6 py-4 text-right">
-                                                        <button className="text-gray-400 hover:text-coral-500 transition-colors">Edit</button>
+                                            {users.length === 0 ? (
+                                                <tr>
+                                                    <td colSpan={5} className="px-6 py-12 text-center text-gray-500">
+                                                        No users found
                                                     </td>
                                                 </tr>
-                                            ))}
+                                            ) : (
+                                                users.map((user: any) => (
+                                                    <tr key={user.id || user._id} className="hover:bg-gray-50/50 transition-colors">
+                                                        <td className="px-6 py-4 font-medium text-gray-900">{user.name}</td>
+                                                        <td className="px-6 py-4 text-gray-500">{user.email}</td>
+                                                        <td className="px-6 py-4">
+                                                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${user.role === 'admin'
+                                                                ? 'bg-purple-100 text-purple-800'
+                                                                : user.role === 'seller'
+                                                                    ? 'bg-blue-100 text-blue-800'
+                                                                    : 'bg-gray-100 text-gray-800'
+                                                                }`}>
+                                                                {user.role}
+                                                            </span>
+                                                        </td>
+                                                        <td className="px-6 py-4">
+                                                            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                                                Active
+                                                            </span>
+                                                        </td>
+                                                        <td className="px-6 py-4 text-right">
+                                                            <button className="text-gray-400 hover:text-coral-500 transition-colors">Edit</button>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            )}
                                         </tbody>
                                     </table>
                                 </div>
@@ -400,42 +438,50 @@ export default function AdminDashboard() {
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-100">
-                                            {products.slice(0, 10).map((product) => (
-                                                <tr key={product._id} className="hover:bg-gray-50/50 transition-colors">
-                                                    <td className="px-6 py-4">
-                                                        <div className="flex items-center gap-3">
-                                                            <img
-                                                                src={product.image}
-                                                                alt={product.name}
-                                                                className="w-10 h-10 rounded-lg object-cover bg-gray-100"
-                                                            />
-                                                            <span className="font-medium text-gray-900 truncate max-w-[200px]">{product.name}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td className="px-6 py-4 text-gray-500 capitalize">{product.category}</td>
-                                                    <td className="px-6 py-4 text-gray-900 font-medium">${product.price}</td>
-                                                    <td className="px-6 py-4 text-gray-500">{product.stock}</td>
-                                                    <td className="px-6 py-4">
-                                                        {product.isActive ? (
-                                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                                Active
-                                                            </span>
-                                                        ) : (
-                                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                                Inactive
-                                                            </span>
-                                                        )}
-                                                    </td>
-                                                    <td className="px-6 py-4 text-right flex items-center justify-end gap-2">
-                                                        <button className="p-1 text-gray-400 hover:text-blue-500 transition-colors">
-                                                            <Settings className="w-4 h-4" />
-                                                        </button>
-                                                        <button className="p-1 text-gray-400 hover:text-red-500 transition-colors">
-                                                            <XCircle className="w-4 h-4" />
-                                                        </button>
+                                            {products.length === 0 ? (
+                                                <tr>
+                                                    <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
+                                                        No products found
                                                     </td>
                                                 </tr>
-                                            ))}
+                                            ) : (
+                                                products.slice(0, 10).map((product: any) => (
+                                                    <tr key={product._id} className="hover:bg-gray-50/50 transition-colors">
+                                                        <td className="px-6 py-4">
+                                                            <div className="flex items-center gap-3">
+                                                                <img
+                                                                    src={product.image}
+                                                                    alt={product.name}
+                                                                    className="w-10 h-10 rounded-lg object-cover bg-gray-100"
+                                                                />
+                                                                <span className="font-medium text-gray-900 truncate max-w-[200px]">{product.name}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td className="px-6 py-4 text-gray-500 capitalize">{product.category}</td>
+                                                        <td className="px-6 py-4 text-gray-900 font-medium">₹{product.price}</td>
+                                                        <td className="px-6 py-4 text-gray-500">{product.stock}</td>
+                                                        <td className="px-6 py-4">
+                                                            {product.isActive ? (
+                                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                    Active
+                                                                </span>
+                                                            ) : (
+                                                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                                    Inactive
+                                                                </span>
+                                                            )}
+                                                        </td>
+                                                        <td className="px-6 py-4 text-right flex items-center justify-end gap-2">
+                                                            <button className="p-1 text-gray-400 hover:text-blue-500 transition-colors">
+                                                                <Settings className="w-4 h-4" />
+                                                            </button>
+                                                            <button className="p-1 text-gray-400 hover:text-red-500 transition-colors">
+                                                                <XCircle className="w-4 h-4" />
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            )}
                                         </tbody>
                                     </table>
                                 </div>
