@@ -17,6 +17,7 @@ import { useSearch } from '@/context/SearchContext';
 import { useTryOn } from '@/context/TryOnContext';
 import { categories } from '@/data/products';
 import Notifications from '@/components/Notifications';
+import { api } from '@/lib/api';
 
 interface NavigationProps {
   onCartClick: () => void;
@@ -60,16 +61,9 @@ export default function Navigation({ onCartClick, onWishlistClick, onAuthClick, 
         const token = localStorage.getItem('evara_token');
         if (!token) return;
 
-        const response = await fetch('/api/notifications/unread-count', {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-
-        const data = await response.json();
-        if (data.success) {
-          setUnreadCount(data.data.unreadCount);
+        const response: any = await api.get('/notifications/unread-count');
+        if (response.success) {
+          setUnreadCount(response.data.unreadCount);
         }
       } catch (error) {
         console.error('Failed to fetch unread count:', error);

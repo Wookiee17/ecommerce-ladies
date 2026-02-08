@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import { toast } from 'sonner';
-import { api } from '@/lib/api';
+import { api, API_URL } from '@/lib/api';
 import { useAuth } from '@/context/AuthContext';
 
 interface GeneratedImage {
@@ -218,7 +218,7 @@ export const TryOnProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         formData.append('description', job.description);
       }
 
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      // API_URL is imported from '@/lib/api'
       const token = localStorage.getItem('evara_token');
 
       const response = await fetch(`${API_URL}/try-on/virtual-try-on`, {

@@ -3,7 +3,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 const config: CapacitorConfig = {
   appId: 'com.evara.app',
   appName: 'Evara',
-  webDir: 'dist',
+  webDir: '../frontend/dist',
   server: {
     androidScheme: 'https',
     iosScheme: 'https',

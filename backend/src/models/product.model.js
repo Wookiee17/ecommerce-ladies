@@ -16,7 +16,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     maxlength: 200
   },
-  
+
   // Pricing
   price: {
     type: Number,
@@ -31,12 +31,12 @@ const productSchema = new mongoose.Schema({
     type: String,
     default: 'INR'
   },
-  
+
   // Category
   category: {
     type: String,
     required: true,
-    enum: ['dress', 'jewelry', 'beauty'],
+    enum: ['dress', 'jewelry', 'beauty', 'lifestyle electronics'],
     index: true
   },
   subcategory: {
@@ -44,14 +44,14 @@ const productSchema = new mongoose.Schema({
     required: true,
     index: true
   },
-  
+
   // Images
   images: [{
     url: { type: String, required: true },
     alt: String,
     isPrimary: { type: Boolean, default: false }
   }],
-  
+
   // Variants (for dresses)
   variants: {
     colors: [{
@@ -65,7 +65,7 @@ const productSchema = new mongoose.Schema({
       inStock: { type: Boolean, default: true }
     }]
   },
-  
+
   // Inventory
   stock: {
     type: Number,
@@ -97,7 +97,7 @@ const productSchema = new mongoose.Schema({
     unique: true,
     sparse: true
   },
-  
+
   // Product details
   details: {
     material: String,
@@ -111,7 +111,7 @@ const productSchema = new mongoose.Schema({
     countryOfOrigin: { type: String, default: 'India' },
     warranty: String
   },
-  
+
   // SEO
   seo: {
     title: String,
@@ -123,7 +123,7 @@ const productSchema = new mongoose.Schema({
       sparse: true
     }
   },
-  
+
   // Ratings & Reviews
   rating: {
     type: Number,
@@ -146,7 +146,7 @@ const productSchema = new mongoose.Schema({
     helpful: { type: Number, default: 0 },
     createdAt: { type: Date, default: Date.now }
   }],
-  
+
   // Flags
   isActive: {
     type: Boolean,
@@ -164,30 +164,30 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  
+
   // Seller info
   seller: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  
+
   // Sales stats
   stats: {
     views: { type: Number, default: 0 },
     sales: { type: Number, default: 0 },
     revenue: { type: Number, default: 0 }
   },
-  
+
   // Tags for search
   tags: [{
     type: String,
     index: true
   }],
-  
+
   // For image search
   imageEmbedding: [Number], // Vector embedding for similarity search
-  
+
   // Bulk upload tracking
   bulkUploadId: String,
   uploadStatus: {
@@ -200,8 +200,8 @@ const productSchema = new mongoose.Schema({
 });
 
 // Text search index
-productSchema.index({ 
-  name: 'text', 
+productSchema.index({
+  name: 'text',
   description: 'text',
   tags: 'text'
 });
@@ -215,7 +215,7 @@ productSchema.index({ createdAt: -1 });
 productSchema.index({ seller: 1 });
 
 // Virtual for discount percentage
-productSchema.virtual('discountPercentage').get(function() {
+productSchema.virtual('discountPercentage').get(function () {
   if (this.originalPrice && this.originalPrice > this.price) {
     return Math.round(((this.originalPrice - this.price) / this.originalPrice) * 100);
   }
@@ -223,13 +223,13 @@ productSchema.virtual('discountPercentage').get(function() {
 });
 
 // Method to get primary image
-productSchema.methods.getPrimaryImage = function() {
+productSchema.methods.getPrimaryImage = function () {
   const primary = this.images.find(img => img.isPrimary);
   return primary ? primary.url : this.images[0]?.url || '/images/placeholder.jpg';
 };
 
 // Method to check stock availability
-productSchema.methods.isInStock = function() {
+productSchema.methods.isInStock = function () {
   return this.stock > 0 && this.isActive;
 };
 

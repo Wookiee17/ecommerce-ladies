@@ -26,7 +26,7 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Instagram, href: 'https://www.instagram.com/evara_ind/', label: 'Instagram' },
   { icon: Twitter, href: '#', label: 'Twitter' },
   { icon: Youtube, href: '#', label: 'Youtube' },
 ];
@@ -141,7 +141,17 @@ export default function Footer() {
             </p>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <p className="text-sm text-gray-400">Follow us on Instagram</p>
+              <a
+                href="https://www.instagram.com/evara_ind/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-coral-300 text-sm hover:text-white transition-colors"
+              >
+                @evara_ind
+              </a>
+              <div className="flex items-center gap-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -152,6 +162,7 @@ export default function Footer() {
                   <social.icon className="w-5 h-5" />
                 </a>
               ))}
+              </div>
             </div>
 
             {/* Payment Methods */}

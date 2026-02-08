@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '
 import { Button } from '@/components/ui/button';
 import { Loader2, Upload, Check } from 'lucide-react';
 import { useTryOn } from '@/context/TryOnContext';
+import { API_URL } from '@/lib/api';
 
 interface VirtualTryOnModalProps {
   isOpen: boolean;
@@ -78,7 +79,7 @@ export default function VirtualTryOnModal({ isOpen, onClose, product }: VirtualT
     if (!product.images || product.images.length === 0) return '';
     const firstImage = product.images[0];
     const url = typeof firstImage === 'string' ? firstImage : firstImage?.url || '';
-    const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+    const backendUrl = API_URL;
     const baseUrl = backendUrl.replace('/api', '');
     return url.startsWith('http') ? url : `${baseUrl}${url}`;
   })();
